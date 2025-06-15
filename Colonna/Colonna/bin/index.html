@@ -3,14 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <title>Harmony</title>
-  <link rel="stylesheet" href="theme.css">
+  <link rel="stylesheet" href="web.css">
+  <link rel="stylesheet" href="mobile.css">
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Press+Start+2P&display=swap" rel="stylesheet">
-
-
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 </head>
 <body>
+
+
   <div class="layout">
     <aside class="sidebar">
       <div class="sidebar-buttons">
@@ -21,7 +22,7 @@
         <div id="actionGroup" class="hide-on-load">
           <button class="sidebar-btn" id="saveBtn"><span>🪟</span><span>preview</span></button>
           <button class="sidebar-btn" id="downloadBtn"><span>📚</span><span>full</span></button>
-          <button class="sidebar-btn" id="downloadCompactBtn"><span>🪶</span><span>fether</span></button>
+          <button class="sidebar-btn" id="downloadCompactBtn"><span>🪶</span><span>feather</span></button>
         </div>
       </div>
 
@@ -30,14 +31,12 @@
           <input type="checkbox" id="themeToggle" onchange="toggleTheme()" />
           <span class="slider"></span>
         </label>
-        <span class="toggle-label">theme</span>
       </div>
     </aside>
 
     <main id="mainDropArea">
       <div id="dropOverlay">📄 Drop your YAML file to load</div>
-
-      <header id="topHeader">Harmony ʏᴍʟ </header>
+      <header id="topHeader">Harmony ʏᴍʟ</header>
 
       <div class="filename-input hide-on-load" style="width: 100%; max-width: 850px;">
         <label for="filenameInput">📄 File Name:</label>
@@ -45,11 +44,14 @@
       </div>
 
       <div id="dropZone">drag & drop here</div>
-      <div id="formContainer" class="hide-on-load"></div>
 
-      <div id="outputContainer" style="display: none;">
-        <h3>Modified YAML Output</h3>
-        <pre id="output"></pre>
+      <!-- FINAL WRAPPED CONTAINER -->
+      <div class="editor-container hide-on-load">
+        <div id="formContainer"></div>
+        <div id="outputContainer">
+          <h3>Modified YAML Output</h3>
+          <pre id="output"></pre>
+        </div>
       </div>
     </main>
   </div>

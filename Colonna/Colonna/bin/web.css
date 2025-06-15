@@ -28,19 +28,12 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: 'Press Start 2P', monospace;
+  font-family: Consolas, monospace;
 }
 
-.filenameInput,
-.section-title,
-.filename-input,
-.input,
-.filenameInput,
-.toggle,
-.textarea,
-.select {
-  font-family: Consolas, monospace;
-  font-size: 14px;
+#topHeader,
+#dropZone {
+  font-family: 'Press Start 2P', monospace;
 }
 
 footer {
@@ -183,10 +176,10 @@ legend {
   margin-bottom: 12px;
 }
 
+/* #outputContainer */
 #formContainer,
 #dropZone,
-#output,
-#outputContainer {
+#output {
   width: 100%;
   max-width: var(--max-width);
   box-sizing: border-box;
@@ -466,4 +459,43 @@ body.file-loaded #fileInfoContainer {
 }
 .hide-on-load {
   display: none;
+}
+.editor-container {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  width: 100%;
+  max-width: var(--max-width);
+  transition: all 0.3s ease;
+}
+
+#formContainer {
+  flex: 1;
+  transition: all 0.3s ease;
+}
+#outputContainer {
+  background: var(--panel-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+  margin-top: 1rem;
+  flex: 1;
+  display: none;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 20px;
+  overflow: auto;
+  max-height: 90vh;
+  position: sticky;
+  top: 100px; /* stays pinned when scrolling */
+  align-self: flex-start;
+}
+
+
+.editor-container.show-preview #outputContainer {
+  display: block;
+}
+
+.editor-container.show-preview #formContainer {
+  flex: 0.9;
 }

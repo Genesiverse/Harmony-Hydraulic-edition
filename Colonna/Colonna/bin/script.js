@@ -1,15 +1,14 @@
-// === Theme logic
+// === Theme logic ===
 const savedTheme = localStorage.getItem('theme');
 if (savedTheme === 'dark') {
   document.body.classList.add('dark');
 }
+
 window.addEventListener('DOMContentLoaded', () => {
   const isDark = document.body.classList.contains('dark');
   document.getElementById('themeToggle').checked = isDark;
 
-  document.querySelectorAll('.hide-on-load').forEach(el => {
-    el.classList.add('hide-on-load');
-  });
+  document.querySelectorAll('.hide-on-load').forEach(el => el.classList.add('hide-on-load'));
 
   const storedContent = sessionStorage.getItem('yamlContent');
   if (storedContent) {
@@ -24,7 +23,7 @@ function toggleTheme() {
   document.getElementById('themeToggle').checked = isDark;
 }
 
-// === YAML logic
+// === YAML logic ===
 let originalConfig = {};
 
 function getValue(input) {
@@ -40,6 +39,7 @@ function isEmpty(val) {
 
 function renderForm(obj, parentKey = '', depth = 0, parentContainer = null) {
   const container = parentContainer || document.getElementById('formContainer');
+
   for (const key in obj) {
     const value = obj[key];
     const fullKey = parentKey ? `${parentKey}.${key}` : key;
@@ -49,11 +49,8 @@ function renderForm(obj, parentKey = '', depth = 0, parentContainer = null) {
       section.className = 'section';
 
       const header = document.createElement('div');
-      header.textContent = key.charAt(0).toUpperCase() + key.slice(1);
       header.className = 'section-title';
-      header.style.fontSize = '1.5em';
-      header.style.fontWeight = 'bold';
-      header.style.margin = '20px 0 10px 0';
+      header.textContent = key.charAt(0).toUpperCase() + key.slice(1);
 
       const fieldBlock = document.createElement('div');
       fieldBlock.className = 'field-block';
@@ -114,8 +111,7 @@ function buildFullYAML() {
     for (let i = 0; i < keys.length - 1; i++) {
       obj = obj[keys[i]] = obj[keys[i]] || {};
     }
-    const lastKey = keys[keys.length - 1];
-    obj[lastKey] = getValue(input);
+    obj[keys.at(-1)] = getValue(input);
   });
 
   return clone;
@@ -128,12 +124,15 @@ function buildDiff(inputs, skipEmpty = false) {
     let obj = result;
     let ref = originalConfig;
     const val = getValue(input);
+
     for (let i = 0; i < keys.length - 1; i++) {
       obj = obj[keys[i]] = obj[keys[i]] || {};
       ref = ref?.[keys[i]];
     }
-    const lastKey = keys[keys.length - 1];
+
+    const lastKey = keys.at(-1);
     const originalVal = ref?.[lastKey];
+
     if (JSON.stringify(val) !== JSON.stringify(originalVal)) {
       if (!(skipEmpty && isEmpty(val))) {
         obj[lastKey] = val;
@@ -144,94 +143,84 @@ function buildDiff(inputs, skipEmpty = false) {
 }
 
 function getFilenameFromInput() {
-  const input = document.getElementById('filenameInput');
-  const raw = input?.value.trim();
-  if (!raw) return 'unnamed.yml';
-  return raw.endsWith('.yml') ? raw : raw + '.yml';
+  const raw = document.getElementById('filenameInput')?.value.trim();
+  return raw ? (raw.endsWith('.yml') ? raw : `${raw}.yml`) : 'unnamed.yml';
 }
 
-// === File handling
+// === File load/render ===
 function loadYAML(content) {
   try {
     originalConfig = jsyaml.load(content);
-  } catch (e) {
-    alert("Invalid YAML file.");
+  } catch {
+    alert('Invalid YAML file.');
     return;
   }
 
-  const fileInput = document.getElementById('filenameInput');
-  const fileNameGuess = originalConfig?.file_name || originalConfig?.name;
-  if (fileNameGuess && fileInput) {
-    fileInput.value = fileNameGuess;
-  }
+  const input = document.getElementById('filenameInput');
+  const guess = originalConfig?.file_name || originalConfig?.name;
+  if (guess && input) input.value = guess;
 
   const container = document.getElementById('formContainer');
   container.innerHTML = '';
-  renderForm(originalConfig, '', container);
+  renderForm(originalConfig, '', 0, container);
   triggerLayoutTransform();
 }
 
-// === Button handlers
+// === Button handlers ===
 document.getElementById('openFileBtn').addEventListener('click', () => {
   document.getElementById('configLoader').click();
 });
 
-document.getElementById('configLoader').addEventListener('change', async (e) => {
+document.getElementById('configLoader').addEventListener('change', async e => {
   const file = e.target.files[0];
   const content = await file.text();
   sessionStorage.setItem('yamlContent', content);
-  window.location.reload(); // triggers fresh render
+  window.location.reload();
 });
 
 document.getElementById('saveBtn').addEventListener('click', () => {
   const inputs = document.querySelectorAll('#formContainer input, #formContainer textarea');
-  const diffConfig = buildDiff(inputs);
-  const yamlOut = jsyaml.dump(diffConfig);
-  const outputEl = document.getElementById('output');
-  const outputContainer = document.getElementById('outputContainer');
+  const diff = buildDiff(inputs);
+  const yaml = jsyaml.dump(diff);
+  document.getElementById('output').textContent = yaml;
 
-  outputEl.textContent = yamlOut;
-  outputContainer.style.display = yamlOut.trim() ? 'block' : 'none';
+  const wrapper = document.querySelector('.editor-container');
+  wrapper.classList.toggle('show-preview', yaml.trim());
 });
 
 document.getElementById('downloadBtn').addEventListener('click', () => {
-  const fullConfig = buildFullYAML();
-  const yamlOut = jsyaml.dump(fullConfig);
-  const blob = new Blob([yamlOut], { type: 'text/yaml' });
-  const url = URL.createObjectURL(blob);
+  const yaml = jsyaml.dump(buildFullYAML());
+  const blob = new Blob([yaml], { type: 'text/yaml' });
   const a = document.createElement('a');
-  a.href = url;
+  a.href = URL.createObjectURL(blob);
   a.download = getFilenameFromInput();
-  document.body.appendChild(a);
+  document.body.append(a);
   a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
+  a.remove();
+  URL.revokeObjectURL(a.href);
 });
 
 document.getElementById('downloadCompactBtn').addEventListener('click', () => {
   const inputs = document.querySelectorAll('#formContainer input, #formContainer textarea');
-  const compact = buildDiff(inputs, true);
-  const yamlOut = jsyaml.dump(compact);
-  const blob = new Blob([yamlOut], { type: 'text/yaml' });
-  const url = URL.createObjectURL(blob);
+  const yaml = jsyaml.dump(buildDiff(inputs, true));
+  const blob = new Blob([yaml], { type: 'text/yaml' });
   const a = document.createElement('a');
-  a.href = url;
+  a.href = URL.createObjectURL(blob);
   a.download = getFilenameFromInput();
-  document.body.appendChild(a);
+  document.body.append(a);
   a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
+  a.remove();
+  URL.revokeObjectURL(a.href);
 });
 
 document.getElementById('resetBtn').addEventListener('click', () => {
   location.reload();
 });
 
+// === Layout updates ===
 function triggerLayoutTransform() {
   document.body.classList.add('file-loaded');
-  document.querySelectorAll('.hide-on-load').forEach(el => {
-    el.classList.remove('hide-on-load');
-  });
+  document.querySelectorAll('.hide-on-load').forEach(el => el.classList.remove('hide-on-load'));
 
   const dropZone = document.getElementById('dropZone');
   const sidebar = document.querySelector('.sidebar-buttons');
@@ -243,15 +232,16 @@ function triggerLayoutTransform() {
   document.getElementById('mainTitle')?.classList.add('loaded-title');
 }
 
-// === Drag and drop
+// === Drag and Drop ===
 const dropZone = document.getElementById('dropZone');
+const mainDrop = document.getElementById('mainDropArea');
+const overlay = document.getElementById('dropOverlay');
+
 dropZone.addEventListener('dragover', e => {
   e.preventDefault();
   dropZone.classList.add('dragover');
 });
-dropZone.addEventListener('dragleave', () => {
-  dropZone.classList.remove('dragover');
-});
+dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
 dropZone.addEventListener('drop', async e => {
   e.preventDefault();
   dropZone.classList.remove('dragover');
@@ -259,25 +249,22 @@ dropZone.addEventListener('drop', async e => {
   if (file && /\.(ya?ml)$/i.test(file.name)) {
     const content = await file.text();
     sessionStorage.setItem('yamlContent', content);
-    window.location.reload(); // triggers new state with file
+    window.location.reload();
   }
 });
-const mainDrop = document.getElementById('mainDropArea');
-const overlay = document.getElementById('dropOverlay');
 
-['dragenter', 'dragover'].forEach(eventName => {
-  mainDrop.addEventListener(eventName, e => {
+['dragenter', 'dragover'].forEach(event =>
+  mainDrop.addEventListener(event, e => {
     e.preventDefault();
     mainDrop.classList.add('drag-active');
-  });
-});
-
-['dragleave', 'dragend', 'drop'].forEach(eventName => {
-  mainDrop.addEventListener(eventName, e => {
+  })
+);
+['dragleave', 'dragexit', 'drop'].forEach(event =>
+  mainDrop.addEventListener(event, e => {
     e.preventDefault();
     mainDrop.classList.remove('drag-active');
-  });
-});
+  })
+);
 
 mainDrop.addEventListener('drop', async e => {
   const file = e.dataTransfer.files[0];
@@ -287,3 +274,28 @@ mainDrop.addEventListener('drop', async e => {
     window.location.reload();
   }
 });
+function updateLiveOutput() {
+  const inputs = document.querySelectorAll('#formContainer input, #formContainer textarea');
+  const diffConfig = buildDiff(inputs);
+  const yamlOut = jsyaml.dump(diffConfig);
+  document.getElementById('output').textContent = yamlOut;
+}
+let outputVisible = false;
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    outputVisible = entry.isIntersecting;
+  });
+}, {
+  root: null,
+  threshold: 0.1
+});
+
+observer.observe(document.getElementById('output'));
+
+document.addEventListener('input', () => {
+  if (outputVisible) {
+    updateLiveOutput();
+  }
+});
+
