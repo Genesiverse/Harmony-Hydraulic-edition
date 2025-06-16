@@ -36,6 +36,15 @@ body {
   font-family: 'Press Start 2P', monospace;
 }
 
+#outputContainer h3 {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 14px;
+}
+
+/* #outputContainer span { */
+  /* font-family: 'Press Start 2P', monospace; */
+  /* font-size: 10px; */
+/* } */
 footer {
   font-family: 'Open Sans', sans-serif;
   font-size: 12px;
@@ -469,7 +478,7 @@ body.file-loaded #fileInfoContainer {
 
 
 #output {
-  background: #27282d;
+  background: var(--bg-color);
   color: var(--text-color);
   padding: 20px;
   border-radius: 10px;
