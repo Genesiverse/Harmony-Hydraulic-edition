@@ -1,3 +1,46 @@
+let previewMode = 'feather'; // 'full' or 'feather'
+
+function createPreviewToggle() {
+  const container = document.querySelector('#outputContainer');
+  if (!container) return;
+
+  const wrapper = document.createElement('div');
+  wrapper.style.display = 'flex';
+  wrapper.style.alignItems = 'center';
+  wrapper.style.justifyContent = 'flex-end';
+  wrapper.style.gap = '0.5rem';
+  wrapper.style.marginBottom = '0.5rem';
+
+  const label = document.createElement('label');
+  label.className = 'toggle-switch';
+  label.style.margin = 0;
+
+  const input = document.createElement('input');
+  input.type = 'checkbox';
+  input.id = 'previewToggle';
+  input.checked = true;
+
+  const slider = document.createElement('span');
+  slider.className = 'slider';
+
+  label.appendChild(input);
+  label.appendChild(slider);
+
+  const text = document.createElement('span');
+  text.textContent = 'feather';
+
+  input.addEventListener('change', () => {
+    previewMode = input.checked ? 'feather' : 'full';
+    text.textContent = previewMode;
+    updateLiveOutput();
+  });
+
+  wrapper.appendChild(label);
+  wrapper.appendChild(text);
+  container.prepend(wrapper);
+}
+
+
 // === Theme logic ===
 const savedTheme = localStorage.getItem('theme');
 if (savedTheme === 'dark') {
@@ -101,6 +144,24 @@ function renderForm(obj, parentKey = '', depth = 0, parentContainer = null) {
   }
 }
 
+function removeEmptyObjects(obj) {
+  if (Array.isArray(obj)) {
+    return obj
+      .map(removeEmptyObjects)
+      .filter(v => v !== undefined && !(typeof v === 'object' && Object.keys(v).length === 0));
+  } else if (typeof obj === 'object' && obj !== null) {
+    const cleaned = {};
+    for (const key in obj) {
+      const val = removeEmptyObjects(obj[key]);
+      if (val !== undefined && !(typeof val === 'object' && Object.keys(val).length === 0)) {
+        cleaned[key] = val;
+      }
+    }
+    return Object.keys(cleaned).length > 0 ? cleaned : undefined;
+  }
+  return obj;
+}
+
 function buildFullYAML() {
   const inputs = document.querySelectorAll('#formContainer input, #formContainer textarea');
   const clone = structuredClone(originalConfig);
@@ -164,6 +225,7 @@ function loadYAML(content) {
   container.innerHTML = '';
   renderForm(originalConfig, '', 0, container);
   triggerLayoutTransform();
+  createPreviewToggle();
 }
 
 // === Button handlers ===
@@ -179,17 +241,25 @@ document.getElementById('configLoader').addEventListener('change', async e => {
 });
 
 document.getElementById('saveBtn').addEventListener('click', () => {
-  const inputs = document.querySelectorAll('#formContainer input, #formContainer textarea');
-  const diff = buildDiff(inputs);
-  const yaml = jsyaml.dump(diff);
-  document.getElementById('output').textContent = yaml;
-
   const wrapper = document.querySelector('.editor-container');
-  wrapper.classList.toggle('show-preview', yaml.trim());
+  const output = document.getElementById('output');
+
+  // Toggle visibility
+  if (wrapper.classList.contains('show-preview')) {
+    wrapper.classList.remove('show-preview');
+    output.textContent = '';
+    return;
+  }
+
+  const inputs = document.querySelectorAll('#formContainer input, #formContainer textarea');
+  const data = previewMode === 'full' ? buildFullYAML() : buildDiff(inputs);
+  const yaml = jsyaml.dump(removeEmptyObjects(data));
+  output.textContent = yaml;
+  wrapper.classList.add('show-preview');
 });
 
 document.getElementById('downloadBtn').addEventListener('click', () => {
-  const yaml = jsyaml.dump(buildFullYAML());
+  const yaml = jsyaml.dump(removeEmptyObjects(buildFullYAML()));
   const blob = new Blob([yaml], { type: 'text/yaml' });
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
@@ -202,7 +272,7 @@ document.getElementById('downloadBtn').addEventListener('click', () => {
 
 document.getElementById('downloadCompactBtn').addEventListener('click', () => {
   const inputs = document.querySelectorAll('#formContainer input, #formContainer textarea');
-  const yaml = jsyaml.dump(buildDiff(inputs, true));
+  const yaml = jsyaml.dump(removeEmptyObjects(buildDiff(inputs, true)));
   const blob = new Blob([yaml], { type: 'text/yaml' });
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
@@ -274,12 +344,14 @@ mainDrop.addEventListener('drop', async e => {
     window.location.reload();
   }
 });
+
 function updateLiveOutput() {
   const inputs = document.querySelectorAll('#formContainer input, #formContainer textarea');
-  const diffConfig = buildDiff(inputs);
-  const yamlOut = jsyaml.dump(diffConfig);
+  const data = previewMode === 'full' ? buildFullYAML() : buildDiff(inputs);
+  const yamlOut = jsyaml.dump(removeEmptyObjects(data));
   document.getElementById('output').textContent = yamlOut;
 }
+
 let outputVisible = false;
 
 const observer = new IntersectionObserver(entries => {
@@ -298,4 +370,3 @@ document.addEventListener('input', () => {
     updateLiveOutput();
   }
 });
-
