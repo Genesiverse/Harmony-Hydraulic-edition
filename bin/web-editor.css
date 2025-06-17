@@ -1,3 +1,234 @@
+#outputContainer {
+  background: var(--bg-color);
+  color: var(--text-color);
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  font-family: monospace;
+  min-height: 300px;
+  max-height: 90vh;
+  height: 90vh;
+  width: 100%;
+  overflow: auto;
+  margin-top: 1rem;
+  line-height: 1.4;
+  font-size: 0.95rem;
+  box-sizing: border-box;
+}
+#output {
+  padding: 20px !important;
+  border-radius: 10px !important;
+  border: 1px solid var(--border-color) !important;
+  font-family: monospace;
+  height: 65vh !important;
+  max-height: 95vh !important;
+  width: 100% !important;
+  overflow: auto !important;
+  resize: vertical !important;
+  margin-top: 1rem !important;
+  white-space: pre !important;
+  line-height: 1.4 !important;
+  font-size: 0.95rem !important;
+  box-sizing: border-box !important;
+  background-color: #ffffff45 !important;
+}
+#formContainer {
+  background: var(--panel-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+  margin-top: 1rem;
+  flex: 1;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 20px;
+  overflow: auto;
+  max-height: calc(105.1vh - 100px);
+  position: sticky;
+  top: 50px;
+  transition: all 0.3s ease;
+}
+
+#outputContainer {
+  background: var(--panel-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+  margin-top: 1rem;
+  flex: 1;
+  display: none;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 20px;
+  overflow: auto;
+  max-height: calc(105vh - 100px); /* match form */
+  position: sticky;
+  top: 50px;
+  align-self: flex-start;
+  transition: all 0.3s ease;
+}
+
+
+
+
+#outputContainer h3 {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 14px;
+}
+#outputContainer {
+  background: var(--bg-color);
+  color: var(--text-color);
+  padding: 0px;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  font-family: monospace;
+  min-height: 300px;
+  height: auto;
+  max-height: calc(105vh - 140px); /* match form container logic */
+  width: 100%;
+  overflow: auto;
+  line-height: 1.4;
+  font-size: 0.95rem;
+  box-sizing: border-box;
+}
+#output {
+  background: var(--bg-color);
+  color: var(--text-color);
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  font-family: monospace;
+  min-height: 300px;
+  height: auto;
+  max-height: calc(105vh - 140px); /* match form container logic */
+  width: 100%;
+  overflow: auto;
+  resize: vertical;
+  margin-top: 1rem;
+  white-space: pre;
+  line-height: 1.4;
+  font-size: 0.95rem;
+  box-sizing: border-box;
+}
+
+#output {
+  background: var(--bg-color);
+  color: var(--text-color);
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  font-family: monospace;
+  min-height: 300px;
+  max-height: 90vh;
+  height: 90vh;
+  width: 100%;
+  overflow: auto;
+  resize: vertical;
+  margin-top: 1rem;
+  white-space: pre;
+  line-height: 1.4;
+  font-size: 0.95rem;
+  box-sizing: border-box;
+}
+#formContainer {
+  background: var(--panel-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+  margin-top: 1rem;
+  flex: 1;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 20px;
+  overflow: auto;
+  max-height: calc(105.1vh - 100px);
+  position: sticky;
+  top: 50px;
+  transition: all 0.3s ease;
+}
+
+#outputContainer {
+  background: var(--panel-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+  margin-top: 1rem;
+  flex: 1;
+  display: none;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 20px;
+  overflow: auto;
+  max-height: calc(105vh - 100px); /* match form */
+  position: sticky;
+  top: 50px;
+  align-self: flex-start;
+  transition: all 0.3s ease;
+}
+
+/* === Preview Header Layout === */
+.preview-header-inline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 0.5rem;
+  gap: 1rem;
+}
+
+.preview-title {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 1rem;
+  color: var(--text-color);
+}
+
+.preview-toggle-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* === Toggle Switch === */
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 42px;
+  height: 22px;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-switch .slider {
+  position: absolute;
+  inset: 0;
+  background-color: var(--accent-muted);
+  border-radius: 22px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.toggle-switch .slider::before {
+  content: "";
+  position: absolute;
+  height: 18px;
+  width: 18px;
+  left: 2px;
+  top: 2px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.3s;
+}
+
+.toggle-switch input:checked + .slider {
+  background-color: var(--highlight);
+}
+
+.toggle-switch input:checked + .slider::before {
+  transform: translateX(20px);
+}
 
 
 
