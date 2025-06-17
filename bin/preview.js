@@ -117,3 +117,10 @@ document.getElementById('resetBtn').addEventListener('click', () => {
   location.reload();
 });
 
+const output = document.getElementById('output');
+if (output) {
+  output.addEventListener('input', () => {
+    output.style.height = 'auto';
+    output.style.height = `${output.scrollHeight}px`;
+  });
+}
