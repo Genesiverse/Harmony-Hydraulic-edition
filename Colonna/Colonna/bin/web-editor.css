@@ -1,0 +1,215 @@
+
+
+
+/* Target .editor-container when preview is shown */
+.editor-container.show-preview {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  max-width: 1400px; /* optional max width for balance */
+  margin: 0 auto;
+  padding: 0 1.5rem; /* spacing on left/right */
+  box-sizing: border-box;
+}
+
+/* Form and preview areas */
+.dark.file-loaded {
+  padding: 1.5rem 0rem 0rem 0rem; /* ⬅️ optional: adjust to control spacing on edges */
+}
+
+/* === Tree lines === */
+.field-group {
+  position: relative;
+  margin-bottom: 0.0rem;
+  padding-left: 1.0rem;
+}
+.field-group::before {
+  content: "";
+  position: absolute;
+  left: 0rem;
+  top: 55%;
+  transform: translateY(-50%);
+  width: 0.7rem;
+  height: 2px;
+  background: var(--border-color);
+}
+
+
+/* === Title Label === */
+.section-title {
+  position: absolute;
+  top: -1.5rem;
+  left: 1rem;
+  background: var(--bg-color);
+  padding: 0 0.5rem;
+  font-weight: bold;
+  font-family: inherit;
+  font-size: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  color: var(--text-color);
+  z-index: 2;
+  pointer-events: none;
+}
+/* === Base Section === */
+.section {
+  position: relative;
+  border-radius: 12px;
+  padding: 0rem;
+  overflow: visible;
+  transition: all 0.3s ease;
+  border: 1px solid var(--bg-color);
+  background: none;
+  margin-top: 3.9rem;
+  margin-bottom: 3.9rem;
+  flex: 1;
+}
+
+#fileInfoContainer {
+  display: none;
+}
+body.file-loaded #fileInfoContainer {
+  display: block;
+}
+/* Wrap the entire content area (including sidebar + editor) */
+.layout {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 0 2rem; /* ⬅️ optional: adjust to control spacing on edges */
+  box-sizing: border-box;
+}
+
+/* Target .editor-container when preview is shown */
+.editor-container.show-preview {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  max-width: 1400px; /* optional max width for balance */
+  margin: 0 auto;
+  padding: 0 1.5rem; /* spacing on left/right */
+  box-sizing: border-box;
+}
+
+/* Form and preview areas */
+.editor-container.show-preview #formContainer,
+.editor-container.show-preview #outputContainer {
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 50%;
+}
+
+#formContainer {
+  background: var(--panel-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+  margin-top: 1rem;
+  flex: 1;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 20px;
+  overflow: auto;
+  max-height: calc(105.1vh - 100px); /* 100vh minus sticky offset + margin */
+  position: sticky;
+  top: 50px; /* sticky offset */
+  align-self: flex-start;
+  transition: all 0.3s ease;
+}
+
+/* === Depth-Specific Debug Layers === */
+.section[data-depth="0"] {
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 0px;
+  margin: -0.3rem;
+  margin: 0 0.2rem 0 0.2rem;
+}
+.section[data-depth="1"] {
+  background: var(--bg-color-1);
+  border: 1px solid var(--border-color);
+  padding: 0px;
+  margin: -0.5rem;
+  border-radius: 0px;
+  margin-top: 2.0rem;
+  margin-bottom: 2.0rem;
+  padding: 0 0.5rem 0 0 ;
+}
+.section[data-depth="2"] {
+  background: var(--bg-color-1);
+  border: 1px solid var(--border-color);
+  padding: 0px;
+  margin: 0rem;
+  border-radius: 0px;
+  margin-top: 2.0rem;
+  margin-left: 0.3rem;
+  margin-right: 0.2rem;
+  margin-bottom: 2.0rem;
+  padding: 0 0.5rem 0 0 ;
+
+  /* Retro pop-style shadow */
+  box-shadow:
+    4px 4px 0 var(--shadow),
+    4px 4px 0 1px var(--shadow);
+}
+.section[data-depth="3"] {
+  background: var(--blue);
+  border: 1px solid var(--accent-muted);
+  padding: 0px;
+  margin: 0rem;
+  border-radius: 0px;
+  margin-top: 2.0rem;
+  margin-left: 2.0rem;
+  margin-right: 0.1rem;
+  margin-bottom: 2.0rem;
+  padding: 0 0.5rem 0 0 ;
+
+  /* Retro pop-style shadow */
+  box-shadow:
+    4px 4px 0 var(--shadow),
+    4px 4px 0 1px var(--shadow);
+}
+
+
+.section[data-depth="4"] {
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 0px;
+  margin: 0rem;
+}
+
+/* === Beyond Depth 4 — Glassy & Faint === */
+.section[data-depth="5"],
+.section[data-depth="6"],
+.section[data-depth="7"],
+.section[data-depth="8"],
+.section[data-depth="9"] {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding-left: 1rem;
+}
+
+/* === Depth Debug Badge === */
+/* .section::after { */
+  /* content: "depth=" attr(data-depth); */
+  /* position: absolute; */
+  /* top: 0; */
+  /* right: 0.5rem; */
+  /* font-size: 0.7rem; */
+  /* background: var(--bg-color); */
+  /* color: red; */
+  /* padding: 2px 6px; */
+  /* border-radius: 4px; */
+  /* font-weight: bold; */
+  /* pointer-events: none; */
+  /* z-index: 9999; */
+/* } */

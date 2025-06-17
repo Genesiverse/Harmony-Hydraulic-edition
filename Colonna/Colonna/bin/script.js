@@ -1,70 +1,38 @@
-let previewMode = 'feather'; // 'full' or 'feather'
-
-function createPreviewToggle() {
-  const container = document.querySelector('#outputContainer');
-  if (!container) return;
-
-  const wrapper = document.createElement('div');
-  wrapper.style.display = 'flex';
-  wrapper.style.alignItems = 'center';
-  wrapper.style.justifyContent = 'flex-end';
-  wrapper.style.gap = '0.5rem';
-  wrapper.style.marginBottom = '0.5rem';
-
-  const label = document.createElement('label');
-  label.className = 'toggle-switch';
-  label.style.margin = 0;
-
-  const input = document.createElement('input');
-  input.type = 'checkbox';
-  input.id = 'previewToggle';
-  input.checked = true;
-
-  const slider = document.createElement('span');
-  slider.className = 'slider';
-
-  label.appendChild(input);
-  label.appendChild(slider);
-
-  const text = document.createElement('span');
-  text.textContent = 'feather';
-
-  input.addEventListener('change', () => {
-    previewMode = input.checked ? 'feather' : 'full';
-    text.textContent = previewMode;
-    updateLiveOutput();
-  });
-
-  wrapper.appendChild(label);
-  wrapper.appendChild(text);
-  container.prepend(wrapper);
-}
-
-
-// === Theme logic ===
-const savedTheme = localStorage.getItem('theme');
-if (savedTheme === 'dark') {
-  document.body.classList.add('dark');
-}
-
-window.addEventListener('DOMContentLoaded', () => {
-  const isDark = document.body.classList.contains('dark');
-  document.getElementById('themeToggle').checked = isDark;
-
-  document.querySelectorAll('.hide-on-load').forEach(el => el.classList.add('hide-on-load'));
-
-  const storedContent = sessionStorage.getItem('yamlContent');
-  if (storedContent) {
-    sessionStorage.removeItem('yamlContent');
-    loadYAML(storedContent);
+// === File load/render ===
+function loadYAML(content) {
+  try {
+    originalConfig = jsyaml.load(content);
+  } catch {
+    alert('Invalid YAML file.');
+    return;
   }
-});
 
-function toggleTheme() {
-  const isDark = document.body.classList.toggle('dark');
-  localStorage.setItem('theme', isDark ? 'dark' : 'light');
-  document.getElementById('themeToggle').checked = isDark;
+  const input = document.getElementById('filenameInput');
+  const guess = originalConfig?.file_name || originalConfig?.name;
+  if (guess && input) input.value = guess;
+
+  const container = document.getElementById('formContainer');
+  container.innerHTML = '';
+  renderForm(originalConfig, '', container); // ⬅️ no static depth
+  applyDynamicDepths(container); // ✅ assign true DOM-based depth
+  triggerLayoutTransform();
+  createPreviewToggle();
 }
+
+function applyDynamicDepths(root) {
+  const sections = root.querySelectorAll('.section');
+  sections.forEach(section => {
+    let depth = 0;
+    let parent = section.parentElement;
+    while (parent) {
+      if (parent.classList.contains('section')) depth++;
+      parent = parent.parentElement;
+    }
+    section.setAttribute('data-depth', depth);
+  });
+}
+
+
 
 // === YAML logic ===
 let originalConfig = {};
@@ -80,21 +48,28 @@ function isEmpty(val) {
   return val === null || val === '' || (Array.isArray(val) && val.length === 0);
 }
 
-function renderForm(obj, parentKey = '', depth = 0, parentContainer = null) {
+function renderForm(obj, parentKey = '', parentContainer = null) {
   const container = parentContainer || document.getElementById('formContainer');
+  const keys = Object.keys(obj);
 
-  for (const key in obj) {
+  keys.forEach((key) => {
     const value = obj[key];
     const fullKey = parentKey ? `${parentKey}.${key}` : key;
 
+    const sectionWrapper = document.createElement('div');
+    sectionWrapper.className = 'section';
+
+    const header = document.createElement('div');
+    header.className = 'section-title';
+    header.textContent = key.charAt(0).toUpperCase() + key.slice(1);
+
+    if (typeof advancedMode !== 'undefined' && advancedMode) {
+      createAddNestedButton(fullKey, header);
+    }
+
+    sectionWrapper.appendChild(header);
+
     if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
-      const section = document.createElement('div');
-      section.className = 'section';
-
-      const header = document.createElement('div');
-      header.className = 'section-title';
-      header.textContent = key.charAt(0).toUpperCase() + key.slice(1);
-
       const fieldBlock = document.createElement('div');
       fieldBlock.className = 'field-block';
 
@@ -102,17 +77,20 @@ function renderForm(obj, parentKey = '', depth = 0, parentContainer = null) {
       subGroup.className = 'field-subgroup';
 
       fieldBlock.appendChild(subGroup);
-      section.appendChild(header);
-      section.appendChild(fieldBlock);
-      container.appendChild(section);
+      sectionWrapper.appendChild(fieldBlock);
+      container.appendChild(sectionWrapper);
 
-      renderForm(value, fullKey, depth + 1, subGroup);
+      renderForm(value, fullKey, subGroup); // no depth param needed now
     } else {
       const group = document.createElement('div');
       group.className = 'field-group';
 
       const label = document.createElement('label');
       label.className = 'toggle';
+
+      if (typeof advancedMode !== 'undefined' && advancedMode) {
+        createAddNestedButton(parentKey, label);
+      }
 
       const span = document.createElement('span');
       span.textContent = key;
@@ -139,9 +117,15 @@ function renderForm(obj, parentKey = '', depth = 0, parentContainer = null) {
       label.appendChild(span);
       label.appendChild(input);
       group.appendChild(label);
-      container.appendChild(group);
+
+      const wrapper = document.createElement('div');
+      wrapper.className = 'field-block';
+      wrapper.appendChild(group);
+
+      sectionWrapper.appendChild(wrapper);
+      container.appendChild(sectionWrapper);
     }
-  }
+  });
 }
 
 function removeEmptyObjects(obj) {
@@ -207,166 +191,3 @@ function getFilenameFromInput() {
   const raw = document.getElementById('filenameInput')?.value.trim();
   return raw ? (raw.endsWith('.yml') ? raw : `${raw}.yml`) : 'unnamed.yml';
 }
-
-// === File load/render ===
-function loadYAML(content) {
-  try {
-    originalConfig = jsyaml.load(content);
-  } catch {
-    alert('Invalid YAML file.');
-    return;
-  }
-
-  const input = document.getElementById('filenameInput');
-  const guess = originalConfig?.file_name || originalConfig?.name;
-  if (guess && input) input.value = guess;
-
-  const container = document.getElementById('formContainer');
-  container.innerHTML = '';
-  renderForm(originalConfig, '', 0, container);
-  triggerLayoutTransform();
-  createPreviewToggle();
-}
-
-// === Button handlers ===
-document.getElementById('openFileBtn').addEventListener('click', () => {
-  document.getElementById('configLoader').click();
-});
-
-document.getElementById('configLoader').addEventListener('change', async e => {
-  const file = e.target.files[0];
-  const content = await file.text();
-  sessionStorage.setItem('yamlContent', content);
-  window.location.reload();
-});
-
-document.getElementById('saveBtn').addEventListener('click', () => {
-  const wrapper = document.querySelector('.editor-container');
-  const output = document.getElementById('output');
-
-  // Toggle visibility
-  if (wrapper.classList.contains('show-preview')) {
-    wrapper.classList.remove('show-preview');
-    output.textContent = '';
-    return;
-  }
-
-  const inputs = document.querySelectorAll('#formContainer input, #formContainer textarea');
-  const data = previewMode === 'full' ? buildFullYAML() : buildDiff(inputs);
-  const yaml = jsyaml.dump(removeEmptyObjects(data));
-  output.textContent = yaml;
-  wrapper.classList.add('show-preview');
-});
-
-document.getElementById('downloadBtn').addEventListener('click', () => {
-  const yaml = jsyaml.dump(removeEmptyObjects(buildFullYAML()));
-  const blob = new Blob([yaml], { type: 'text/yaml' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = getFilenameFromInput();
-  document.body.append(a);
-  a.click();
-  a.remove();
-  URL.revokeObjectURL(a.href);
-});
-
-document.getElementById('downloadCompactBtn').addEventListener('click', () => {
-  const inputs = document.querySelectorAll('#formContainer input, #formContainer textarea');
-  const yaml = jsyaml.dump(removeEmptyObjects(buildDiff(inputs, true)));
-  const blob = new Blob([yaml], { type: 'text/yaml' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = getFilenameFromInput();
-  document.body.append(a);
-  a.click();
-  a.remove();
-  URL.revokeObjectURL(a.href);
-});
-
-document.getElementById('resetBtn').addEventListener('click', () => {
-  location.reload();
-});
-
-// === Layout updates ===
-function triggerLayoutTransform() {
-  document.body.classList.add('file-loaded');
-  document.querySelectorAll('.hide-on-load').forEach(el => el.classList.remove('hide-on-load'));
-
-  const dropZone = document.getElementById('dropZone');
-  const sidebar = document.querySelector('.sidebar-buttons');
-  if (dropZone && sidebar) {
-    sidebar.appendChild(dropZone);
-    dropZone.classList.add('moved-to-sidebar');
-  }
-
-  document.getElementById('mainTitle')?.classList.add('loaded-title');
-}
-
-// === Drag and Drop ===
-const dropZone = document.getElementById('dropZone');
-const mainDrop = document.getElementById('mainDropArea');
-const overlay = document.getElementById('dropOverlay');
-
-dropZone.addEventListener('dragover', e => {
-  e.preventDefault();
-  dropZone.classList.add('dragover');
-});
-dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
-dropZone.addEventListener('drop', async e => {
-  e.preventDefault();
-  dropZone.classList.remove('dragover');
-  const file = e.dataTransfer.files[0];
-  if (file && /\.(ya?ml)$/i.test(file.name)) {
-    const content = await file.text();
-    sessionStorage.setItem('yamlContent', content);
-    window.location.reload();
-  }
-});
-
-['dragenter', 'dragover'].forEach(event =>
-  mainDrop.addEventListener(event, e => {
-    e.preventDefault();
-    mainDrop.classList.add('drag-active');
-  })
-);
-['dragleave', 'dragexit', 'drop'].forEach(event =>
-  mainDrop.addEventListener(event, e => {
-    e.preventDefault();
-    mainDrop.classList.remove('drag-active');
-  })
-);
-
-mainDrop.addEventListener('drop', async e => {
-  const file = e.dataTransfer.files[0];
-  if (file && /\.(ya?ml)$/i.test(file.name)) {
-    const content = await file.text();
-    sessionStorage.setItem('yamlContent', content);
-    window.location.reload();
-  }
-});
-
-function updateLiveOutput() {
-  const inputs = document.querySelectorAll('#formContainer input, #formContainer textarea');
-  const data = previewMode === 'full' ? buildFullYAML() : buildDiff(inputs);
-  const yamlOut = jsyaml.dump(removeEmptyObjects(data));
-  document.getElementById('output').textContent = yamlOut;
-}
-
-let outputVisible = false;
-
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    outputVisible = entry.isIntersecting;
-  });
-}, {
-  root: null,
-  threshold: 0.1
-});
-
-observer.observe(document.getElementById('output'));
-
-document.addEventListener('input', () => {
-  if (outputVisible) {
-    updateLiveOutput();
-  }
-});

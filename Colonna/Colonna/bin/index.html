@@ -3,15 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <title>Harmony</title>
-  <link rel="stylesheet" href="web.css">
+  <link rel="stylesheet" href="web-layout.css">
+  <link rel="stylesheet" href="web-editor.css">
   <link rel="stylesheet" href="mobile.css">
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 </head>
 <body>
-
-
   <div class="layout">
     <aside class="sidebar">
       <div class="sidebar-buttons">
@@ -23,6 +22,7 @@
           <button class="sidebar-btn" id="saveBtn"><span>🪟</span><span>preview</span></button>
           <button class="sidebar-btn" id="downloadBtn"><span>📚</span><span>full</span></button>
           <button class="sidebar-btn" id="downloadCompactBtn"><span>🪶</span><span>feather</span></button>
+          <button class="sidebar-btn" id="pro-advance-toogle"><span>👁️‍🗨️</span><span>advance</span></button>
         </div>
       </div>
 
@@ -38,29 +38,31 @@
       <div id="dropOverlay">📄 Drop your YAML file to load</div>
       <header id="topHeader">Harmony ʏᴍʟ</header>
 
-      <div class="filename-input hide-on-load" style="width: 100%; max-width: 850px;">
-        <label for="filenameInput">📄 File Name:</label>
-        <input type="text" id="filenameInput" placeholder="Enter file name (without .yml)">
-      </div>
-
       <div id="dropZone">drag & drop here</div>
+
+      <div class="footer-credit" id="mainDropArea">
+        ᴍᴀᴅᴇ ᴡɪᴛʜ ❤️ ʙʏ ᴊᴀɴ • ɢᴇɴᴇsɪᴠᴇʀsᴇ • ʏᴍʟ ʜᴀʀᴍᴏɴʏ © 2025
+      </div>
 
       <!-- FINAL WRAPPED CONTAINER -->
       <div class="editor-container hide-on-load">
         <div id="formContainer"></div>
         <div id="outputContainer">
-          <h3>preview</h3>
-          <pre id="output"></pre>
+          <textarea id="output" spellcheck="false"></textarea>
+          <div class="filename-input">
+            <label for="filenameInput">📄 File Name:</label>
+            <input type="text" id="filenameInput" placeholder="Enter file name (without .yml)">
+          </div>
         </div>
       </div>
     </main>
   </div>
 
-  <footer>
-    ᴍᴀᴅᴇ ᴡɪᴛʜ ❤️ ʙʏ ᴊᴀɴ • ɢᴇɴᴇsɪᴠᴇʀsᴇ • ʏᴍʟ ʜᴀʀᴍᴏɴʏ © 2025
-  </footer>
-
   <script src="https://cdn.jsdelivr.net/npm/js-yaml@4"></script>
+  <script src="theme.js"></script>
+  <script src="preview.js"></script>
   <script src="script.js"></script>
+  <script src="pro.js"></script>
+  <script src="draganddrop.js"></script>
 </body>
 </html>

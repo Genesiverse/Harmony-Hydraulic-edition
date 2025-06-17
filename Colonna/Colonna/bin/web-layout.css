@@ -1,23 +1,82 @@
 /* === Custom Dark Glassy Theme for YAML Editor === */
-
 :root {
-  --bg-color: #ffffff;
-  --panel-bg: rgba(240, 240, 240, 0.9);
-  --border-color: #ccc;
-  --text-color: #111;
-  --highlight: #5555ff;
-  --accent-green: #2ea043;
+  --bg-color: #ffffff;                 /* light background */
+  --shadow: #00000047;                 /* dark background */
+  --bg-color-1: #cbcdd44a;                 /* dark background */
+  --panel-bg: rgba(240, 240, 240, 0.8); /* light panel glass */
+  --border-color: #ccc;               /* soft light borders */
+  --text-color: #111;                 /* high contrast text */
+  --highlight: #5865F2;               /* Discord blue highlight */
+  --blue: #dce1e6;               /* Discord blue */
+  --accent-green: #2ea043;            /* success (green) */
+  --accent-red: #ed4245;              /* error/warning (red) */
+  --accent-yellow: #e0c000;           /* soft alert yellow */
+  --accent-orange: #f0883e;           /* warm CTA (orange) */
+  --accent-purple: #8e5af7;           /* purple identity */
+  --accent-pink: #ff7eb9;             /* passive pink accent */
+  --accent-muted: #999da1;            /* muted/inactive text */
   --max-width: 850px;
+
+  /* Depth-based backgrounds */
+  --section-bg-0: #f9f9fb;
+  --section-border-0: #ccc;
+
+  --section-bg-1: #f1f1f3;
+  --section-border-1: #bbb;
+
+  --section-bg-2: #ebebef;
+  --section-border-2: #aaa;
+
+  --section-bg-3: #e5e5e9;
+  --section-border-3: #999;
+
+  --section-bg-4: #dedee2;
+  --section-border-4: #888;
+
+  /* Optional: hover/debug/dev states */
+  --section-bg-focus: #f0f0f5;
+  --section-border-focus: #bbb;
 }
 
 body.dark {
-  --bg-color: #1e1f22;
-  --panel-bg: rgba(43, 45, 49, 0.45);
-  --border-color: #4e5058;
-  --text-color: #f2f3f5;
-  --highlight: #5865F2;
-  --accent-green: #23a55a;
+  --bg-color: #1e1f22;                 /* dark background */
+  --shadow: #000;                 /* dark background */
+  --bg-color-1: #2d2f3573;                 /* dark background */
+  --panel-bg: rgba(43, 45, 49, 0.45);  /* semi-transparent dark glass */
+  --border-color: #4e5058;            /* neutral gray borders */
+  --text-color: #f2f3f5;              /* high contrast light text */
+  --highlight: #5865F2;               /* Discord blue */
+  --blue: #222c3a;               /* Discord blue */
+  --accent-green: #23a55a;            /* green confirmation */
+  --accent-red: #ed4245;              /* Discord red */
+  --accent-yellow: #f1c40f;           /* warning yellow */
+  --accent-orange: #ff9950;           /* orange CTA */
+  --accent-purple: #9b5cf7;           /* purple for tags/icons */
+  --accent-pink: #ff7eb9;             /* passive/hover pink */
+  --accent-muted: #72767d;            /* subtle UI text */
+
+  /* Depth backgrounds and borders */
+  --section-bg-0: #2b2d31;
+  --section-border-0: #4e5058;
+
+  --section-bg-1: #232428;
+  --section-border-1: #4e5058;
+
+  --section-bg-2: #1e1f22;
+  --section-border-2: #3d3f45;
+
+  --section-bg-3: #18191c;
+  --section-border-3: #36393f;
+
+  --section-bg-4: #121315;
+  --section-border-4: #2c2f33;
+
+  --section-bg-focus: #313338;
+  --section-border-focus: #72767d;
 }
+
+
+
 
 body {
   background-color: var(--bg-color);
@@ -36,15 +95,6 @@ body {
   font-family: 'Press Start 2P', monospace;
 }
 
-#outputContainer h3 {
-  font-family: 'Press Start 2P', monospace;
-  font-size: 14px;
-}
-
-/* #outputContainer span { */
-  /* font-family: 'Press Start 2P', monospace; */
-  /* font-size: 10px; */
-/* } */
 footer {
   font-family: 'Open Sans', sans-serif;
   font-size: 12px;
@@ -295,8 +345,26 @@ body.dark #dropZone {
   display: none !important;
 }
 
-#mainDropArea {
+#mainDropArea{
   position: relative;
+  border-radius: 12px;
+  padding: 0rem;
+  overflow: visible;
+  transition: all 0.3s ease;
+  border: 1px solid var(--bg-color);
+  background: none;
+  margin-top: 0rem;
+  flex: 1;
+}
+
+.footer-credit {
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--accent-muted);
+  opacity: 0.8;
+  margin: -2rem 0rem 0rem 0rem !important; 
+  font-family: 'Open Sans', sans-serif !important; 
 }
 
 #dropOverlay {
@@ -477,39 +545,15 @@ body.file-loaded #fileInfoContainer {
 }
 
 
-#output {
-  background: var(--bg-color);
-  color: var(--text-color);
-  padding: 20px;
-  border-radius: 10px;
-  border: 1px solid var(--border-color);
-  font-family: monospace;
-  white-space: pre-wrap;
-  min-height: 300px;
-  max-height: 90000px;
-  overflow: auto;
-  resize: vertical;
-  margin-top: 1rem;
+#outputContainer h3 {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 14px;
 }
 
-#outputContainer {
-  background: var(--panel-bg);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
-  margin-top: 1rem;
-  flex: 1;
-  display: none;
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
-  padding: 20px;
-  overflow: auto;
-  max-height: calc(100vh - 100px); /* 100vh minus sticky offset + margin */
-  position: sticky;
-  top: 50px; /* sticky offset */
-  align-self: flex-start;
-}
-
+/* #outputContainer span { */
+  /* font-family: 'Press Start 2P', monospace; */
+  /* font-size: 10px; */
+/* } */
 #outputContainer::-webkit-scrollbar {
   display: none;
 }
@@ -527,3 +571,13 @@ body.file-loaded #fileInfoContainer {
 .editor-container.show-preview #formContainer {
   flex: 0.9;
 }
+/* === Advanced Mode Styling === */
+
+/* Animate label shift and plus fade-in */
+body.advanced-mode .field-group .toggle,
+body.advanced-mode .section-title {
+  transform: translateX(12px);
+  transition: transform 0.3s ease;
+  position: relative;
+}
+
