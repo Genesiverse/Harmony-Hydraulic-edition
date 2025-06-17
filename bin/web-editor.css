@@ -356,6 +356,25 @@ body.file-loaded #fileInfoContainer {
   /* transition: all 0.3s ease; */
 /* } */
 
+/* Shared base panel style */
+.sticky-panel {
+  background: var(--panel-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+  margin-top: 1rem;
+  flex: 1;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 20px;
+  overflow: auto;
+  max-height: calc(105vh - 100px);
+  position: sticky;
+  top: 50px;
+  align-self: flex-start;
+  transition: all 0.3s ease;
+}
+
 /* === Depth-Specific Debug Layers === */
 .section[data-depth="0"] {
   background: none;
