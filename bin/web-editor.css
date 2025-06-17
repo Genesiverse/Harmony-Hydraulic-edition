@@ -1,3 +1,4 @@
+
 #outputContainer {
   background: var(--bg-color);
   color: var(--text-color);
@@ -245,6 +246,7 @@
   padding: 0 1.5rem; /* spacing on left/right */
   box-sizing: border-box;
 }
+
 
 /* Form and preview areas */
 .dark.file-loaded {
