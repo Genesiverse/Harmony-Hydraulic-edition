@@ -1,20 +1,3 @@
-
-
-
-/* Target .editor-container when preview is shown */
-.editor-container.show-preview {
-  display: flex;
-  flex-direction: row;
-  gap: 2rem;
-  align-items: flex-start;
-  justify-content: center;
-  width: 100%;
-  max-width: 1400px; /* optional max width for balance */
-  margin: 0 auto;
-  padding: 0 1.5rem; /* spacing on left/right */
-  box-sizing: border-box;
-}
-
 /* Form and preview areas */
 .dark.file-loaded {
   padding: 1.5rem 0rem 0rem 0rem; /* ⬅️ optional: adjust to control spacing on edges */
