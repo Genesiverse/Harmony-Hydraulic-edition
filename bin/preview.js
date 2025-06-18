@@ -9,9 +9,9 @@ function createPreviewToggle() {
   title.className = 'preview-title';
   title.textContent = 'Preview';
 
-  const text = document.createElement('span');
-  text.className = 'preview-mode-label';
-  text.textContent = 'feather';
+  const mode = document.createElement('span');
+  mode.className = 'preview-mode-label';
+  mode.textContent = 'feather';
 
   const label = document.createElement('label');
   label.className = 'toggle-switch';
@@ -26,18 +26,33 @@ function createPreviewToggle() {
 
   input.addEventListener('change', () => {
     previewMode = input.checked ? 'feather' : 'full';
-    text.textContent = previewMode;
+    mode.textContent = previewMode;
     updateLiveOutput();
   });
 
   label.appendChild(input);
   label.appendChild(slider);
 
-  header.appendChild(title);
-  header.appendChild(text);
-  header.appendChild(label);
+  const closeBtn = document.createElement('button');
+  closeBtn.className = 'preview-close';
+  closeBtn.textContent = '✖';
+  closeBtn.addEventListener('click', () => {
+    const wrapper = document.querySelector('.editor-container');
+    wrapper.classList.remove('show-preview');
+    document.getElementById('output').textContent = '';
+  });
 
-  container.prepend(header);
+  header.appendChild(title);
+  header.appendChild(mode);
+  header.appendChild(label);
+  header.appendChild(closeBtn);
+
+  const filename = container.querySelector('.filename-input');
+  if (filename) {
+    filename.insertAdjacentElement('afterend', header);
+  } else {
+    container.prepend(header);
+  }
 }
 
 

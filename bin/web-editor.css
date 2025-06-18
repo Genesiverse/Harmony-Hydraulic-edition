@@ -188,6 +188,31 @@
   gap: 0.5rem;
 }
 
+.preview-mode-label {
+  font-family: monospace;
+  font-size: 0.9rem;
+  color: var(--text-color);
+}
+
+.preview-close {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  color: var(--text-color);
+}
+
+/* Align the filename label and input on a single row */
+.filename-input label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.filename-input input {
+  margin: 0;
+}
+
 /* === Toggle Switch === */
 .toggle-switch {
   position: relative;
