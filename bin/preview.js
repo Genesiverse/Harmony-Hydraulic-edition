@@ -9,9 +9,9 @@ function createPreviewToggle() {
   title.className = 'preview-title';
   title.textContent = 'Preview';
 
-  const text = document.createElement('span');
-  text.className = 'preview-mode-label';
-  text.textContent = 'feather';
+  const mode = document.createElement('span');
+  mode.className = 'preview-mode-label';
+  mode.textContent = 'feather';
 
   const label = document.createElement('label');
   label.className = 'toggle-switch';
@@ -26,18 +26,32 @@ function createPreviewToggle() {
 
   input.addEventListener('change', () => {
     previewMode = input.checked ? 'feather' : 'full';
-    text.textContent = previewMode;
+    mode.textContent = previewMode;
+    const out = document.getElementById('output');
+    if (out) out.readOnly = previewMode === 'feather';
     updateLiveOutput();
   });
 
   label.appendChild(input);
   label.appendChild(slider);
 
+  const closeBtn = document.createElement('button');
+  closeBtn.className = 'preview-close';
+  closeBtn.textContent = '✖';
+  closeBtn.addEventListener('click', () => {
+    const wrapper = document.querySelector('.editor-container');
+    wrapper.classList.remove('show-preview');
+    document.getElementById('output').textContent = '';
+  });
+
   header.appendChild(title);
-  header.appendChild(text);
+  header.appendChild(mode);
   header.appendChild(label);
+  header.appendChild(closeBtn);
 
   container.prepend(header);
+  const out = document.getElementById('output');
+  if (out) out.readOnly = previewMode === 'feather';
 }
 
 
@@ -77,14 +91,14 @@ document.getElementById('saveBtn').addEventListener('click', () => {
   // Toggle visibility
   if (wrapper.classList.contains('show-preview')) {
     wrapper.classList.remove('show-preview');
-    output.textContent = '';
+    output.value = '';
     return;
   }
 
   const inputs = document.querySelectorAll('#formContainer input, #formContainer textarea');
   const data = previewMode === 'full' ? buildFullYAML() : buildDiff(inputs);
   const yaml = jsyaml.dump(removeEmptyObjects(data));
-  output.textContent = yaml;
+  output.value = yaml;
   wrapper.classList.add('show-preview');
 });
 

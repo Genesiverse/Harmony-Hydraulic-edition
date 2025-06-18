@@ -1,13 +1,14 @@
 // === File load/render ===
 function loadYAML(content) {
   try {
-    originalConfig = jsyaml.load(content);
+    baselineConfig = jsyaml.load(content);
+    originalConfig = structuredClone(baselineConfig);
   } catch {
     alert('Invalid YAML file.');
     return;
   }
 
-  const input = document.getElementById('filenameInput');
+  const input = document.getElementById('filenameInputName');
   const guess = originalConfig?.file_name || originalConfig?.name;
   if (guess && input) input.value = guess;
 
@@ -35,6 +36,7 @@ function applyDynamicDepths(root) {
 
 
 // === YAML logic ===
+let baselineConfig = {};
 let originalConfig = {};
 
 function getValue(input) {
@@ -167,7 +169,7 @@ function buildDiff(inputs, skipEmpty = false) {
   inputs.forEach(input => {
     const keys = input.dataset.key.split('.');
     let obj = result;
-    let ref = originalConfig;
+    let ref = baselineConfig;
     const val = getValue(input);
 
     for (let i = 0; i < keys.length - 1; i++) {
@@ -188,6 +190,6 @@ function buildDiff(inputs, skipEmpty = false) {
 }
 
 function getFilenameFromInput() {
-  const raw = document.getElementById('filenameInput')?.value.trim();
+  const raw = document.getElementById('filenameInputName')?.value.trim();
   return raw ? (raw.endsWith('.yml') ? raw : `${raw}.yml`) : 'unnamed.yml';
 }

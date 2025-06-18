@@ -272,18 +272,6 @@ legend {
   box-sizing: border-box;
 }
 
-#formContainer {
-  background: var(--panel-bg);
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
-  padding: 20px;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
-  margin-top: 1rem;
-}
-
-
 #dropZone {
   border: 1px dashed var(--border-color);
   background-color: rgba(200, 200, 200, 0.2);
@@ -382,7 +370,8 @@ body.dark #dropZone {
   border: 2px dashed var(--border-color);
 }
 
-#mainDropArea.drag-active #dropOverlay {
+
+#layoutContainer.drag-active #dropOverlay {
   display: flex;
   padding: 16px;
   margin: 40px auto;
@@ -515,7 +504,7 @@ body.file-loaded #fileInfoContainer {
   display: block;
 }
 
-#filenameInput {
+#filenameInputName {
   margin-top: 12px;
   margin-bottom: 20px;
 }
@@ -567,10 +556,10 @@ body.file-loaded #fileInfoContainer {
 /* === Advanced Mode Styling === */
 
 /* Animate label shift and plus fade-in */
-body.advanced-mode .field-group .toggle,
-body.advanced-mode .section-title {
-  transform: translateX(12px);
-  transition: transform 0.3s ease;
-  position: relative;
-}
+/* body.advanced-mode .field-group .toggle, */
+/* body.advanced-mode .section-title { */
+  /* transform: translateX(12px); */
+  /* transition: transform 0.3s ease; */
+  /* position: relative; */
+/* } */
 
