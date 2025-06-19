@@ -1,27 +1,5 @@
 
 
-#output {
-  padding: 20px !important;
-  border-radius: 0px !important;
-  border: 5px solid var(--border-color) !important;
-  font-family: monospace;
-  height: 65vh !important;
-  max-height: 95vh !important;
-  width: 100% !important;
-  overflow: auto !important;
-  /* resize: vertical !important; */
-  resize: none !important;
-  margin-top: 1rem !important;
-  white-space: pre !important;
-  line-height: 1.4 !important;
-  font-size: 0.95rem !important;
-  box-sizing: border-box !important;
-  background-color: #4f4f4f45 !important;
-  /* Retro pop-style shadow */
-  box-shadow:
-    4px 4px 0 var(--shadow),
-    4px 4px 0 1px var(--shadow);
-}
 
 
 #formContainer {
