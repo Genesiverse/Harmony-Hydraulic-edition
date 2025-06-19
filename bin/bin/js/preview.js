@@ -150,26 +150,26 @@ if (output) {
 window.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.preload-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      const presetId = `${btn.dataset.preset}-preset`;
-      const preset = document.getElementById(presetId);
-      if (preset) {
-        sessionStorage.setItem('yamlContent', preset.textContent.trim());
-        window.location.reload();
+      const file = btn.dataset.file;
+      if (!file) {
+        alert('Preset not available');
         return;
       }
 
       // fallback to fetch if running on a server
-      if (btn.dataset.file) {
-        fetch(btn.dataset.file)
-          .then(r => r.text())
-          .then(text => {
-            sessionStorage.setItem('yamlContent', text);
-            window.location.reload();
-          })
-          .catch(() => alert('Failed to load preset'));
-      } else {
-        alert('Preset not available');
-      }
+      const useEmbedded =
+        location.protocol === 'file:' && window.preloadYamls && window.preloadYamls[file];
+
+      const load = useEmbedded
+        ? Promise.resolve(window.preloadYamls[file])
+        : fetch(file).then(r => r.text());
+
+      load
+        .then(text => {
+          sessionStorage.setItem('yamlContent', text);
+          window.location.reload();
+        })
+        .catch(() => alert('Failed to load preset'));
     });
   });
 });

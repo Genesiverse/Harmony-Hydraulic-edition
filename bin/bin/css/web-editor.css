@@ -8,7 +8,16 @@ html, body {
 }
 
 body {
+  height: 100vh;}
+
+#marioContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: 100vh;
+  pointer-events: none;
+  z-index: -1;
   background-image: 
     url("../images/mario.gif"),
     url("../images/ground.png"),
@@ -17,6 +26,9 @@ body {
   background-position: left 30% bottom 22px, left 0 bottom 0px, left 0 bottom 22px;
   animation: back 15s infinite linear;
   background-size: auto;
+}
+body.hide-mario #marioContainer {
+  display: none;
 }
 
 @keyframes back {

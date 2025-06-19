@@ -1,6 +1,7 @@
 window.addEventListener('DOMContentLoaded', () => {
   const settingsBtn = document.getElementById('settingsBtn');
   const closeBtn = document.getElementById('closeSettings');
+  const marioToggle = document.getElementById('marioBackgroundToggle');
 
   if (settingsBtn) {
     settingsBtn.addEventListener('click', () => {
@@ -11,6 +12,17 @@ window.addEventListener('DOMContentLoaded', () => {
   if (closeBtn) {
     closeBtn.addEventListener('click', () => {
       document.body.classList.remove('show-settings');
+    });
+  }
+  if (marioToggle) {
+    const hide = localStorage.getItem('hideMario') === 'true';
+    document.body.classList.toggle('hide-mario', hide);
+    marioToggle.checked = !hide;
+
+    marioToggle.addEventListener('change', () => {
+      const shouldHide = !marioToggle.checked;
+      document.body.classList.toggle('hide-mario', shouldHide);
+      localStorage.setItem('hideMario', shouldHide);
     });
   }
 });
