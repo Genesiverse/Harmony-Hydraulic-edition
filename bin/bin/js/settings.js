@@ -1,23 +1,16 @@
 window.addEventListener('DOMContentLoaded', () => {
   const settingsBtn = document.getElementById('settingsBtn');
-  const modal = document.getElementById('settingsModal');
   const closeBtn = document.getElementById('closeSettings');
 
-  if (settingsBtn && modal) {
+  if (settingsBtn) {
     settingsBtn.addEventListener('click', () => {
-      modal.classList.add('active');
+      document.body.classList.toggle('show-settings');
     });
   }
 
   if (closeBtn) {
     closeBtn.addEventListener('click', () => {
-      modal.classList.remove('active');
+      document.body.classList.remove('show-settings');
     });
   }
-
-  modal?.addEventListener('click', e => {
-    if (e.target === modal) {
-      modal.classList.remove('active');
-    }
-  });
 });

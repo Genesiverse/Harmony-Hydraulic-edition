@@ -351,8 +351,11 @@ body.dark #dropZone {
   font-weight: 400;
   color: var(--accent-muted);
   opacity: 0.8;
-  margin: -2rem 0rem 0rem 0rem !important; 
-  font-family: 'Open Sans', sans-serif !important; 
+  margin: 0rem 0rem 0rem 0rem !important;
+  font-family: 'Open Sans', sans-serif !important;
+}
+body.file-loaded .footer-credit {
+  display: none;
 }
 
 #dropOverlay {
@@ -582,54 +585,4 @@ body.file-loaded #fileInfoContainer {
   /* position: relative; */
 /* } */
 
-/* === Settings Modal === */
-.settings-modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.5);
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-#settingsModal {
-  background: var(--panel-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  z-index: 1;
-}
-.settings-modal.active {
-  display: flex;
-}
 
-.settings-content {
-  position: relative;
-  background: var(--panel-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  background-color: var(--panel-bg);
-  color: var(--text-color);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  padding: 20px;
-  min-width: 250px;
-}
-
-
-.settings-close {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  background: none;
-  border: none;
-  font-size: 16px;
-  cursor: pointer;
-  color: var(--text-color);
-}
-
-.setting-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 20px;
-}
