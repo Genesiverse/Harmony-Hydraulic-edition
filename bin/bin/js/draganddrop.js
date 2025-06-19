@@ -15,8 +15,9 @@ dropZone.addEventListener('drop', async e => {
   const file = e.dataTransfer.files[0];
   if (file && /\.(ya?ml)$/i.test(file.name)) {
     const content = await file.text();
-    sessionStorage.setItem('yamlContent', content);
-    window.location.reload();
+    // sessionStorage.setItem('yamlContent', content);
+    // window.location.reload();
+    loadYAML(content);
   }
 });
 let dragCounter = 0;
@@ -45,8 +46,9 @@ mainDrop.addEventListener('drop', async e => {
   mainDrop.classList.remove('drag-active');
   if (file && /\.(ya?ml)$/i.test(file.name)) {
     const content = await file.text();
-    sessionStorage.setItem('yamlContent', content);
-    window.location.reload();
+    // sessionStorage.setItem('yamlContent', content);
+    // window.location.reload();
+    loadYAML(content);
   }
 });
 

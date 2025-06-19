@@ -86,9 +86,12 @@ document.getElementById('openFileBtn').addEventListener('click', () => {
 
 document.getElementById('configLoader').addEventListener('change', async e => {
   const file = e.target.files[0];
+  if (!file) return;
   const content = await file.text();
-  sessionStorage.setItem('yamlContent', content);
-  window.location.reload();
+  // sessionStorage.setItem('yamlContent', content);
+  // window.location.reload();
+  loadYAML(content);
+  e.target.value = '';
 });
 
 document.getElementById('saveBtn').addEventListener('click', () => {
@@ -166,8 +169,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
       load
         .then(text => {
-          sessionStorage.setItem('yamlContent', text);
-          window.location.reload();
+          // sessionStorage.setItem('yamlContent', text);
+          // window.location.reload();
+          loadYAML(text);
         })
         .catch(() => alert('Failed to load preset'));
     });

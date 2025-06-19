@@ -547,6 +547,23 @@ body.file-loaded #fileInfoContainer {
   transition: all 0.3s ease;
   align-items: flex-start; /* make sticky top behave properly */
 }
+.editor-container {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  width: 100%;
+  max-width: var(--max-width);
+  transition: all 0.3s ease;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  align-items: flex-start; /* make sticky top behave properly */
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+body.file-loaded .editor-container {
+  opacity: 1;
+  transform: translateY(0);
+}
 
 
 #outputContainer h3 {
