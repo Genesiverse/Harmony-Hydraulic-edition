@@ -25,4 +25,22 @@ window.addEventListener('DOMContentLoaded', () => {
       localStorage.setItem('hideMario', shouldHide);
     });
   }
+
+  if (highlightPicker) {
+    const storedColor = localStorage.getItem('highlightColor');
+    if (storedColor) {
+      document.documentElement.style.setProperty('--highlight', storedColor);
+      highlightPicker.value = storedColor;
+    } else {
+      highlightPicker.value = getComputedStyle(document.documentElement)
+        .getPropertyValue('--highlight')
+        .trim();
+    }
+
+    highlightPicker.addEventListener('input', () => {
+      const color = highlightPicker.value;
+      document.documentElement.style.setProperty('--highlight', color);
+      localStorage.setItem('highlightColor', color);
+    });
+  }
 });
