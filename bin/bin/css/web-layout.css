@@ -624,7 +624,7 @@ body.file-loaded .editor-container {
 
 
 
---- Settings panel styles ---
+/* --- Settings panel styles --- */
 .settings-panel {
   background: var(--panel-bg);
   backdrop-filter: blur(10px);

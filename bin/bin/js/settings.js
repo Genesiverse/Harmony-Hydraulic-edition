@@ -3,7 +3,6 @@ window.addEventListener('DOMContentLoaded', () => {
   const closeBtn = document.getElementById('closeSettings');
   const marioToggle = document.getElementById('marioBackgroundToggle');
   const editor = document.querySelector('.editor-container');
-  const editor = document.querySelector('.editor-container');
 
   // Settings panel is now always visible, so disable toggle buttons
   if (settingsBtn && editor) {
