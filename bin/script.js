@@ -1,3 +1,5 @@
+let previewMode = 'feather'; // 'full' or 'feather'
+
 // === File load/render ===
 function loadYAML(content) {
   try {

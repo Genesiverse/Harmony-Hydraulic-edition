@@ -1,4 +1,4 @@
-let previewMode = 'feather'; // 'full' or 'feather'
+
 // === Theme logic ===
 const savedTheme = localStorage.getItem('theme');
 if (savedTheme === 'dark') {
