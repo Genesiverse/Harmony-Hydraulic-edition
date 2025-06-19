@@ -145,3 +145,31 @@ if (output) {
     output.style.height = `${output.scrollHeight}px`;
   });
 }
+
+
+window.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.preload-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const presetId = `${btn.dataset.preset}-preset`;
+      const preset = document.getElementById(presetId);
+      if (preset) {
+        sessionStorage.setItem('yamlContent', preset.textContent.trim());
+        window.location.reload();
+        return;
+      }
+
+      // fallback to fetch if running on a server
+      if (btn.dataset.file) {
+        fetch(btn.dataset.file)
+          .then(r => r.text())
+          .then(text => {
+            sessionStorage.setItem('yamlContent', text);
+            window.location.reload();
+          })
+          .catch(() => alert('Failed to load preset'));
+      } else {
+        alert('Preset not available');
+      }
+    });
+  });
+});
