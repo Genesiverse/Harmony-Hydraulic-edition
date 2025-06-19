@@ -628,14 +628,14 @@ body.file-loaded .editor-container {
 .settings-panel {
   position: fixed;
   top: 0;
-  right: -260px;
+  left: -260px;
   width: 260px;
   height: 100%;
   background-color: var(--panel-bg);
   backdrop-filter: blur(8px);
   padding: 20px;
-  box-shadow: -2px 0 5px var(--shadow);
-  transition: right 0.3s ease;
+  box-shadow: 2px 0 5px var(--shadow);
+  transition: left 0.3s ease;
   z-index: 1000;
 }
 body.dark .settings-close img {
