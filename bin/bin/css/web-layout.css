@@ -373,6 +373,15 @@ body.file-loaded .footer-credit {
   border: 2px dashed var(--border-color);
 }
 
+#dropOverlay img {
+  width: 1.2em;
+  height: 1.2em;
+  margin-right: 0.2em;
+  vertical-align: middle;
+}
+body.dark #dropOverlay img {
+  filter: invert(1);
+}
 
 #layoutContainer.drag-active #dropOverlay {
   display: flex;
@@ -497,9 +506,20 @@ body.file-loaded header#topHeader {
 
 
 
+/* first element inside the button holds the icon */
 .sidebar-btn span:first-child {
   font-size: 22px;
   line-height: 1;
+}
+
+/* icons are now images so size them relatively */
+.sidebar-btn img:first-child {
+  width: 1.4em;
+  height: 1.4em;
+}
+
+body.dark .sidebar-btn img:first-child {
+  filter: invert(1);
 }
 
 .sidebar-btn span:last-child {
@@ -617,6 +637,19 @@ body.file-loaded .editor-container {
   box-shadow: -2px 0 5px var(--shadow);
   transition: right 0.3s ease;
   z-index: 1000;
+}
+body.dark .settings-close img {
+  filter: invert(1);
+}
+
+#filenameInputTitle img {
+  width: 1.1em;
+  height: 1.1em;
+  margin-right: 0.3em;
+  vertical-align: middle;
+}
+body.dark #filenameInputTitle img {
+  filter: invert(1);
 }
 .settings-close img {
   width: 1em;
