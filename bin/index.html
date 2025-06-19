@@ -86,6 +86,25 @@
   <div id="layoutContainer" class="layout">  <div id="layoutContainer" class="layout">
       <!-- FINAL WRAPPED CONTAINER -->
       <div class="editor-container hide-on-load">
+        <div id="settingsPanel" class="settings-panel">
+          <button id="closeSettings" class="settings-close">✖</button>
+
+          <h3>Settings</h3>
+          <div class="setting-item">
+            <label for="themeToggle">Dark Mode</label>
+            <label class="toggle-switch">
+              <input type="checkbox" id="themeToggle" onchange="toggleTheme()" />
+              <span class="slider"></span>
+            </label>
+          </div>
+          <div class="setting-item">
+            <label for="marioBackgroundToggle">Mario Background</label>
+            <label class="toggle-switch">
+              <input type="checkbox" id="marioBackgroundToggle" checked />
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
         <div id="formContainer"></div>
         <div id="outputContainer">
           <textarea id="output" spellcheck="false"></textarea>
@@ -94,8 +113,6 @@
             <input type="text" id="filenameInputName" placeholder="Enter file name (without .yml)">
             </label>
           </div>
-        </div>
-      </div>
   </main>
   </div>
 

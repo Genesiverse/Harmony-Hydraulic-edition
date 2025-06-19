@@ -7,16 +7,19 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // Settings panel is now always visible, so disable toggle buttons
   if (settingsBtn && editor) {
-    // settingsBtn.style.display = 'none';
+    editor.classList.remove('show-settings');
+    document.body.classList.remove('show-settings');
+
     settingsBtn.addEventListener('click', () => {
       editor.classList.toggle('show-settings');
+      document.body.classList.toggle('show-settings');
     });
   }
 
   if (closeBtn && editor) {
-    // closeBtn.style.display = 'none';
     closeBtn.addEventListener('click', () => {
       editor.classList.remove('show-settings');
+      document.body.classList.remove('show-settings');
     });
   }
   if (marioToggle) {
