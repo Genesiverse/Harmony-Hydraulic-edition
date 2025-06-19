@@ -651,9 +651,13 @@ body.dark .settings-close img {
 body.dark #filenameInputTitle img {
   filter: invert(1);
 }
+
 .settings-icons img {
-  width: 11.5em;
-  height: 11.5em;
+  width: 1.5em;
+  height: 1.5em;
+}
+.settings-icons {
+  font-size: 15px;
 }
 .settings-close {
   position: absolute;
