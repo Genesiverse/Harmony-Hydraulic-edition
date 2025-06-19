@@ -618,7 +618,10 @@ body.file-loaded .editor-container {
   transition: right 0.3s ease;
   z-index: 1000;
 }
-
+.settings-close img {
+  width: 1em;
+  height: 1em;
+}
 .settings-close {
   position: absolute;
   top: 10px;
