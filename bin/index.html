@@ -57,9 +57,27 @@
         ᴍᴀᴅᴇ ᴡɪᴛʜ ❤️ ʙʏ ᴊᴀɴ • ɢᴇɴᴇsɪᴠᴇʀsᴇ • ʏᴍʟ ʜᴀʀᴍᴏɴʏ © 2025
       </div>
 
-  <div id="layoutContainer" class="layout">
+  <div id="layoutContainer" class="layout">  <div id="layoutContainer" class="layout">
       <!-- FINAL WRAPPED CONTAINER -->
       <div class="editor-container hide-on-load">
+        <div id="settingsPanel" class="settings-panel">
+
+          <h3>Settings</h3>
+          <div class="setting-item">
+            <label for="themeToggle">Dark Mode</label>
+            <label class="toggle-switch">
+              <input type="checkbox" id="themeToggle" onchange="toggleTheme()" />
+              <span class="slider"></span>
+            </label>
+          </div>
+          <div class="setting-item">
+            <label for="marioBackgroundToggle">Mario Background</label>
+            <label class="toggle-switch">
+              <input type="checkbox" id="marioBackgroundToggle" checked />
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
         <div id="formContainer"></div>
         <div id="outputContainer">
           <textarea id="output" spellcheck="false"></textarea>
@@ -73,28 +91,6 @@
   </main>
   </div>
 
-  <div id="settingsPanel" class="settings-panel">
-      <div class="settings-icons">
-      <button id="closeSettings" class="settings-close"><img src="bin/images/cross.png" alt="Close"/></button>
-    </div>
-	
-    <h3>Settings</h3>
-    <div class="setting-item">
-      <label for="themeToggle">Dark Mode</label>
-      <label class="toggle-switch">
-        <input type="checkbox" id="themeToggle" onchange="toggleTheme()" />
-        <span class="slider"></span>
-      </label>
-    </div>
-    <div class="setting-item">
-      <label for="marioBackgroundToggle">Mario Background</label>
-      <label class="toggle-switch">
-        <input type="checkbox" id="marioBackgroundToggle" checked />
-        <span class="slider"></span>
-      </label>
-    </div>
-    </div>
-  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/js-yaml@4"></script>
   <script src="bin/js/theme.js"></script>
