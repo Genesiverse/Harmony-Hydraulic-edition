@@ -50,12 +50,6 @@ mainDrop.addEventListener('drop', async e => {
   }
 });
 
-function updateLiveOutput() {
-  const inputs = document.querySelectorAll('#formContainer input, #formContainer textarea');
-  const data = previewMode === 'full' ? buildFullYAML() : buildDiff(inputs);
-  const yamlOut = jsyaml.dump(removeEmptyObjects(data));
-  document.getElementById('output').value = yamlOut;
-}
 
 function mergePatch(target, patch) {
   for (const key in patch) {
@@ -90,6 +84,13 @@ function refreshFormFromOutput() {
   }
 }
 
+
+function updateLiveOutput() {
+  const inputs = document.querySelectorAll('#formContainer input, #formContainer textarea');
+  const data = previewMode === 'pro' ? buildFullYAML() : buildDiff(inputs);
+  const yamlOut = jsyaml.dump(removeEmptyObjects(data));
+  document.getElementById('output').value = yamlOut;
+}
 
 let outputVisible = false;
 

@@ -19,13 +19,13 @@ function createPreviewToggle() {
   const input = document.createElement('input');
   input.type = 'checkbox';
   input.id = 'previewToggle';
-  input.checked = true;
+  input.checked = false;
 
   const slider = document.createElement('span');
   slider.className = 'slider';
 
   input.addEventListener('change', () => {
-    previewMode = input.checked ? 'feather' : 'full';
+    previewMode = input.checked ? 'pro' : 'feather';
     mode.textContent = previewMode;
     const out = document.getElementById('output');
     if (out) out.readOnly = previewMode === 'feather';
@@ -103,7 +103,7 @@ document.getElementById('saveBtn').addEventListener('click', () => {
   }
 
   const inputs = document.querySelectorAll('#formContainer input, #formContainer textarea');
-  const data = previewMode === 'full' ? buildFullYAML() : buildDiff(inputs);
+  const data = previewMode === 'pro' ? buildFullYAML() : buildDiff(inputs);
   const yaml = jsyaml.dump(removeEmptyObjects(data));
   output.value = yaml;
   wrapper.classList.add('show-preview');

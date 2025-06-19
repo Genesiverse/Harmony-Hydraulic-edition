@@ -1,5 +1,37 @@
 
 
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+body {
+  height: 100vh;
+  background-image: 
+    url("../images/mario.gif"),
+    url("../images/ground.png"),
+    url("../images/bushes.png");
+  background-repeat: no-repeat, repeat-x, repeat-x;
+  background-position: left 30% bottom 22px, left 0 bottom 0px, left 0 bottom 22px;
+  animation: back 15s infinite linear;
+  background-size: auto;
+}
+
+@keyframes back {
+  0% {
+    background-position: left 30% bottom 22px, left 0 bottom 0px, left 0 bottom 22px;
+  }
+  50% {
+    background-position: left 50% bottom 22px, left -816px bottom 0px, left -508px bottom 22px;
+  }
+  100% {
+    background-position: left 30% bottom 22px, left -1632px bottom 0px, left -1016px bottom 22px;
+  }
+}
+
+
 
 
 #formContainer {
@@ -128,9 +160,9 @@
 
 
 /* Form and preview areas */
-.dark.file-loaded {
-  padding: 1.5rem 0rem 0rem 0rem; /* ⬅️ optional: adjust to control spacing on edges */
-}
+/* .dark.file-loaded { */
+  /* padding: 1.5rem 0rem 0rem 0rem; /* ⬅️ optional: adjust to control spacing on edges */ 
+/* } */
 
 /* === Tree lines === */
 .field-group {

@@ -339,7 +339,7 @@ body.dark #dropZone {
   padding: 0rem;
   overflow: visible;
   transition: all 0.3s ease;
-  border: 1px solid var(--bg-color);
+  border: 0px;
   background: none;
   margin-top: 0rem;
   flex: 1;
@@ -432,6 +432,9 @@ body.file-loaded header#topHeader {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  background: var(--panel-bg) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
   align-items: center;
   padding: 12px 0;
   width: 80px;
@@ -444,6 +447,7 @@ body.file-loaded header#topHeader {
   z-index: 20;
   overflow-y: auto; /* Enable scroll if content too tall */
 }
+
 
 .sidebar-buttons {
   display: flex;

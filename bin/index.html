@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <title>Harmony</title>
-  <link rel="stylesheet" href="web-layout.css">
-  <link rel="stylesheet" href="web-editor.css">
-  <link rel="stylesheet" href="mobile.css">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="bin/css/web-layout.css">
+  <link rel="stylesheet" href="bin/css/web-editor.css">
+  <link rel="stylesheet" href="bin/css/mobile.css">
+  <link rel="stylesheet" href="bin/css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 </head>
@@ -15,14 +15,14 @@
   <div id="layoutContainer" class="layout">
     <aside class="sidebar">
       <div class="sidebar-buttons">
-        <button class="sidebar-btn" id="resetBtn"><span>🏠</span><span>home</span></button>
+        <button class="sidebar-btn" id="resetBtn"><span>🏠</span><span>ʜᴏᴍᴇ</span></button>
         <input type="file" id="configLoader" accept=".yml,.yaml" hidden />
-        <button class="sidebar-btn" id="openFileBtn"><span>📥</span><span>open</span></button>
+        <button class="sidebar-btn" id="openFileBtn"><span>📥</span><span>ᴏᴘᴇɴ</span></button>
 
         <div id="actionGroup" class="hide-on-load">
-          <button class="sidebar-btn" id="saveBtn"><span>🪟</span><span>preview</span></button>
-          <button class="sidebar-btn" id="downloadBtn"><span>📚</span><span>editor</span></button>
-          <button class="sidebar-btn" id="downloadCompactBtn"><span>🪶</span><span>feather</span></button>
+          <button class="sidebar-btn" id="saveBtn"><span>🪟</span><span>ᴘɪᴘᴇ</span></button>
+          <button class="sidebar-btn" id="downloadBtn"><span>📚</span><span>ᴇᴅɪᴛᴏʀ</span></button>
+          <button class="sidebar-btn" id="downloadCompactBtn"><span>🪶</span><span>ғᴇᴀᴛʜᴇʀ</span></button>
           <!-- <button class="sidebar-btn" id="pro-advance-toogle"><span>👁️‍🗨️</span><span>advance</span></button> -->
         </div>
       </div>
@@ -38,7 +38,8 @@
     <div id="dropOverlay">📄 Drop your YAML file to load</div>
     <main id="mainDropArea">
       <header id="topHeader">Harmony ʏᴍʟ</header>
-      <div class="footer-credit">ʜʏᴅʀᴏᴘʜɪʟɪᴄ ᴠᴇʀꜱɪᴏɴ 𝟤.𝟢</div>
+      <!-- <div class="footer-credit">ʜʏᴅʀᴏᴘʜɪʟɪᴄ ᴠᴇʀꜱɪᴏɴ 𝟤.𝟢</div> -->
+      <div class="footer-credit">ʜʏᴅʀᴀᴜʟɪᴄ ᴠᴇʀꜱɪᴏɴ 𝟤.𝟢</div>
 
       <div id="dropZone">drag & drop here</div>
 
@@ -63,10 +64,10 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/js-yaml@4"></script>
-  <script src="theme.js"></script>
-  <script src="preview.js"></script>
-  <script src="script.js"></script>
-  <script src="pro.js"></script>
-  <script src="draganddrop.js"></script>
+  <script src="bin/js/theme.js"></script>
+  <script src="bin/js/preview.js"></script>
+  <script src="bin/js/script.js"></script>
+  <script src="bin/js/pro.js"></script>
+  <script src="bin/js/draganddrop.js"></script>
 </body>
 </html>
