@@ -2,25 +2,12 @@ window.addEventListener('DOMContentLoaded', () => {
   const settingsBtn = document.getElementById('settingsBtn');
   const closeBtn = document.getElementById('closeSettings');
   const marioToggle = document.getElementById('marioBackgroundToggle');
-  const highlightPicker = document.getElementById('highlightPicker');
   const editor = document.querySelector('.editor-container');
 
   // Settings panel is now always visible, so disable toggle buttons
-  if (settingsBtn && editor) {
-    editor.classList.remove('show-settings');
-    document.body.classList.remove('show-settings');
-
-    settingsBtn.addEventListener('click', () => {
-      editor.classList.toggle('show-settings');
-      document.body.classList.toggle('show-settings');
-    });
-  }
 
   if (closeBtn && editor) {
-    closeBtn.addEventListener('click', () => {
-      editor.classList.remove('show-settings');
-      document.body.classList.remove('show-settings');
-    });
+    closeBtn.style.display = 'none';
   }
   if (marioToggle) {
     const hide = localStorage.getItem('hideMario') === 'true';
