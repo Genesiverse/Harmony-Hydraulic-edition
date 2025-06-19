@@ -331,3 +331,90 @@ body.file-loaded #fileInfoContainer {
   /* pointer-events: none; */
   /* z-index: 9999; */
 /* } */
+
+
+.preview-mode-label{
+  top: -1.5rem;
+  left: 1rem;
+  background: var(--bg-color);
+  padding: 0 0.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  z-index: 2;
+  pointer-events: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-family: monospace;
+  font-size: 0.9rem;
+  margin-bottom: -0.8rem;
+}
+
+.preview-title {
+  top: -1.5rem;
+  left: 1rem;
+  background: var(--bg-color);
+  padding: 0 0.5rem;
+  font-weight: bold;
+  font-family: inherit;
+  font-size: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  color: var(--text-color);
+  z-index: 2;
+  pointer-events: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-bottom: -3.0rem;
+  margin-left: 0.5rem;
+  margin-right: -1.35rem;
+}
+
+.preview-header-inline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 0rem;
+  padding-top: 0rem;
+  gap: 1rem;
+  margin-top: -1.0rem;
+}
+.filename-input-row {
+  display: flex;
+  align-items: center;
+  align-items: start;
+  border: 2px solid var(--border-color); /* Reduced thickness */
+  padding: 0px 0px; /* Minimal internal space */
+  border-radius: 6px;
+  height: 0rem !important;
+}
+
+
+#output {
+  padding: 20px !important;
+  border-radius: 0px !important;
+  border: 5px solid var(--border-color) !important;
+  font-family: monospace;
+  height: 65vh !important;
+  max-height: 95vh !important;
+  width: 100% !important;
+  overflow: auto !important;
+  /* resize: vertical !important; */
+  resize: none !important;
+  margin-top: 1rem !important;
+  white-space: pre !important;
+  line-height: 1.4 !important;
+  font-size: 0.95rem !important;
+  box-sizing: border-box !important;
+  background-color: #4f4f4f45 !important;
+  height: 100% !important;
+  max-height: calc(83.7vh - 100px) !important; /* match form container logic */
+  /* Retro pop-style shadow */
+  box-shadow:
+    4px 4px 0 var(--shadow),
+    4px 4px 0 1px var(--shadow);
+}
+#filenameInputTitle {
+  margin-top: 1.2rem;
+  margin-left: 0.5rem;
+  margin-right: -10rem;
+}
