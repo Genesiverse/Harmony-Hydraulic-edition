@@ -127,29 +127,12 @@ body.hide-mario #marioContainer {
   opacity: 0;
 }
 
-.editor-container.show-settings #settingsPanel {
-  display: block;
-  transform: translateX(0);
-  opacity: 1;
-}
-
-.editor-container.show-settings #formContainer,
-.editor-container.show-settings #settingsPanel {
-  flex: 1 1 0;
-  min-width: 0;
-  max-width: 50%;
-}
-
-/* === Preview Header Layout === */
 
 
 
 
-.preview-toggle-group {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
+
+
 
 /* === Toggle Switch === */
 .toggle-switch {
@@ -196,19 +179,7 @@ body.hide-mario #marioContainer {
 
 
 
-/* Target .editor-container when preview is shown */
-.editor-container.show-preview {
-  display: flex;
-  flex-direction: row;
-  gap: 2rem;
-  align-items: flex-start;
-  justify-content: center;
-  width: 100%;
-  max-width: 1400px; /* optional max width for balance */
-  margin: 0 auto;
-  padding: 0 1.5rem; /* spacing on left/right */
-  box-sizing: border-box;
-}
+
 
 
 /* Form and preview areas */
@@ -276,6 +247,68 @@ body.hide-mario #marioContainer {
 body.file-loaded #fileInfoContainer {
   display: block;
 }
+
+.editor-container {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  width: 100%;
+  max-width: var(--max-width);
+  transition: all 0.3s ease;
+  align-items: flex-start; /* make sticky top behave properly */
+}
+/* Target .editor-container when preview is shown */
+.layoutContainer.layout{
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: flex-start;
+  max-width: 1400rem; /* optional max width for balance */
+  border: 2px solid var(--border-color);
+}
+
+.editor-container.show-settings,
+.editor-container.show-preview {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: flex-start;
+  max-width: 1400rem; /* optional max width for balance */
+}
+#mainDropArea {
+  padding: 0.8rem;
+  height: 1.1em;
+  width: 95rem !important;
+  max-width: 1400rem !important; 
+  box-sizing: border-box !important;
+  display: flex; /* Optional: depends on your layout */
+  margin-right: 100rem !important;
+  margin-right: 1.3em !important;
+  vertical-align: middle !important;
+}
+
+
+
+.editor-container.show-preview #outputContainer,
+.editor-container.show-settings #settingsPanel,
+.editor-container.show-settings #formContainer,
+.editor-container.show-settings #settingsPanel {
+  display: block;
+  transform: translateX(0);
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 100%;
+  opacity: 1;
+}
+
+
+.preview-toggle-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* === Preview Header Layout === */
 /* Wrap the entire content area (including sidebar + editor) */
 .layout {
   display: flex;
@@ -285,19 +318,7 @@ body.file-loaded #fileInfoContainer {
   box-sizing: border-box;
 }
 
-/* Target .editor-container when preview is shown */
-.editor-container.show-preview {
-  display: flex;
-  flex-direction: row;
-  gap: 2rem;
-  align-items: flex-start;
-  justify-content: center;
-  width: 100%;
-  max-width: 1400px; /* optional max width for balance */
-  margin: 0 auto;
-  padding: 0 1.5rem; /* spacing on left/right */
-  box-sizing: border-box;
-}
+
 
 /* Form and preview areas */
 .editor-container.show-preview #formContainer,
