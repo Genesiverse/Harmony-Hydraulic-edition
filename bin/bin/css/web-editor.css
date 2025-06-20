@@ -519,8 +519,3 @@ body.file-loaded #fileInfoContainer {
     4px 4px 0 var(--shadow),
     4px 4px 0 1px var(--shadow);
 }
-#filenameInputTitle {
-  margin-top: 1.2rem;
-  margin-left: 0.5rem;
-  margin-right: -10rem;
-}

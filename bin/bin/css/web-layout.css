@@ -669,4 +669,19 @@ body.show-settings .settings-panel {
 body.show-settings #settingsBtn {
   background-color: var(--highlight);
   color: #fff;
+
+}
+
+/* Align setting label and toggle horizontally */
+.settings-panel .setting-item {
+  display: flex;
+  align-items: center;
+}
+.settings-panel .setting-item > label {
+  margin-top: 10px;
+  display: block;
+}
+.settings-panel .setting-item .toggle-switch {
+  margin-left: auto;
+  margin-right: 10px;
 }
