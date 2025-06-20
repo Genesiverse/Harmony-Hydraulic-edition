@@ -97,19 +97,21 @@ document.getElementById('configLoader').addEventListener('change', async e => {
 document.getElementById('saveBtn').addEventListener('click', () => {
   const wrapper = document.querySelector('.editor-container');
   const output = document.getElementById('output');
+  const btn = document.getElementById('saveBtn');
 
   // Toggle visibility
   if (wrapper.classList.contains('show-preview')) {
     wrapper.classList.remove('show-preview');
     output.value = '';
-    return;
+  } else {
+    const inputs = document.querySelectorAll('#formContainer input, #formContainer textarea');
+    const data = previewMode === 'pro' ? buildFullYAML() : buildDiff(inputs);
+    const yaml = jsyaml.dump(removeEmptyObjects(data));
+    output.value = yaml;
+    wrapper.classList.add('show-preview');
   }
 
-  const inputs = document.querySelectorAll('#formContainer input, #formContainer textarea');
-  const data = previewMode === 'pro' ? buildFullYAML() : buildDiff(inputs);
-  const yaml = jsyaml.dump(removeEmptyObjects(data));
-  output.value = yaml;
-  wrapper.classList.add('show-preview');
+  btn.classList.toggle('active', wrapper.classList.contains('show-preview'));
 });
 
 document.getElementById('downloadBtn').addEventListener('click', () => {

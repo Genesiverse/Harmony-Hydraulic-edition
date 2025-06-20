@@ -25,6 +25,7 @@ window.addEventListener('DOMContentLoaded', () => {
   if (settingsBtn && editor) {
     settingsBtn.addEventListener('click', () => {
       editor.classList.toggle('show-settings');
+      settingsBtn.classList.toggle('active', editor.classList.contains('show-settings'));
     });
   }
   if (highlightPicker) {

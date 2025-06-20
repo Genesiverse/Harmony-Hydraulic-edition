@@ -528,6 +528,21 @@ body.dark .sidebar-btn img:first-child {
 .sidebar-btn:hover {
   background-color: rgba(100, 100, 100, 0.1);
 }
+/* Active state for sidebar buttons */
+.sidebar-btn:active,
+.sidebar-btn.active {
+  background-color: var(--highlight);
+  color: #fff;
+}
+
+/* ensure icons are visible when a sidebar button is active */
+.sidebar-btn.active img:first-child {
+  filter: invert(1);
+}
+body.dark .sidebar-btn.active img:first-child {
+  /* filter: invert(0); */
+}
+
 
 /* sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss */
 /* Sticky Header Bar */
@@ -671,6 +686,15 @@ body.show-settings #settingsBtn {
   color: #fff;
 
 }
+
+/* Highlight sidebar buttons when sections are active */
+body:not(.file-loaded) #resetBtn,
+.editor-container.show-preview #saveBtn,
+.editor-container.show-settings #settingsBtn {
+  background-color: var(--highlight);
+  color: #fff;
+}
+
 
 /* Align setting label and toggle horizontally */
 .settings-panel .setting-item {
