@@ -83,7 +83,7 @@ body {
   color: var(--text-color);
   font-family: 'Open Sans', sans-serif;
   margin: 0;
-  padding: 2rem;
+  /* padding: 2rem; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -107,10 +107,10 @@ footer {
   display: none;
 }
 
-* {
-  scrollbar-width: none;       /* Firefox */
-  -ms-overflow-style: none;    /* IE and Edge */
-}
+/* * { */
+  /* scrollbar-width: none;       /* Firefox */ */
+  /* -ms-overflow-style: none;    /* IE and Edge */ */
+/* } */
 
 /* Layout */
 .layout {
@@ -472,7 +472,7 @@ body.file-loaded header#topHeader {
   background-color: var(--panel-bg);
   border-right: 1px solid var(--border-color);
   z-index: 20;
-  overflow-y: auto; /* Enable scroll if content too tall */
+  /* overflow-y: auto; /* Enable scroll if content too tall */ */
 }
 
 
@@ -575,14 +575,14 @@ body.file-loaded .editor-container {
   /* font-family: 'Press Start 2P', monospace; */
   /* font-size: 10px; */
 /* } */
-#outputContainer::-webkit-scrollbar {
-  display: none;
-}
+/* #outputContainer::-webkit-scrollbar { */
+  /* display: none; */
+/* } */
 
-#outputContainer {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;     /* Firefox */
-}
+/* #outputContainer { */
+  /* -ms-overflow-style: none;  /* IE and Edge */ */
+  /* scrollbar-width: none;     /* Firefox */ */
+/* } */
 
 
 .editor-container.show-preview #formContainer {
