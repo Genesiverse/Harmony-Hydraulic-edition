@@ -35,25 +35,14 @@ function createPreviewToggle() {
   label.appendChild(input);
   label.appendChild(slider);
 
-  // const closeBtn = document.createElement('button');
-  // closeBtn.className = 'preview-close';
-  // closeBtn.textContent = '✖';
-  // closeBtn.addEventListener('click', () => {
-    // const wrapper = document.querySelector('.editor-container');
-    // wrapper.classList.remove('show-preview');
-    // document.getElementById('output').textContent = '';
-  // });
+
   
   const group = document.createElement('div');
   group.className = 'preview-toggle-group';
   group.appendChild(mode);
   group.appendChild(label);
-  // group.appendChild(closeBtn);
 
   header.appendChild(title);
-  // header.appendChild(mode);
-  // header.appendChild(label);
-  // header.appendChild(closeBtn);
   header.appendChild(group);
 
   container.prepend(header);
