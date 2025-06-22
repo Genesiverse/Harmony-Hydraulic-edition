@@ -11,6 +11,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 </head>
 <body>
+  <div id="titleBar">
+    <div class="title-buttons">
+      <button class="title-btn close" id="windowClose"></button>
+      <button class="title-btn maximize" id="windowMax"></button>
+      <button class="title-btn minimize" id="windowMin"></button>
+    </div>
+    <span class="title-drag"></span>
+  </div>
   <div id="marioContainer" aria-hidden="true"></div>
   <div id="layoutContainer" class="layout">
     <aside class="sidebar">
@@ -40,6 +48,13 @@
           <label for="marioBackgroundToggle">Mario Background</label>
           <label class="toggle-switch">
             <input type="checkbox" id="marioBackgroundToggle" checked />
+            <span class="slider"></span>
+          </label>
+        </div>
+        <div class="setting-item">
+          <label for="blurEffectToggle">Blur Window</label>
+          <label class="toggle-switch">
+            <input type="checkbox" id="blurEffectToggle" />
             <span class="slider"></span>
           </label>
         </div>
@@ -88,6 +103,7 @@
   <script src="bin/js/pro.js"></script>
   <script src="bin/js/settings.js"></script>
   <script src="bin/js/draganddrop.js"></script>
+  <script src="bin/js/window-controls.js"></script>
   
 </body>
 </html>
