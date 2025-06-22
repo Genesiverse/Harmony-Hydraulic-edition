@@ -570,6 +570,12 @@ body.blur-window {
 body.blur-window.dark {
   background-color: rgba(30,31,34,0.6);
 }
+
+/* Optional blur for specific elements */
+.blur-background {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
 /* === Advanced Mode Styling === */
 
 /* Animate label shift and plus fade-in */
