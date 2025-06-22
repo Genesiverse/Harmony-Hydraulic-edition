@@ -6,8 +6,7 @@
   <link rel="stylesheet" href="bin/css/web-layout.css">
   <link rel="stylesheet" href="bin/css/web-editor.css">
   <link rel="stylesheet" href="bin/css/sidebar.css">
-  <!-- <link rel="stylesheet" href="bin/css/mobile.css"> -->
-  <!-- <link rel="stylesheet" href="bin/css/style.css"> -->
+  <link rel="stylesheet" href="bin/css/settings.css">
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 </head>
@@ -22,6 +21,12 @@
           <button class="sidebar-btn" id="saveBtn"><img src="bin/images/copy-writing.png" alt="Pipe" class="settings-icons" /><span>ᴘɪᴘᴇ</span><span>ᴇᴅɪᴛᴏʀ</span></button>
         </div>
       </div>
+      <button class="sidebar-btn settings-btn" id="settingsBtn"><img src="bin/images/setting.png" alt="Settings" class="settings-icons" /><span>ꜱᴇᴛᴛɪɴɢ</span><span></span></button>
+    </aside>
+
+
+    <div id="dropOverlay"><img src="bin/images/cloud-computing.png" alt="File"/>  Drop your YAML file to load</div>
+    <main id="mainDropArea">
       <div id="settingsPanel" class="settings-panel">
         <h3>Settings</h3>
         <div class="setting-item">
@@ -39,20 +44,12 @@
           </label>
         </div>
       </div>
-      <button class="sidebar-btn settings-btn" id="settingsBtn"><img src="bin/images/setting.png" alt="Settings" class="settings-icons" /><span>ꜱᴇᴛᴛɪɴɢ</span><span></span></button>
-    </aside>
-
-    <!-- <div id="dropOverlay">📄 Drop your YAML file to load</div> -->
-    <div id="dropOverlay"><img src="bin/images/cloud-computing.png" alt="File"/>  Drop your YAML file to load</div>
-    <main id="mainDropArea">
-      <!-- <header id="topHeader">Harmony ʏᴍʟ</header> -->
       <header id="topHeader"><span id="headerTitle">Harmony ʏᴍʟ</span>
         <div id="topActions" class="hide-on-load">
           <button class="header-btn" id="downloadBtn"><img src="bin/images/anvil.png" alt="Editor" class="settings-icons" /><span>ғᴜʟʟ</span></button>
           <button class="header-btn" id="downloadCompactBtn"><img src="bin/images/feather.png" alt="Feather" class="settings-icons" /><span>ғᴇᴀᴛʜᴇʀ</span></button>
         </div>
       </header>
-      <!-- <div class="footer-credit">ʜʏᴅʀᴏᴘʜɪʟɪᴄ ᴠᴇʀꜱɪᴏɴ 𝟤.𝟢</div> -->
       <div class="footer-credit">ʜʏᴅʀᴀᴜʟɪᴄ ᴠᴇʀꜱɪᴏɴ 𝟤.𝟢</div>
 
       <div id="dropZone">drag & drop here</div>
@@ -67,27 +64,8 @@
         ᴍᴀᴅᴇ ᴡɪᴛʜ ❤️ ʙʏ ᴊᴀɴ • ɢᴇɴᴇsɪᴠᴇʀsᴇ • ʏᴍʟ ʜᴀʀᴍᴏɴʏ © 2025
       </div>
 
-  <!-- <div id="layoutContainer" class="layout">  <div id="layoutContainer" class="layout"> -->
       <!-- FINAL WRAPPED CONTAINER -->
       <div class="editor-container hide-on-load">
-        <!-- <div id="settingsPanel" class="settings-panel"> -->
-
-          <!-- <h3>Settings</h3> -->
-          <!-- <div class="setting-item"> -->
-            <!-- <label for="themeToggle">Dark Mode</label> -->
-            <!-- <label class="toggle-switch"> -->
-              <!-- <input type="checkbox" id="themeToggle" onchange="toggleTheme()" /> -->
-              <!-- <span class="slider"></span> -->
-            <!-- </label> -->
-          <!-- </div> -->
-          <!-- <div class="setting-item"> -->
-            <!-- <label for="marioBackgroundToggle">Mario Background</label> -->
-            <!-- <label class="toggle-switch"> -->
-              <!-- <input type="checkbox" id="marioBackgroundToggle" checked /> -->
-              <!-- <span class="slider"></span> -->
-            <!-- </label> -->
-          <!-- </div> -->
-        <!-- </div> -->
         <div id="formContainer"></div>
         <div id="outputContainer">
           <textarea id="output" spellcheck="false"></textarea>
