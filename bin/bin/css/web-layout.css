@@ -94,7 +94,7 @@ html, body {
 }
 
 body.window-maximized {
-  border-radius: 0;
+  border-radius: 100px;
 }
 
 #topHeader,

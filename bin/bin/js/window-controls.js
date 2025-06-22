@@ -16,6 +16,13 @@ window.addEventListener('DOMContentLoaded', () => {
     document.body.classList.remove('window-maximized');
   });
 
+  window.electronAPI?.onMaximize(() => {
+    document.body.classList.add('window-maximized');
+  });
+  window.electronAPI?.onRestore(() => {
+    document.body.classList.remove('window-maximized');
+  });
+
   const blurToggle = document.getElementById('blurEffectToggle');
   if (blurToggle) {
     const enabled = localStorage.getItem('blurWindow') !== 'false';
