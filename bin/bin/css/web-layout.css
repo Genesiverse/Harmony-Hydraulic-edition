@@ -1,9 +1,9 @@
 /* === Custom Dark Glassy Theme for YAML Editor === */
 :root {
-  --bg-color: #ffffff;                 /* light background */
+  --bg-color: rgba(255, 255, 255, 0.4); /* semi-transparent background */
   --shadow: #00000047;                 /* dark background */
   --bg-color-1: #cbcdd44a;                 /* dark background */
-  --panel-bg: rgba(240, 240, 240, 0.8); /* light panel glass */
+  --panel-bg: rgba(240, 240, 240, 0.35); /* light panel glass */
   --border-color: #ccc;               /* soft light borders */
   --text-color: #111;                 /* high contrast text */
   --highlight: #5865F2;               /* Discord blue highlight */
@@ -39,10 +39,10 @@
 }
 
 body.dark {
-  --bg-color: #1e1f22;                 /* dark background */
+  --bg-color: rgba(30, 31, 34, 0.4);    /* semi-transparent dark background */
   --shadow: #000;                 /* dark background */
   --bg-color-1: #2d2f3573;                 /* dark background */
-  --panel-bg: rgba(43, 45, 49, 0.45);  /* semi-transparent dark glass */
+  --panel-bg: rgba(43, 45, 49, 0.35);  /* semi-transparent dark glass */
   --border-color: #4e5058;            /* neutral gray borders */
   --text-color: #f2f3f5;              /* high contrast light text */
   --highlight: #5865F2;               /* Discord blue */
@@ -238,11 +238,11 @@ button {
   transition: background-color 0.2s ease, box-shadow 0.2s ease;
 }
 button:hover {
-  background-color: #ddd;
+  background-color: rgba(255, 255, 255, 0.5);
   box-shadow: 0 0 6px var(--border-color);
 }
 body.dark button:hover {
-  background-color: #27282d;
+  background-color: rgba(39, 40, 45, 0.5);
 }
 
 fieldset {
@@ -565,10 +565,16 @@ body.window-maximized .title-btn.maximize {
 body.blur-window {
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  background-color: rgba(255,255,255,0.6);
+  background-color: rgba(255,255,255,0.4);
 }
 body.blur-window.dark {
-  background-color: rgba(30,31,34,0.6);
+  background-color: rgba(30,31,34,0.4);
+}
+
+/* Optional blur for specific elements */
+.blur-background {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 /* === Advanced Mode Styling === */
 
