@@ -2,14 +2,23 @@ window.addEventListener('DOMContentLoaded', () => {
   const close = document.getElementById('windowClose');
   const min = document.getElementById('windowMin');
   const max = document.getElementById('windowMax');
+  const dragArea = document.querySelector('.title-drag');
 
   if (close) close.addEventListener('click', () => window.electronAPI?.close());
   if (min) min.addEventListener('click', () => window.electronAPI?.minimize());
-  if (max) max.addEventListener('click', () => window.electronAPI?.maximize());
+  if (max) max.addEventListener('click', () => window.electronAPI?.toggleMaximize());
+  if (dragArea) dragArea.addEventListener('dblclick', () => window.electronAPI?.toggleMaximize());
+
+  window.electronAPI?.onMaximize(() => {
+    document.body.classList.add('window-maximized');
+  });
+  window.electronAPI?.onRestore(() => {
+    document.body.classList.remove('window-maximized');
+  });
 
   const blurToggle = document.getElementById('blurEffectToggle');
   if (blurToggle) {
-    const enabled = localStorage.getItem('blurWindow') === 'true';
+    const enabled = localStorage.getItem('blurWindow') !== 'false';
     document.body.classList.toggle('blur-window', enabled);
     blurToggle.checked = enabled;
     blurToggle.addEventListener('change', () => {
