@@ -8,7 +8,7 @@ function createWindow() {
     frame: false,
     transparent: true,
     roundedCorners: true,
-    backgroundMaterial: process.platform === 'win32' ? 'acrylic' : 'blurbehind',
+    backgroundMaterial: 'acrylic',
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       contextIsolation: true,
