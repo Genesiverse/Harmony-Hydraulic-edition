@@ -509,6 +509,44 @@ body.file-loaded .editor-container {
 .editor-container.show-preview #formContainer {
   flex: 0.9;
 }
+
+/* --- Electron title bar --- */
+#titleBar {
+  -webkit-app-region: drag;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  padding-left: 8px;
+  background: var(--panel-bg);
+}
+
+.title-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.title-btn {
+  -webkit-app-region: no-drag;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+}
+
+.title-btn.close { background: #ff5f57; }
+.title-btn.maximize { background: #28c940; }
+.title-btn.minimize { background: #ffbd2e; }
+
+/* --- Blur window option --- */
+body.blur-window {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  background-color: rgba(255,255,255,0.6);
+}
+body.blur-window.dark {
+  background-color: rgba(30,31,34,0.6);
+}
 /* === Advanced Mode Styling === */
 
 /* Animate label shift and plus fade-in */
