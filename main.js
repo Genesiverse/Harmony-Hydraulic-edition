@@ -3,18 +3,20 @@ const path = require('path');
 
 function createWindow() {
   const win = new BrowserWindow({
-    width: 1000,
-    height: 800,
-    frame: false,
-    transparent: true,
-    roundedCorners: true,
-    backgroundMaterial: process.platform === 'win32' ? 'acrylic' : 'blurbehind',
-    webPreferences: {
-      preload: path.join(__dirname, 'preload.js'),
-      contextIsolation: true,
-      nodeIntegration: false
-    }
-  });
+  width: 1000,
+  height: 800,
+  frame: false,
+  transparent: true,
+  roundedCorners: true,
+  vibrancy: process.platform === 'darwin' ? 'fullscreen-ui' : undefined, // ⬅️ add for macOS
+  backgroundMaterial: process.platform === 'win32' ? 'acrylic' : undefined, // ⬅️ for Windows 11
+  visualEffectState: 'active', // ⬅️ required for backgroundMaterial to take effect
+  webPreferences: {
+    preload: path.join(__dirname, 'preload.js'),
+    contextIsolation: true,
+    nodeIntegration: false
+  }
+});
 
   win.loadFile(path.join('bin', 'index.html'));
 
