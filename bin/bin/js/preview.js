@@ -130,12 +130,16 @@ document.getElementById('downloadCompactBtn').addEventListener('click', () => {
 
 
 document.addEventListener('keydown', e => {
-  if (e.ctrlKey && e.key === '1') {
+  if (e.ctrlKey && e.key === 's') {
     document.getElementById('downloadBtn')?.click();
     e.preventDefault();
   }
-  if (e.ctrlKey && e.key === '2') {
+  if (e.ctrlKey && e.key === 'd') {
     document.getElementById('downloadCompactBtn')?.click();
+    e.preventDefault();
+  }
+  if (e.ctrlKey && e.key === 'e') {
+    document.getElementById('saveBtn')?.click();
     e.preventDefault();
   }
 });
