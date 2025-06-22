@@ -7,6 +7,8 @@ function createWindow() {
     height: 800,
     frame: false,
     transparent: true,
+    roundedCorners: true,
+    backgroundMaterial: process.platform === 'win32' ? 'acrylic' : 'blurbehind',
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       contextIsolation: true,
@@ -15,6 +17,13 @@ function createWindow() {
   });
 
   win.loadFile(path.join('bin', 'index.html'));
+
+  win.on('maximize', () => {
+    win.webContents.send('window-maximized');
+  });
+  win.on('unmaximize', () => {
+    win.webContents.send('window-restored');
+  });
 }
 
 app.whenReady().then(() => {
