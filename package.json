@@ -6,6 +6,7 @@
     "start": "electron ."
   },
   "devDependencies": {
-    "electron": "^28.2.1"
+    "electron": "^28.2.1",
+    "electron-windows-vibrancy": "^1.1.0"
   }
 }

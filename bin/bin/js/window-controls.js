@@ -12,11 +12,13 @@ window.addEventListener('DOMContentLoaded', () => {
     const stored = localStorage.getItem('blurWindow');
     const enabled = stored === null || stored === 'true';
     document.body.classList.toggle('blur-window', enabled);
+    window.electronAPI?.setBlur(enabled);
     blurToggle.checked = enabled;
     blurToggle.addEventListener('change', () => {
       const active = blurToggle.checked;
       document.body.classList.toggle('blur-window', active);
       localStorage.setItem('blurWindow', active);
+      window.electronAPI?.setBlur(active);
     });
   }
 });

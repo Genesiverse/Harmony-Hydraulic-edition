@@ -1,5 +1,6 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
+const vibrancy = require('electron-windows-vibrancy');
 
 function createWindow() {
   const win = new BrowserWindow({
@@ -18,6 +19,13 @@ function createWindow() {
       nodeIntegration: false
     }
   });
+
+  // Apply initial vibrancy
+  try {
+    vibrancy.SetVibrancy(win, 0);
+  } catch (err) {
+    console.error('Failed to apply vibrancy:', err);
+  }
 
   win.loadFile(path.join('bin', 'index.html'));
 
@@ -51,6 +59,23 @@ ipcMain.on('window-toggle-maximize', (e) => {
 
 ipcMain.on('window-close', (e) => {
   e.sender.getOwnerBrowserWindow().close();
+});
+
+ipcMain.on('window-set-blur', (e, enabled) => {
+  const win = e.sender.getOwnerBrowserWindow();
+  if (enabled) {
+    try {
+      vibrancy.SetVibrancy(win, 0);
+    } catch (err) {
+      console.error('Failed to enable vibrancy:', err);
+    }
+  } else {
+    try {
+      vibrancy.DisableVibrancy(win);
+    } catch (err) {
+      console.error('Failed to disable vibrancy:', err);
+    }
+  }
 });
 
 app.on('window-all-closed', () => {
