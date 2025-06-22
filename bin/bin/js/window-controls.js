@@ -7,9 +7,16 @@ window.addEventListener('DOMContentLoaded', () => {
   if (min) min.addEventListener('click', () => window.electronAPI?.minimize());
   if (max) max.addEventListener('click', () => window.electronAPI?.maximize());
 
+  window.electronAPI?.onMaximize(() => {
+    document.body.classList.add('window-maximized');
+  });
+  window.electronAPI?.onRestore(() => {
+    document.body.classList.remove('window-maximized');
+  });
+
   const blurToggle = document.getElementById('blurEffectToggle');
   if (blurToggle) {
-    const enabled = localStorage.getItem('blurWindow') === 'true';
+    const enabled = localStorage.getItem('blurWindow') !== 'false';
     document.body.classList.toggle('blur-window', enabled);
     blurToggle.checked = enabled;
     blurToggle.addEventListener('change', () => {
