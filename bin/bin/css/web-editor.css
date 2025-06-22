@@ -46,6 +46,7 @@ body.hide-mario #marioContainer {
 
 
 
+
 #formContainer {
   background: var(--panel-bg) !important;
   backdrop-filter: blur(10px) !important;
@@ -63,7 +64,7 @@ body.hide-mario #marioContainer {
   transition: all 0.3s ease !important;
   font-family: monospace !important;
   min-height: 300px !important;
-  height: 100% !important;
+  height: calc(102.7vh - 100px) !important; /* match form container logic */
   max-height: calc(102.7vh - 100px) !important; /* match form container logic */
   width: 100% !important;
   line-height: 1.4 !important;
@@ -90,17 +91,13 @@ body.hide-mario #marioContainer {
   transition: all 0.3s ease !important;
   font-family: monospace !important;
   min-height: 300px !important;
-  height: 100% !important;
+  height: calc(102.7vh - 100px) !important; /* match form container logic */
   max-height: calc(102.7vh - 100px) !important; /* match form container logic */
   width: 100% !important;
   line-height: 1.4 !important;
   font-size: 0.95rem !important;
   box-sizing: border-box !important;
 }
-
-
-
-
 
 
 

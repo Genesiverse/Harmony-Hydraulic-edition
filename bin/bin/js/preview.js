@@ -50,6 +50,18 @@ function createPreviewToggle() {
   if (out) out.readOnly = previewMode === 'feather';
 }
 
+function openPreview() {
+  const wrapper = document.querySelector('.editor-container');
+  const output = document.getElementById('output');
+  const btn = document.getElementById('saveBtn');
+  if (!wrapper || !output) return;
+  const inputs = document.querySelectorAll('#formContainer input, #formContainer textarea');
+  const data = previewMode === 'pro' ? buildFullYAML() : buildDiff(inputs);
+  output.value = jsyaml.dump(removeEmptyObjects(data));
+  wrapper.classList.add('show-preview');
+  if (btn) btn.classList.add('active');
+}
+
 
 
 

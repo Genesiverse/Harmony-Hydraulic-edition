@@ -20,6 +20,7 @@ function loadYAML(content) {
   applyDynamicDepths(container); // ✅ assign true DOM-based depth
   triggerLayoutTransform();
   createPreviewToggle();
+  openPreview();
 }
 
 function applyDynamicDepths(root) {
