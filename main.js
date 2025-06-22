@@ -7,6 +7,7 @@ function createWindow() {
   height: 800,
   frame: false,
   transparent: true,
+  backgroundColor: '#00000000',
   roundedCorners: true,
   vibrancy: process.platform === 'darwin' ? 'fullscreen-ui' : undefined, // ⬅️ add for macOS
   backgroundMaterial: process.platform === 'win32' ? 'acrylic' : undefined, // ⬅️ for Windows 11
