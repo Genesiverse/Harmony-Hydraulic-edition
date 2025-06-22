@@ -37,7 +37,7 @@ ipcMain.on('window-minimize', (e) => {
   e.sender.getOwnerBrowserWindow().minimize();
 });
 
-ipcMain.on('window-maximize', (e) => {
+ipcMain.on('window-toggle-maximize', (e) => {
   const win = e.sender.getOwnerBrowserWindow();
   if (win.isMaximized()) {
     win.restore();
