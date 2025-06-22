@@ -9,7 +9,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
   const blurToggle = document.getElementById('blurEffectToggle');
   if (blurToggle) {
-    const enabled = localStorage.getItem('blurWindow') === 'true';
+    const stored = localStorage.getItem('blurWindow');
+    const enabled = stored === null || stored === 'true';
     document.body.classList.toggle('blur-window', enabled);
     blurToggle.checked = enabled;
     blurToggle.addEventListener('change', () => {
