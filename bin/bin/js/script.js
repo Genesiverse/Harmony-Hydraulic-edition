@@ -195,3 +195,34 @@ function getFilenameFromInput() {
   const raw = document.getElementById('filenameInputName')?.value.trim();
   return raw ? (raw.endsWith('.yml') ? raw : `${raw}.yml`) : 'unnamed.yml';
 }
+
+
+
+function resetInputToDefault(input) {
+  const keys = input.dataset.key.split('.');
+  let val = baselineConfig;
+  for (const k of keys) {
+    val = val?.[k];
+    if (val === undefined) break;
+  }
+
+  if (input.type === 'checkbox') {
+    input.checked = !!val;
+  } else if (input.tagName === 'TEXTAREA') {
+    input.value = Array.isArray(val) ? val.join('\n') : (val ?? '');
+  } else {
+    input.value = val ?? '';
+  }
+
+  input.dispatchEvent(new Event('input', { bubbles: true }));
+}
+
+document.addEventListener('keydown', e => {
+  if ((e.ctrlKey || e.metaKey) && e.key === 'Backspace') {
+    const target = e.target;
+    if (target && target.matches('#formContainer input, #formContainer textarea')) {
+      e.preventDefault();
+      resetInputToDefault(target);
+    }
+  }
+});

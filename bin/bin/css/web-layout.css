@@ -373,6 +373,7 @@ body.file-loaded .footer-credit {
   border: 2px dashed var(--border-color);
 }
 
+.header-btn img,
 #dropOverlay img {
   width: 1.2em;
   height: 1.2em;
@@ -465,6 +466,7 @@ body.file-loaded header#topHeader {
   align-items: center;
   padding: 12px 0;
   width: 80px;
+  transition: width 0.3s ease;
   position: fixed;
   top: 0;
   left: 0;
@@ -547,13 +549,44 @@ body.dark .sidebar-btn.active img:first-child {
 /* sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss */
 /* Sticky Header Bar */
 header#topHeader {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   font-size: 2.8em;
   font-weight: 600;
-  text-align: center;
+  /* text-align: center; */
   color: var(--text-color);
   /* line-height: 10em; */
   transition: all 0.3s ease;
 }
+
+#topActions {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  gap: 8px;
+}
+
+.header-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  font-size: 12px;
+}
+
+.header-btn img {
+  width: 1.5em;
+  height: 1.5em;
+}
+body.dark .header-btn img {
+  filter: invert(1);
+}
+ 
 #fileInfoContainer {
   display: none;
 }
@@ -616,33 +649,66 @@ body.file-loaded .editor-container {
 
 
 /* --- Settings panel styles --- */
-.settings-panel {
-  background: var(--panel-bg);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
-  margin-top: 1rem;
-  flex: 1;
+
+.settings-panel,
+#settingsPanel {
+  background: var(--panel-bg) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.3) !important;
+  margin-top: 1rem !important;
+  flex: 1 1 0 !important; 
   display: none;
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
-  padding: 20px;
-  overflow: auto;
-  position: sticky;
-  top: 50px;
-  align-self: flex-start;
-  transition: all 0.3s ease;
-  font-family: monospace;
-  min-height: 300px;
-  height: 100%;
-  max-height: calc(102.7vh - 100px);
-  width: 100%;
-  box-sizing: border-box;
-  transform: translateX(-20px);
+  border: 1px solid var(--border-color) !important;
+  border-radius: 12px !important;
+  padding: 20px !important;
+  overflow: auto !important;
+  top: 50px !important; 
+  align-self: flex-start !important; 
+  transition: all 0.3s ease !important;
+  font-family: monospace !important;
+  line-height: 1.4 !important;
+  font-size: 0.95rem !important;
+  max-height: calc(100vh - 100px) !important;
+  box-sizing: border-box !important;
+  transform: translateX(-10px);
   opacity: 0;
+  position: absolute !important;
+  left: 6rem;
+  width: calc(100vh - 100px) !important;
+  max-width: 20rem !important;
+  height: calc(100vh - 100px) !important;
+  z-index: 25;
+}
+
+#settingsPanel.visible {
+  display: block;
+  opacity: 1;
+  transform: translateX(0);
+}
+.editor-container.show-preview #outputContainer,
+#settingsPanel.visible {
+  display: block;
+  transform: translateX(0);
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 100%;
+  opacity: 1;
 }
 body.dark .settings-close img {
   filter: invert(1);
+  position: absolute;
+  top: 0;
+  left: 80px;
+  width: 220px;
+  height: 100%;
+  z-index: 25;
+}
+
+.settings-panel.visible {
+  display: block;
+  opacity: 1;
+  transform: translateX(0);
 }
 
 #filenameInputTitle img {
@@ -673,24 +739,25 @@ body.dark #filenameInputTitle img {
   cursor: pointer;
 }
 
-body.show-settings .settings-panel {
-  right: 0;
-}
+/* body.show-settings .settings-panel { */
+  /* right: 0; */
+/* } */
 
-.settings-btn {
+/* .settings-btn { */
   /* border: 2px solid var(--highlight); */
-}
+/* } */
 
-body.show-settings #settingsBtn {
-  background-color: var(--highlight);
-  color: #fff;
+/* body.show-settings #settingsBtn { */
+  /* background-color: var(--highlight); */
+  /* color: #fff; */
 
-}
+/* } */
 
 /* Highlight sidebar buttons when sections are active */
 body:not(.file-loaded) #resetBtn,
-.editor-container.show-preview #saveBtn,
-.editor-container.show-settings #settingsBtn {
+/* .editor-container.show-preview #saveBtn, */
+/* .editor-container.show-settings #settingsBtn { */
+.editor-container.show-preview #saveBtn {
   background-color: var(--highlight);
   color: #fff;
 }

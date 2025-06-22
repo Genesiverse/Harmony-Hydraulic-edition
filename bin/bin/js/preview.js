@@ -128,6 +128,18 @@ document.getElementById('downloadCompactBtn').addEventListener('click', () => {
   URL.revokeObjectURL(a.href);
 });
 
+
+document.addEventListener('keydown', e => {
+  if (e.ctrlKey && e.key === '1') {
+    document.getElementById('downloadBtn')?.click();
+    e.preventDefault();
+  }
+  if (e.ctrlKey && e.key === '2') {
+    document.getElementById('downloadCompactBtn')?.click();
+    e.preventDefault();
+  }
+});
+
 document.getElementById('resetBtn').addEventListener('click', () => {
   location.reload();
 });

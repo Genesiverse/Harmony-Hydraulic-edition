@@ -99,33 +99,7 @@ body.hide-mario #marioContainer {
 }
 
 
-#settingsPanel {
-  background: var(--panel-bg) !important;
-  backdrop-filter: blur(10px) !important;
-  -webkit-backdrop-filter: blur(10px) !important;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.3) !important;
-  margin-top: 1rem !important;
-  flex: 1 1 0 !important;
-  display: none;
-  border: 1px solid var(--border-color) !important;
-  border-radius: 12px !important;
-  padding: 20px !important;
-  overflow: auto !important;
-  position: sticky !important;
-  top: 50px !important;
-  align-self: flex-start !important;
-  transition: all 0.3s ease !important;
-  font-family: monospace !important;
-  min-height: 300px !important;
-  height: 100% !important;
-  max-height: calc(102.7vh - 100px) !important;
-  width: 100% !important;
-  line-height: 1.4 !important;
-  font-size: 0.95rem !important;
-  box-sizing: border-box !important;
-  transform: translateX(-20px);
-  opacity: 0;
-}
+
 
 
 
@@ -267,7 +241,7 @@ body.file-loaded #fileInfoContainer {
   border: 2px solid var(--border-color);
 }
 
-.editor-container.show-settings,
+/* .editor-container.show-settings, */
 .editor-container.show-preview {
   display: flex;
   flex-direction: row;
@@ -290,17 +264,7 @@ body.file-loaded #fileInfoContainer {
 
 
 
-.editor-container.show-preview #outputContainer,
-/* .editor-container.show-settings #settingsPanel, */
-.editor-container.show-settings #settingsPanel,
-.editor-container.show-settings #formContainer{
-  display: block;
-  transform: translateX(0);
-  flex: 1 1 0;
-  min-width: 0;
-  max-width: 100%;
-  opacity: 1;
-}
+
 
 
 .preview-toggle-group {
