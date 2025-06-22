@@ -536,6 +536,15 @@ body.dark .sidebar-btn img:first-child {
   background-color: var(--highlight);
   color: #fff;
 }
+.sidebar-btn:hover {
+  background-color: #8b8b8b63 !important;
+}
+.sidebar-btn:hover {
+  background-color: #6d6d6d82 !important;
+}
+body.dark .sidebar-btn:hover {
+  background-color: #7a7a7a82 !important;
+}
 
 /* ensure icons are visible when a sidebar button is active */
 .sidebar-btn.active img:first-child {
