@@ -1,58 +1,36 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
+﻿const { app, BrowserWindow } = require('electron');
 const path = require('path');
 
+let win;
+
 function createWindow() {
-  const win = new BrowserWindow({
-    width: 1000,
-    height: 800,
-    frame: false,
-    transparent: true,
-    backgroundColor: '#00000000',
-    roundedCorners: true,
-    vibrancy: 'fullscreen-ui',    // on macOS
-    backgroundMaterial: 'acrylic', // on Windows 11
-    visualEffectState: 'active',   // required for backgroundMaterial
-    webPreferences: {
-      preload: path.join(__dirname, 'preload.js'),
-      contextIsolation: true,
-      nodeIntegration: false
-    }
-  });
+    win = new BrowserWindow({
+        width: 1300,
+        height: 700,
+        frame: true,
+        transparent: true,
+        backgroundColor: '#00000000',
+        roundedCorners: true,
+        hasShadow: true,
+        vibrancy: 'acrylic',
+        visualEffectState: 'active',
+        autoHideMenuBar: true,
+        menuBarVisible: false,
+        backgroundMaterial: 'acrylic',
+        webPreferences: {
+            preload: path.join(__dirname, 'preload.js'),
+            contextIsolation: true,
+            nodeIntegration: false,
+            enableCornerSmoothingCSS: true
+        },
+        show: false
+    });
 
-  win.loadFile(path.join('bin', 'index.html'));
+    win.loadFile(path.join('bin', 'index.html'));
 
-  win.on('maximize', () => {
-    win.webContents.send('window-maximized');
-  });
-  win.on('unmaximize', () => {
-    win.webContents.send('window-restored');
-  });
+    win.once('ready-to-show', () => {
+        win.show();
+    });
 }
 
-app.whenReady().then(() => {
-  createWindow();
-  app.on('activate', () => {
-    if (BrowserWindow.getAllWindows().length === 0) createWindow();
-  });
-});
-
-ipcMain.on('window-minimize', (e) => {
-  e.sender.getOwnerBrowserWindow().minimize();
-});
-
-ipcMain.on('window-toggle-maximize', (e) => {
-  const win = e.sender.getOwnerBrowserWindow();
-  if (win.isMaximized()) {
-    win.restore();
-  } else {
-    win.maximize();
-  }
-});
-
-ipcMain.on('window-close', (e) => {
-  e.sender.getOwnerBrowserWindow().close();
-});
-
-app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') app.quit();
-});
+app.whenReady().then(createWindow);
