@@ -7,18 +7,27 @@
   <link rel="stylesheet" href="bin/css/web-editor.css">
   <link rel="stylesheet" href="bin/css/sidebar.css">
   <link rel="stylesheet" href="bin/css/settings.css">
+  <link rel="stylesheet" href="bin/css/titleBar.css">
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 </head>
 <body>
+
+   <div id="titleBar" >
+     <div class="title-buttons">
+       <button class="title-btn close" id="windowClose"></button>
+       <button class="title-btn maximize" id="windowMax"></button>
+       <button class="title-btn minimize" id="windowMin"></button>
+     </div>
+   </div>
+
   <!-- <div id="titleBar"> -->
-    <!-- <div class="title-buttons"> -->
+    <!-- <div class="title-buttons title-drag"> -->
       <!-- <button class="title-btn close" id="windowClose"></button> -->
       <!-- <button class="title-btn maximize" id="windowMax"></button> -->
       <!-- <button class="title-btn minimize" id="windowMin"></button> -->
     <!-- </div> -->
-    <span class="title-drag"></span>
-  </div>
+  <!-- </div> -->
   <div id="marioContainer" aria-hidden="true"></div>
   <div id="layoutContainer" class="layout">
     <aside class="sidebar">

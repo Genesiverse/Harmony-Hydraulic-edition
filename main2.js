@@ -1,4 +1,4 @@
-﻿const { app, BrowserWindow, ipcMain, screen } = require('electron');
+﻿const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 
 let win;
@@ -9,17 +9,16 @@ function createWindow() {
         width: 1300,
         height: 700,
         skipTaskbar: false,
-        fullscreenable: false,
+        fullscreenable: true,
         resizable: true,
-        frame: false, // Use custom frame
-        transparent: false, // ✅ KEEP FALSE for resizable to work
+        frame: false,
+        transparent: true,
         vibrancy: 'acrylic',
         backgroundMaterial: 'acrylic',
         backgroundColor: '#00000000',
         roundedCorners: true,
         hasShadow: true,
         visualEffectState: 'active',
-        thickFrame: true, // ✅ Required for resizing
         autoHideMenuBar: true,
         menuBarVisible: false,
         webPreferences: {
@@ -28,15 +27,18 @@ function createWindow() {
             nodeIntegration: false,
             enableCornerSmoothingCSS: true
         },
-        show: false // Best practice
+        show: false
     });
 
     win.loadFile(path.join('bin', 'index.html'));
 
     win.once('ready-to-show', () => {
         win.show();
-        // Optional: re-apply rounding hint manually here if needed
-        // if (process.platform === 'win32') require('./rounding-null');
+
+        // Call Windows rounding hint
+        if (process.platform === 'win32') {
+            require('./rounding');
+        }
     });
 }
 
@@ -51,30 +53,17 @@ ipcMain.on('window-minimize', (e) => {
 
 ipcMain.on('window-maximize', (e) => {
     const window = e.sender.getOwnerBrowserWindow();
-
-    if (window._isFakeMaximized) {
-        // Restore previous size
-        if (window._previousBounds) {
-            window.setBounds(window._previousBounds);
+    if (window.isMaximized()) {
+        if (previousBounds) {
+            window.setBounds(previousBounds);
+            previousBounds = null;
+        } else {
+            window.restore();
         }
-        window._isFakeMaximized = false;
         e.sender.send('window-is-restored');
     } else {
-        // Save current size
-        window._previousBounds = window.getBounds();
-
-        const primaryDisplay = screen.getPrimaryDisplay();
-        const { x, y, width, height } = primaryDisplay.workArea;
-
-        // Apply fake maximize with 10px padding
-        window.setBounds({
-            x: x + 10,
-            y: y + 10,
-            width: width - 20,
-            height: height - 20
-        });
-
-        window._isFakeMaximized = true;
+        previousBounds = window.getBounds(); // Save current size & position
+        window.maximize();
         e.sender.send('window-is-maximized');
     }
 });

@@ -2,15 +2,24 @@ window.addEventListener('DOMContentLoaded', () => {
   const close = document.getElementById('windowClose');
   const min = document.getElementById('windowMin');
   const max = document.getElementById('windowMax');
+  const dragZone = document.getElementById('titleBar');
 
   if (close) close.addEventListener('click', () => window.electronAPI?.close());
   if (min) min.addEventListener('click', () => window.electronAPI?.minimize());
   if (max) max.addEventListener('click', () => window.electronAPI?.maximize());
 
+  // Intercept double-click to trigger custom maximize logic
+  if (dragZone) {
+    dragZone.addEventListener('dblclick', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      window.electronAPI?.maximize();
+    });
+  }
+
   const blurToggle = document.getElementById('blurEffectToggle');
   if (blurToggle) {
-    const stored = localStorage.getItem('blurWindow');
-    const enabled = stored === null || stored === 'true';
+    const enabled = localStorage.getItem('blurWindow') === 'true';
     document.body.classList.toggle('blur-window', enabled);
     blurToggle.checked = enabled;
     blurToggle.addEventListener('change', () => {

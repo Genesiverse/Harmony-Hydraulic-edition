@@ -51,16 +51,18 @@
   top: 0;
   left: 0;
   bottom: 0;
+  padding-top: 30px;
   background-color: var(--panel-bg);
   border-right: 1px solid var(--border-color);
   z-index: 20;
-  /* overflow-y: auto; /* Enable scroll if content too tall */ */
+  /* overflow-y: auto; /* Enable scroll if content too tall */ 
 }
 
 
 .sidebar-buttons {
   display: flex;
   flex-wrap: wrap;
+  top: 2rem;
   gap: 10px;
   justify-content: center;
 }

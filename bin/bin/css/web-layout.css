@@ -412,9 +412,11 @@ body.file-loaded header#topHeader {
   left: 80px;
   right: 0;
   z-index: 999;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  background-color: var(--panel-bg);
+  /* backdrop-filter: blur(12px); */
+  /* -webkit-backdrop-filter: blur(12px); */
+  /* background: linear-gradient(to top, var(--bg-color) 0%, rgba(0, 0, 0, 0) 100%); */
+  /* background-color: var(--panel-bg); */
+  background-color: none;
   border-bottom: 1px solid var(--border-color);
 }
 
@@ -511,49 +513,48 @@ body.file-loaded .editor-container {
 }
 
 /* --- Electron title bar --- */
+#titleBar {
+  -webkit-app-region: drag;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  padding-left: 8px;
+  background: var(--panel-bg);
+}
+
+.title-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.title-btn {
+  -webkit-app-region: no-drag;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+}
+
+/* --- Electron title bar --- */
+
 
 body {
-    margin: 0;
-    padding: 0;
-    background: rgba(30, 0, 0, 0);
-    backdrop-filter: blur(0px);
-    -webkit-backdrop-filter: blur(0px);
-    color: white;
-    -webkit-app-region: drag; /* allows dragging the window */
+  background: linear-gradient(to top, var(--bg-color) 0%, rgba(0, 0, 0, 0) 100%);
+    /* margin: 0; */
+    /* padding: 0; */
+    /* background: rgba(0, 0, 0, 0); */
+    /* backdrop-filter: blur(8px); */
+    /* -webkit-backdrop-filter: blur(8px); */
+    /* color: white; */
+    /* -webkit-app-region: drag; /* allows dragging the window */ */
 }
-/* #titleBar { */
-  /* -webkit-app-region: drag; */
-  /* height: 28px; */
-  /* display: flex; */
-  /* align-items: center; */
-  /* padding-left: 8px; */
-  /* background: var(--panel-bg); */
-/* } */
-
-/* .title-buttons { */
-  /* display: flex; */
-  /* gap: 8px; */
-/* } */
-
-/* .title-btn { */
-  /* -webkit-app-region: no-drag; */
-  /* width: 12px; */
-  /* height: 12px; */
-  /* z-index: 9999; */
-  /* border-radius: 50%; */
-  /* border: none; */
-  /* padding: 0; */
-/* } */
-
-/* .title-btn.close { background: #ff5f57; } */
-/* .title-btn.maximize { background: #28c940; } */
-/* .title-btn.minimize { background: #ffbd2e; } */
-
 /* --- Blur window option --- */
 body.blur-window {
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  background-color: rgba(255,255,255,0.6);
+  background: rgba(0, 0, 0, 0) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  background-color: rgba(0, 0, 0, 0) !important;
 }
 body.blur-window.dark {
   background-color: rgba(30,31,34,0.6);
@@ -568,3 +569,69 @@ body.blur-window.dark {
   /* position: relative; */
 /* } */
 
+
+#titleBar {
+  -webkit-app-region: drag; /* ONLY this div is draggable */
+  -webkit-app-region: no-drag; /* not draggable by default */
+  width: 100%;
+  height: 32px;
+  -webkit-app-region: drag;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  background-color: transparent;
+  /* background: #00b50f; */
+}
+
+.title-buttons {
+  display: flex !important;
+  gap: 0rem !important;
+  z-index: 1001 !important;
+  -webkit-app-region: no-drag !important;
+}
+
+/* Window control buttons base */
+.title-btn {
+  width: 12px !important;
+  height: 12px !important;
+  border-radius: 50% !important;
+  border: none !important;
+  margin-top: 10px !important;
+  margin-left: 8px !important;
+  cursor: pointer !important;
+  -webkit-app-region: no-drag !important;
+  background-color: rgba(255, 255, 255, 0.1) !important; /* neutral transparent gray */
+  transition: transform 0.2s ease, background-color 0.2s ease !important;
+}
+
+/* Hover feedback */
+.title-btn:hover {
+  transform: scale(1.15) !important;
+}
+
+/* Close */
+.title-btn.close:hover {
+  background-color: #ff5f57 !important;
+}
+
+/* Minimize */
+.title-btn.minimize:hover {
+  background-color: #ffbd2e !important;
+}
+
+/* Maximize */
+.title-btn.maximize:hover {
+  background-color: #28c840 !important;
+}
+
+#headerTitle {
+  position: absolute !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  font-family: 'Press Start 2P', sans-serif !important;
+  font-size: 0.7rem !important;
+  color: white !important;
+  pointer-events: none !important;
+  white-space: nowrap !important;
+  z-index: 1001 !important;
+}
