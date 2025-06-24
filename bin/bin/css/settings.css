@@ -4,10 +4,10 @@
 
 .settings-panel,
 #settingsPanel {
-  background: var(--panel-bg) !important;
-  backdrop-filter: blur(10px) !important;
-  -webkit-backdrop-filter: blur(10px) !important;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.3) !important;
+  background: var(--panel-stng) !important;
+  /* backdrop-filter: blur(10px) !important; */
+  /* -webkit-backdrop-filter: blur(10px) !important; */
+  /* box-shadow: 0 0 12px rgba(0, 0, 0, 0.3) !important; */
   margin-top: 1rem !important;
   flex: 1 1 0 !important; 
   display: none;
@@ -15,16 +15,15 @@
   border-radius: 12px !important;
   padding: 20px !important;
   overflow: auto !important;
-  top: 50px !important; 
+  top: 0px !important; 
   align-self: flex-start !important; 
   transition: all 0.3s ease !important;
   font-family: monospace !important;
   line-height: 1.4 !important;
   font-size: 0.95rem !important;
-  max-height: calc(100vh - 100px) !important;
+  max-height: calc(10-0vh - 100px) !important;
   box-sizing: border-box !important;
   transform: translateX(-10px) !important;
-  opacity: 1 !important;
   position: absolute !important;
   left: -0.5rem !important;
   width: calc(100vh - 100px) !important;

@@ -1,0 +1,51 @@
+
+
+body.brutalist {
+  --bg-color: #ffffff;
+  --shadow: #000000;
+  --bg-color-1: #f2f2f2;
+  --panel-bg: #ffffff;
+  --border-color: #000000;
+  --text-color: #000000;
+  --highlight: #000;
+  --blue: #e5e5e5;
+  --accent-green: #000000;
+  --accent-red: #000000;
+  --accent-yellow: #000000;
+  --accent-orange: #000000;
+  --accent-purple: #000000;
+  --accent-pink: #000000;
+  --accent-muted: #333333;
+  font-family: 'Roboto Mono', monospace;
+}
+
+/* Simple Brutalist style */
+body.brutalist {
+  font-family: 'Press Start 2P', monospace;
+  --bg-color: #ffffff;
+  --panel-bg: #fff;
+  --border-color: #000;
+  --text-color: #000;
+}
+body.brutalist *,
+body.brutalist #topHeader,
+body.brutalist footer {
+  font-family: 'Roboto Mono', monospace !important;
+}
+
+body.brutalist button,
+body.brutalist input,
+body.brutalist textarea,
+body.brutalist fieldset,
+body.brutalist .sidebar,
+body.brutalist .section,
+body.brutalist #dropZone {
+  box-shadow: none !important;
+  border-width: 2px !important;
+}
+
+body.brutalist .section {
+  border-color: var(--border-color) !important;
+}
+
+

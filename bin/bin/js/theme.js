@@ -5,6 +5,10 @@ if (savedTheme === 'dark') {
   document.body.classList.add('dark');
 }
 
+const savedBrutal = localStorage.getItem('brutalist');
+if (savedBrutal === 'true') {
+  document.body.classList.add('brutalist');
+}
 window.addEventListener('DOMContentLoaded', () => {
   const isDark = document.body.classList.contains('dark');
   document.getElementById('themeToggle').checked = isDark;

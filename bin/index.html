@@ -8,8 +8,11 @@
   <link rel="stylesheet" href="bin/css/sidebar.css">
   <link rel="stylesheet" href="bin/css/settings.css">
   <link rel="stylesheet" href="bin/css/titleBar.css">
+  <link rel="stylesheet" href="bin/css/themes/brrutalist.css">
+  <link rel="stylesheet" href="bin/css/themes/r63.css">
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -61,9 +64,16 @@
           </label>
         </div>
         <div class="setting-item">
-          <label for="blurEffectToggle">Blur Window</label>
+          <label for="retro64Toggle">Retro64</label>
           <label class="toggle-switch">
-            <input type="checkbox" id="blurEffectToggle" checked />
+            <input type="checkbox" id="retro64Toggle" checked />
+            <span class="slider"></span>
+          </label>
+        </div>
+        <div class="setting-item">
+          <label for="brutalistToggle">Brutalist Mode</label>
+          <label class="toggle-switch">
+            <input type="checkbox" id="brutalistToggle" onchange="toggleBrutalist()" />
             <span class="slider"></span>
           </label>
         </div>
@@ -102,8 +112,6 @@
       </div>
     </main>
   </div>
-
-
   <script src="https://cdn.jsdelivr.net/npm/js-yaml@4"></script>
   <script src="bin/js/theme.js"></script>
   <script src="bin/js/preload-data.js"></script>

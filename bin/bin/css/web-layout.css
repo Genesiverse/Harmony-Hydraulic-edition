@@ -4,6 +4,7 @@
   --shadow: #00000047;                 /* dark background */
   --bg-color-1: #cbcdd44a;                 /* dark background */
   --panel-bg: rgba(240, 240, 240, 0.8); /* light panel glass */
+  --panel-stng: rgb(240, 240, 240); /* light panel  */
   --border-color: #ccc;               /* soft light borders */
   --text-color: #111;                 /* high contrast text */
   --highlight: #5865F2;               /* Discord blue highlight */
@@ -43,6 +44,7 @@ body.dark {
   --shadow: #000;                 /* dark background */
   --bg-color-1: #2d2f3573;                 /* dark background */
   --panel-bg: rgba(43, 45, 49, 0.45);  /* semi-transparent dark glass */
+  --panel-stng: rgb(43, 45, 49);  /*  dark glass */
   --border-color: #4e5058;            /* neutral gray borders */
   --text-color: #f2f3f5;              /* high contrast light text */
   --highlight: #5865F2;               /* Discord blue */
@@ -74,7 +76,6 @@ body.dark {
   --section-bg-focus: #313338;
   --section-border-focus: #72767d;
 }
-
 
 
 
@@ -527,37 +528,21 @@ body.file-loaded .editor-container {
   gap: 8px;
 }
 
-.title-btn {
-  -webkit-app-region: no-drag;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  border: none;
-  padding: 0;
-}
 
 /* --- Electron title bar --- */
 
 
 body {
-  background: linear-gradient(to top, var(--bg-color) 0%, rgba(0, 0, 0, 0) 100%);
+  background: var(--bg-color);
     /* margin: 0; */
     /* padding: 0; */
     /* background: rgba(0, 0, 0, 0); */
     /* backdrop-filter: blur(8px); */
     /* -webkit-backdrop-filter: blur(8px); */
-    /* color: white; */
-    /* -webkit-app-region: drag; /* allows dragging the window */ */
 }
-/* --- Blur window option --- */
-body.blur-window {
-  background: rgba(0, 0, 0, 0) !important;
-  backdrop-filter: blur(20px) !important;
-  -webkit-backdrop-filter: blur(20px) !important;
-  background-color: rgba(0, 0, 0, 0) !important;
-}
-body.blur-window.dark {
-  background-color: rgba(30,31,34,0.6);
+
+body.dark {
+  background: linear-gradient(to top, var(--bg-color) 0%, rgba(0, 0, 0, 0) 100%);
 }
 /* === Advanced Mode Styling === */
 
@@ -590,18 +575,25 @@ body.blur-window.dark {
   -webkit-app-region: no-drag !important;
 }
 
+
 /* Window control buttons base */
-.title-btn {
+body.brutalist .title-btn,
+body.retro64 .title-btn,
+dark.title-btn,
+body .title-btn {
+  -webkit-app-region: no-drag;
   width: 12px !important;
   height: 12px !important;
-  border-radius: 50% !important;
-  border: none !important;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
   margin-top: 10px !important;
   margin-left: 8px !important;
   cursor: pointer !important;
   -webkit-app-region: no-drag !important;
   background-color: rgba(255, 255, 255, 0.1) !important; /* neutral transparent gray */
   transition: transform 0.2s ease, background-color 0.2s ease !important;
+  border: 0.5px solid #808080 !important;
 }
 
 /* Hover feedback */

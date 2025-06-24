@@ -1,0 +1,39 @@
+/* --- Blur window option --- */
+body.dark {
+  background: linear-gradient(to top, var(--bg-color) 0%, rgba(0, 0, 0, 0) 0%);
+}
+body.blur-window {
+  background: rgba(0, 0, 0, 0) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  background-color: rgba(0, 0, 0, 0) !important;
+}
+body.blur-window.dark {
+  background-color: rgba(30,31,34,0.6);
+}
+/* === Retro64 theme === */
+body.retro64 {
+  image-rendering: pixelated;
+  font-family: 'Press Start 2P', monospace;
+}
+body.retro64 *:not(.title-btn),
+body.retro64 *:not(.title-btn)::before,
+body.retro64 *:not(.title-btn)::after {
+  border-radius: 0 !important;
+}
+
+body.retro64 #formContainer,
+body.retro64 #outputContainer,
+body.retro64 #settingsPanel,
+body.retro64 #formContainer {
+  background:  var(--bg-color) !important;
+  border-radius: 0px !important;
+  font-size: 0.95rem !important;
+  box-shadow:
+    4px 4px 0 var(--shadow) !important;
+    4px 4px 0 1px var(--shadow) !important;
+}
+
+
+
+
