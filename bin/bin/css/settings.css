@@ -131,3 +131,13 @@ body:not(.file-loaded) #resetBtn,
 .settings-panel .setting-item .toggle-switch {
   justify-self: end;
 }
+
+#updateButton {
+  margin-top: 0.5rem;
+  padding: 6px 10px;
+  cursor: pointer;
+  background-color: var(--highlight);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+}

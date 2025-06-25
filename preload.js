@@ -8,5 +8,6 @@ contextBridge.exposeInMainWorld('electronAPI', {
   maximize: () => ipcRenderer.send('window-maximize'),
   close: () => ipcRenderer.send('window-close'),
   onMaximize: (cb) => ipcRenderer.on('window-maximized', cb),
-  onRestore: (cb) => ipcRenderer.on('window-restored', cb)
+  onRestore: (cb) => ipcRenderer.on('window-restored', cb),
+  checkForUpdates: () => ipcRenderer.send('check-for-updates')
 });
