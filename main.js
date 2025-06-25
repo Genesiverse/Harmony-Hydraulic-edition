@@ -1,4 +1,5 @@
 ﻿const { app, BrowserWindow, ipcMain, screen } = require('electron');
+const { autoUpdater } = require('electron-updater');
 const path = require('path');
 
 let win;
@@ -79,7 +80,22 @@ ipcMain.on('window-maximize', (e) => {
     }
 });
 
-app.whenReady().then(createWindow);
+function initAutoUpdater() {
+    autoUpdater.on('error', (err) => {
+        console.error('Auto updater error:', err);
+    });
+
+    autoUpdater.on('update-downloaded', () => {
+        autoUpdater.quitAndInstall();
+    });
+
+    autoUpdater.checkForUpdatesAndNotify();
+}
+
+app.whenReady().then(() => {
+    createWindow();
+    initAutoUpdater();
+});
 
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') app.quit();
