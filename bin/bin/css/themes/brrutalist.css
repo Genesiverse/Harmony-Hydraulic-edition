@@ -1,5 +1,7 @@
 
-
+body.dark {
+  background: linear-gradient(to top, var(--bg-color) 0%, rgba(0, 0, 0, 0) 0%);
+}
 body.brutalist {
   --bg-color: #ffffff;
   --shadow: #000000;

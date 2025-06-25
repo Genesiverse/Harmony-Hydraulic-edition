@@ -21,7 +21,7 @@
   font-family: monospace !important;
   line-height: 1.4 !important;
   font-size: 0.95rem !important;
-  max-height: calc(10-0vh - 100px) !important;
+  max-height: calc(100vh - 100px) !important;
   box-sizing: border-box !important;
   transform: translateX(-10px) !important;
   position: absolute !important;
