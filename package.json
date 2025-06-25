@@ -78,6 +78,7 @@
   },
   "build": {
     "appId": "com.harmony.app",
+    "icon": "bin/bin/images/logo",
     "extraResources": [
       {
         "from": "bin",
