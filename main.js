@@ -85,6 +85,10 @@ ipcMain.on('window-maximize', (e) => {
     }
 });
 
+ipcMain.on('check-for-updates', () => {
+    autoUpdater.checkForUpdatesAndNotify();
+});
+
 function initAutoUpdater() {
     autoUpdater.on('error', (err) => {
         console.error('Auto updater error:', err);

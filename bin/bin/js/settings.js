@@ -50,4 +50,11 @@ window.addEventListener('DOMContentLoaded', () => {
       localStorage.setItem('highlightColor', color);
     });
   }
+
+  const updateBtn = document.getElementById('updateButton');
+  if (updateBtn) {
+    updateBtn.addEventListener('click', () => {
+      window.electronAPI?.checkForUpdates();
+    });
+  }
 });
