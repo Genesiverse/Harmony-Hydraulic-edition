@@ -78,6 +78,12 @@
   },
   "build": {
     "appId": "com.harmony.app",
+    "extraResources": [
+      {
+        "from": "bin",
+        "to": "bin"
+      }
+    ],
     "publish": [
       {
         "provider": "github",
