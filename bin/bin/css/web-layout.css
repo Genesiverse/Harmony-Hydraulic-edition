@@ -627,3 +627,24 @@ body .title-btn {
   white-space: nowrap !important;
   z-index: 1001 !important;
 }
+
+#titleBar.update-available {
+  background-color: #28c840;
+}
+
+#updateTitleBtn {
+  margin-left: auto;
+  padding: 2px 8px;
+  font-size: 12px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  border-radius: 3px;
+  cursor: pointer;
+  display: none;
+  -webkit-app-region: no-drag;
+}
+
+#titleBar.update-available #updateTitleBtn {
+  display: block;
+}
