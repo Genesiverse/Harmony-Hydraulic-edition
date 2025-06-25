@@ -11,7 +11,12 @@
    ```bash
    npm run build
    ```
-   Artifacts will appear in the `dist` folder.
+  Artifacts will appear in the `dist` folder.
+
+After installation, you can edit the UI files directly. The `bin` folder
+containing `index.html` and its assets is copied next to the application's
+resources directory. On Windows this will be under
+`<install dir>\resources\bin`.
 
 ## Auto Updates
 

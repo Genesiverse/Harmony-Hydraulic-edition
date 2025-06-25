@@ -32,7 +32,10 @@ function createWindow() {
         show: false // Best practice
     });
 
-    win.loadFile(path.join('bin', 'index.html'));
+    const binDir = app.isPackaged
+        ? path.join(process.resourcesPath, 'bin')
+        : path.join(__dirname, 'bin');
+    win.loadFile(path.join(binDir, 'index.html'));
 
     win.once('ready-to-show', () => {
         win.show();
