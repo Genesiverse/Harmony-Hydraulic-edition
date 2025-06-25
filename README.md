@@ -18,6 +18,8 @@ containing `index.html` and its assets is copied next to the application's
 resources directory. On Windows this will be under
 `<install dir>\resources\bin`.
 
+The application icon is loaded from `bin/images/logo.png` and `bin/images/logo.ico`. Replace these files after installation if you want to change the icon.
+
 ## Auto Updates
 
 The app uses `electron-updater` configured with GitHub releases. After pushing the project to a GitHub repository, publish new versions as releases containing the generated installer files. The `autoUpdater` will check the repository listed in `package.json` and apply updates automatically.

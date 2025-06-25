@@ -6,6 +6,10 @@ let win;
 let previousBounds;
 
 function createWindow() {
+    const binDir = app.isPackaged
+        ? path.join(process.resourcesPath, 'bin')
+        : path.join(__dirname, 'bin');
+
     win = new BrowserWindow({
         width: 1300,
         height: 700,
@@ -19,6 +23,7 @@ function createWindow() {
         backgroundColor: '#00000000',
         roundedCorners: true,
         hasShadow: true,
+        icon: path.join(binDir, 'images', 'logo.png'),
         visualEffectState: 'active',
         thickFrame: true, // ✅ Required for resizing
         autoHideMenuBar: true,
@@ -32,9 +37,6 @@ function createWindow() {
         show: false // Best practice
     });
 
-    const binDir = app.isPackaged
-        ? path.join(process.resourcesPath, 'bin')
-        : path.join(__dirname, 'bin');
     win.loadFile(path.join(binDir, 'index.html'));
 
     win.once('ready-to-show', () => {
