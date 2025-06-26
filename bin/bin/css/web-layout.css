@@ -660,6 +660,11 @@ body .title-btn {
   top: 0;
   bottom: 0;
   left: 80px;
+#settingsContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
   width: var(--settings-width);
   background: var(--panel-stng);
   border-right: 1px solid var(--border-color);
@@ -673,6 +678,11 @@ body .title-btn {
 
 #mainDropArea {
   transition: margin-left 0.3s ease;
+  z-index: 50;
+}
+
+#layoutContainer {
+  transition: transform 0.3s ease;
 }
 
 body.settings-open #settingsContainer {
@@ -681,4 +691,6 @@ body.settings-open #settingsContainer {
 
 body.settings-open #mainDropArea {
   margin-left: var(--settings-width);
+body.settings-open #layoutContainer {
+  transform: translateX(var(--settings-width));
 }
