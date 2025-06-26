@@ -53,8 +53,30 @@ window.addEventListener('DOMContentLoaded', () => {
 
   const updateBtn = document.getElementById('updateButton');
   if (updateBtn) {
+    let userRequested = false;
     updateBtn.addEventListener('click', () => {
+      userRequested = true;
       window.electronAPI?.checkForUpdates();
     });
+    if (window.electronAPI) {
+      window.electronAPI.onUpdateAvailable(() => {
+        if (userRequested) {
+          alert('Update available!');
+          userRequested = false;
+        }
+      });
+      window.electronAPI.onUpdateNotAvailable(() => {
+        if (userRequested) {
+          alert('No updates found. You\'re up to date.');
+          userRequested = false;
+        }
+      });
+      window.electronAPI.onUpdateError((msg) => {
+        if (userRequested) {
+          alert(`Update check failed: ${msg}`);
+          userRequested = false;
+        }
+      });
+    }
   }
 });
