@@ -89,12 +89,29 @@ ipcMain.on('check-for-updates', () => {
     autoUpdater.checkForUpdatesAndNotify();
 });
 
+ipcMain.on('start-update', () => {
+    autoUpdater.downloadUpdate();
+});
 function initAutoUpdater() {
     autoUpdater.on('error', (err) => {
         console.error('Auto updater error:', err);
+        win?.webContents.send('update-error', err.message);
+    });
+
+    autoUpdater.on('update-available', () => {
+        win?.webContents.send('update-available');
+    });
+
+    autoUpdater.on('update-not-available', () => {
+        win?.webContents.send('update-not-available');
+    });
+
+    autoUpdater.on('download-progress', (progress) => {
+        win?.webContents.send('download-progress', progress.percent);
     });
 
     autoUpdater.on('update-downloaded', () => {
+        win?.webContents.send('update-downloaded');
         autoUpdater.quitAndInstall();
     });
 

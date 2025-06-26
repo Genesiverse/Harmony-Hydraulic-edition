@@ -11,5 +11,9 @@ contextBridge.exposeInMainWorld('electronAPI', {
   onRestore: (cb) => ipcRenderer.on('window-is-restored', cb),
   onUpdateNotAvailable: (cb) => ipcRenderer.on('update-not-available', cb),
   onUpdateError: (cb) => ipcRenderer.on('update-error', (_, msg) => cb(msg)),
-  checkForUpdates: () => ipcRenderer.send('check-for-updates')
+  checkForUpdates: () => ipcRenderer.send('check-for-updates'),
+  startUpdate: () => ipcRenderer.send('start-update'),
+  onUpdateAvailable: (cb) => ipcRenderer.on('update-available', cb),
+  onDownloadProgress: (cb) => ipcRenderer.on('download-progress', (_, p) => cb(p)),
+  onUpdateDownloaded: (cb) => ipcRenderer.on('update-downloaded', cb)
 });
