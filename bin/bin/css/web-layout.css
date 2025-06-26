@@ -17,7 +17,6 @@
   --accent-pink: #ff7eb9;             /* passive pink accent */
   --accent-muted: #999da1;            /* muted/inactive text */
   --max-width: 850px;
-  --settings-width: 250px;
 
   /* Depth-based backgrounds */
   --section-bg-0: #f9f9fb;
@@ -648,49 +647,4 @@ body .title-btn {
 
 #titleBar.update-available #updateTitleBtn {
   display: block;
-}
-
-/* Settings container slide-in */
-#layoutContainer {
-  position: relative;
-}
-
-#settingsContainer {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 80px;
-#settingsContainer {
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: var(--settings-width);
-  background: var(--panel-stng);
-  border-right: 1px solid var(--border-color);
-  box-sizing: border-box;
-  padding: 1rem;
-  overflow-y: auto;
-  transform: translateX(-100%);
-  transition: transform 0.3s ease;
-  z-index: 40;
-}
-
-#mainDropArea {
-  transition: margin-left 0.3s ease;
-  z-index: 50;
-}
-
-#layoutContainer {
-  transition: transform 0.3s ease;
-}
-
-body.settings-open #settingsContainer {
-  transform: translateX(0);
-}
-
-body.settings-open #mainDropArea {
-  margin-left: var(--settings-width);
-body.settings-open #layoutContainer {
-  transform: translateX(var(--settings-width));
 }

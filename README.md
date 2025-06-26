@@ -7,18 +7,18 @@
    ```bash
    npm install
    ```
-3. Build the application and generate installers (Windows target):
+3. Build the application and generate installers:
    ```bash
    npm run build
    ```
-  Artifacts, including `latest.yml`, will appear in the `dist` folder.
+  Artifacts will appear in the `dist` folder.
 
 After installation, you can edit the UI files directly. The `bin` folder
 containing `index.html` and its assets is copied next to the application's
 resources directory. On Windows this will be under
 `<install dir>\resources\bin`.
 
-The application icon is loaded from `bin/images/logo.png` and `bin/images/logo.ico`. Replace these files after installation if you want to change the icon. Electron Builder uses the `.ico` file when generating the Windows installer, so ensure `bin/images/logo.ico` exists before running `npm run build`.
+The application icon is loaded from `bin/images/logo.png` and `bin/images/logo.ico`. Replace these files after installation if you want to change the icon.
 
 ## Auto Updates
 

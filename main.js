@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain, screen } = require('electron');
+﻿const { app, BrowserWindow, ipcMain, screen } = require('electron');
 const { autoUpdater } = require('electron-updater');
 const path = require('path');
 
@@ -86,38 +86,19 @@ ipcMain.on('window-maximize', (e) => {
 });
 
 ipcMain.on('check-for-updates', () => {
-    autoUpdater.checkForUpdates();
-});
-
-ipcMain.on('start-update', () => {
-    autoUpdater.downloadUpdate();
+    autoUpdater.checkForUpdatesAndNotify();
 });
 
 function initAutoUpdater() {
-    autoUpdater.autoDownload = false;
     autoUpdater.on('error', (err) => {
         console.error('Auto updater error:', err);
-        if (win) win.webContents.send('update-error', err.message);
-    });
-
-    autoUpdater.on('update-available', () => {
-        if (win) win.webContents.send('update-available');
-    });
-
-    autoUpdater.on('update-not-available', () => {
-        if (win) win.webContents.send('update-not-available');
-    });
-
-    autoUpdater.on('download-progress', (progressObj) => {
-        if (win) win.webContents.send('download-progress', progressObj.percent);
     });
 
     autoUpdater.on('update-downloaded', () => {
-        if (win) win.webContents.send('update-downloaded');
         autoUpdater.quitAndInstall();
     });
 
-    autoUpdater.checkForUpdates();
+    autoUpdater.checkForUpdatesAndNotify();
 }
 
 app.whenReady().then(() => {
