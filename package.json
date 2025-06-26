@@ -8,7 +8,8 @@
   "keywords": [],
   "scripts": {
     "start": "electron .",
-    "dist": "electron-builder"
+    "dist": "electron-builder",
+    "build": "electron-builder --win"
   },
   "devDependencies": {
     "electron": "^28.3.3",
@@ -97,7 +98,7 @@
       }
     ],
     "win": {
-      "icon": "bin/bin/images/logo.png",
+      "icon": "bin/bin/images/logo.ico",
       "target": "nsis"
     },
     "publish": [
