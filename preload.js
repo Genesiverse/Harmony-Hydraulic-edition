@@ -9,6 +9,8 @@ contextBridge.exposeInMainWorld('electronAPI', {
   close: () => ipcRenderer.send('window-close'),
   onMaximize: (cb) => ipcRenderer.on('window-maximized', cb),
   onRestore: (cb) => ipcRenderer.on('window-restored', cb),
+  onUpdateNotAvailable: (cb) => ipcRenderer.on('update-not-available', cb),
+  onUpdateError: (cb) => ipcRenderer.on('update-error', (_, msg) => cb(msg)),
   checkForUpdates: () => ipcRenderer.send('check-for-updates'),
   startUpdate: () => ipcRenderer.send('start-update'),
   onUpdateAvailable: (cb) => ipcRenderer.on('update-available', cb),

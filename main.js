@@ -97,10 +97,15 @@ function initAutoUpdater() {
     autoUpdater.autoDownload = false;
     autoUpdater.on('error', (err) => {
         console.error('Auto updater error:', err);
+        if (win) win.webContents.send('update-error', err.message);
     });
 
     autoUpdater.on('update-available', () => {
         if (win) win.webContents.send('update-available');
+    });
+
+    autoUpdater.on('update-not-available', () => {
+        if (win) win.webContents.send('update-not-available');
     });
 
     autoUpdater.on('download-progress', (progressObj) => {

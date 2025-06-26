@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="bin/css/web-editor.css">
   <link rel="stylesheet" href="bin/css/sidebar.css">
   <link rel="stylesheet" href="bin/css/settings.css">
-  <link rel="stylesheet" href="bin/css/titleBar.css">
+  <!-- <link rel="stylesheet" href="bin/css/titleBar.css"> -->
   <link rel="stylesheet" href="bin/css/themes/brrutalist.css">
   <link rel="stylesheet" href="bin/css/themes/r63.css">
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
@@ -16,36 +16,31 @@
 </head>
 <body>
 
-   <div id="titleBar" >
-     <div class="title-buttons">
-       <button class="title-btn close" id="windowClose"></button>
-       <button class="title-btn maximize" id="windowMax"></button>
-       <button class="title-btn minimize" id="windowMin"></button>
-     </div>
-   </div>
+  <!-- Title Bar -->
+  <div id="titleBar">
+    <div class="title-buttons">
+      <button class="title-btn close" id="windowClose"></button>
+      <button class="title-btn maximize" id="windowMax"></button>
+      <button class="title-btn minimize" id="windowMin"></button>
+    </div>
+  </div>
 
-  <!-- <div id="titleBar"> -->
-    <!-- <div class="title-buttons title-drag"> -->
-      <!-- <button class="title-btn close" id="windowClose"></button> -->
-      <!-- <button class="title-btn maximize" id="windowMax"></button> -->
-      <!-- <button class="title-btn minimize" id="windowMin"></button> -->
-    <!-- </div> -->
-  <!-- </div> -->
   <div id="marioContainer" aria-hidden="true"></div>
   <div id="layoutContainer" class="layout">
     <aside class="sidebar">
       <div class="sidebar-buttons">
         <button class="sidebar-btn" id="resetBtn"><img src="bin/images/home.png" alt="Home" class="settings-icons" /><span>ʜᴏᴍᴇ</span></button>
-        <input type="file" id="configLoader" accept=".yml,.yaml" hidden /><button class="sidebar-btn" id="openFileBtn"><img src="bin/images/cloud-computing.png" alt="Open" class="settings-icons" /><span>ᴏᴘᴇɴ</span></button>
+        <input type="file" id="configLoader" accept=".yml,.yaml" hidden />
+        <button class="sidebar-btn" id="openFileBtn"><img src="bin/images/cloud-computing.png" alt="Open" class="settings-icons" /><span>ᴏᴘᴇɴ</span></button>
         <div id="actionGroup" class="hide-on-load">
           <button class="sidebar-btn" id="saveBtn"><img src="bin/images/copy-writing.png" alt="Pipe" class="settings-icons" /><span>ᴘɪᴘᴇ</span><span>ᴇᴅɪᴛᴏʀ</span></button>
         </div>
       </div>
-      <button class="sidebar-btn settings-btn" id="settingsBtn"><img src="bin/images/setting.png" alt="Settings" class="settings-icons" /><span>ꜱᴇᴛᴛɪɴɢ</span><span></span></button>
+      <button class="sidebar-btn settings-btn" id="settingsBtn"><img src="bin/images/setting.png" alt="Settings" class="settings-icons" /><span>ꜱᴇᴛᴛɪɴɢ</span></button>
     </aside>
 
-
     <div id="dropOverlay"><img src="bin/images/cloud-computing.png" alt="File"/>  Drop your YAML file to load</div>
+
     <main id="mainDropArea">
       <div id="settingsPanel" class="settings-panel">
         <h3>Settings</h3>
@@ -81,12 +76,14 @@
           <button id="updateButton" class="header-btn">Update</button>
         </div>
       </div>
+
       <header id="topHeader"><span id="headerTitle">Harmony ʏᴍʟ</span>
         <div id="topActions" class="hide-on-load">
           <button class="header-btn" id="downloadBtn"><img src="bin/images/anvil.png" alt="Editor" class="settings-icons" /><span>ғᴜʟʟ</span></button>
           <button class="header-btn" id="downloadCompactBtn"><img src="bin/images/feather.png" alt="Feather" class="settings-icons" /><span>ғᴇᴀᴛʜᴇʀ</span></button>
         </div>
       </header>
+
       <div class="footer-credit">ʜʏᴅʀᴀᴜʟɪᴄ ᴠᴇʀꜱɪᴏɴ 𝟤.𝟢</div>
 
       <div id="dropZone">drag & drop here</div>
@@ -101,7 +98,6 @@
         ᴍᴀᴅᴇ ᴡɪᴛʜ ❤️ ʙʏ ᴊᴀɴ • ɢᴇɴᴇsɪᴠᴇʀsᴇ • ʏᴍʟ ʜᴀʀᴍᴏɴʏ © 2025
       </div>
 
-      <!-- FINAL WRAPPED CONTAINER -->
       <div class="editor-container hide-on-load">
         <div id="formContainer"></div>
         <div id="outputContainer">
@@ -109,12 +105,13 @@
           <div class="filename-input-row">
             <label id="filenameInputTitle" for="filenameInputName">📄 File Name:</label>
             <input type="text" id="filenameInputName" placeholder="Enter file name (without .yml)">
-            </label>
           </div>
         </div>
       </div>
     </main>
   </div>
+
+  <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/js-yaml@4"></script>
   <script src="bin/js/theme.js"></script>
   <script src="bin/js/preload-data.js"></script>
@@ -125,6 +122,5 @@
   <script src="bin/js/draganddrop.js"></script>
   <script src="bin/js/window-controls.js"></script>
   <script src="bin/js/update.js"></script>
-  
 </body>
 </html>
