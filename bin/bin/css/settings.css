@@ -4,48 +4,16 @@
 
 .settings-panel,
 #settingsPanel {
-  background: var(--panel-stng) !important;
-  /* backdrop-filter: blur(10px) !important; */
-  /* -webkit-backdrop-filter: blur(10px) !important; */
-  /* box-shadow: 0 0 12px rgba(0, 0, 0, 0.3) !important; */
-  margin-top: 1rem !important;
-  flex: 1 1 0 !important; 
-  display: none;
-  border: 1px solid var(--border-color) !important;
-  border-radius: 12px !important;
-  padding: 20px !important;
-  overflow: auto !important;
-  top: 0px !important; 
-  align-self: flex-start !important; 
-  transition: all 0.3s ease !important;
-  font-family: monospace !important;
-  line-height: 1.4 !important;
-  font-size: 0.95rem !important;
-  max-height: calc(100vh - 100px) !important;
-  box-sizing: border-box !important;
-  transform: translateX(-10px) !important;
-  position: absolute !important;
-  left: -0.5rem !important;
-  width: calc(100vh - 100px) !important;
-  max-width: 20rem !important;
-  height: calc(100vh - 100px) !important;
-  z-index: 25;
-  animation: back 15s infinite linear;
-}
-
-#settingsPanel.visible {
-  display: block;
-  opacity: 1;
-  transform: translateX(0);
-}
-.editor-container.show-preview #outputContainer,
-#settingsPanel.visible {
-  display: block;
-  transform: translateX(0);
-  flex: 1 1 0;
-  min-width: 0;
-  max-width: 100%;
-  opacity: 1;
+  background: var(--panel-stng);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 20px;
+  overflow-y: auto;
+  box-sizing: border-box;
+  font-family: monospace;
+  line-height: 1.4;
+  font-size: 0.95rem;
+  height: 100%;
 }
 body.dark .settings-close img {
   position: absolute;
@@ -54,12 +22,6 @@ body.dark .settings-close img {
   width: 220px;
   height: 100%;
   z-index: 25;
-}
-
-.settings-panel.visible {
-  display: block;
-  opacity: 1;
-  transform: translateX(0);
 }
 
 #filenameInputTitle img {
