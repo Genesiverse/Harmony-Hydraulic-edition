@@ -116,6 +116,8 @@
   /* display: block; */
 /* } */
 #updateTitleBtn.shifted {
-  margin-left: 49rem;
+  transition: all 0.3s ease !important;
+  margin-right: 15rem;
 }
+
 

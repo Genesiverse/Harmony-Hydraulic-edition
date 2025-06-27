@@ -1,0 +1,63 @@
+body.d64 {
+  --bg-color: #0c0e1a;
+  --bg-color-1: #14162b;
+  --panel-bg: #1a1c3a;
+  --border-color: #2a2c44;
+  --text-color: #ffffff;
+  --highlight: #cb59ff;
+  --shadow: #000000;
+  --blue: #4e3db8;
+  --accent-green: #41ffb3;
+  --accent-red: #ff5974;
+  --accent-yellow: #ffd447;
+  --accent-orange: #ffa94d;
+  --accent-purple: #a855f7;
+  --accent-pink: #ff72e8;
+  --accent-muted: #7c7f9d;
+  font-family: 'Roboto Mono', monospace;
+  background: linear-gradient(to top, var(--bg-color) 0%, rgba(0, 0, 0, 0) 0%);
+}
+
+/* Typography and containers */
+body.d64 *,
+body.d64 #topHeader,
+body.d64 footer {
+  font-family: 'Roboto Mono', monospace !important;
+}
+
+/* Component styling */
+body.d64 button,
+body.d64 input,
+body.d64 textarea,
+body.d64 fieldset,
+body.d64 .sidebar,
+body.d64 .section,
+body.d64 #dropZone {
+  box-shadow: none !important;
+  border-width: 2px !important;
+  border-color: var(--border-color);
+  background-color: var(--panel-bg);
+  color: var(--text-color);
+}
+
+/* Optional glowing effect for selected/active items */
+body.d64 .sidebar-btn.active,
+body.d64 .header-btn.active {
+  background-color: var(--highlight);
+  color: #fff;
+  border-color: var(--accent-purple);
+  box-shadow: 0 0 8px var(--highlight);
+}
+
+/* Icon filter reset */
+body.d64 .sidebar-btn img:first-child {
+  filter: brightness(1.2) saturate(1.2);
+}
+
+/* Rounded corner consistency */
+body.d64 button,
+body.d64 input,
+body.d64 textarea,
+body.d64 .sidebar-btn {
+  border-radius: 0.9rem !important;
+}

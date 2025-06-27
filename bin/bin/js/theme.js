@@ -19,6 +19,10 @@ const savedBrutald = localStorage.getItem('brutalist-d');
 if (savedBrutald === 'true') {
   document.body.classList.add('brutalist-d');
 }
+const savedD97 = localStorage.getItem('d97');
+if (savedD97 === 'true') {
+  document.body.classList.add('d97');
+}
 
 function setupToggle(id, className, storageKey) {
   const toggle = document.getElementById(id);
@@ -44,6 +48,7 @@ window.addEventListener('DOMContentLoaded', () => {
   setupToggle('retro64Toggle', 'retro64', 'retro64');
   setupToggle('brutalistToggle', 'brutalist', 'brutalist');
   setupToggle('brutalistDarkToggle', 'brutalist-d', 'brutalist-d');
+  setupToggle('D97Toggle', 'd97', 'd97');
 
   document.querySelectorAll('.hide-on-load').forEach(el => el.classList.add('hide-on-load'));
 

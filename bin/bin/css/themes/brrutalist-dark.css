@@ -1,6 +1,6 @@
 body.brutalist-d {
-  --bg-color: #1e1f22;
-  --shadow: #000000;
+  --bg-color: #000;
+  --shadow: #000;
   --bg-color-1: #2b2b2b;
   --panel-bg: #1e1f22;
   --border-color: #ffffff;
@@ -36,4 +36,12 @@ body.brutalist-d #dropZone {
 
 body.brutalist-d .section {
   border-color: var(--border-color) !important;
+}
+body.brutalist-d #updateButton {
+  background: var(--bg-color-1) !important;
+}
+body.brutalist-d .sidebar-btn,
+body.brutalist-d #settingsPanel {
+  background: var(--bg-color) !important;
+
 }

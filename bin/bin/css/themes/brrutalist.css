@@ -33,6 +33,7 @@ body.brutalist *,
 body.brutalist #topHeader,
 body.brutalist footer {
   font-family: 'Roboto Mono', monospace !important;
+  /* border-radius: 12px !important; */
 }
 
 body.brutalist button,
