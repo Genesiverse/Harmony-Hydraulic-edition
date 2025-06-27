@@ -8,6 +8,7 @@
   --border-color: #ccc;               /* soft light borders */
   --text-color: #111;                 /* high contrast text */
   --highlight: #5865F2;               /* Discord blue highlight */
+  --highlight-hover: #5865f294;               /* Discord blue highlight */
   --blue: #dce1e6;               /* Discord blue */
   --accent-green: #2ea043;            /* success (green) */
   --accent-red: #ed4245;              /* error/warning (red) */
@@ -513,23 +514,6 @@ body.file-loaded .editor-container {
   flex: 0.9;
 }
 
-/* --- Electron title bar --- */
-#titleBar {
-  -webkit-app-region: drag;
-  height: 28px;
-  display: flex;
-  align-items: center;
-  padding-left: 8px;
-  background: var(--panel-bg);
-}
-
-.title-buttons {
-  display: flex;
-  gap: 8px;
-}
-
-
-/* --- Electron title bar --- */
 
 
 body {
@@ -555,25 +539,6 @@ body.dark {
 /* } */
 
 
-#titleBar {
-  -webkit-app-region: drag; /* ONLY this div is draggable */
-  -webkit-app-region: no-drag; /* not draggable by default */
-  width: 100%;
-  height: 32px;
-  -webkit-app-region: drag;
-  display: flex;
-  align-items: center;
-  padding: 0 10px;
-  background-color: transparent;
-  /* background: #00b50f; */
-}
-
-.title-buttons {
-  display: flex !important;
-  gap: 0rem !important;
-  z-index: 1001 !important;
-  -webkit-app-region: no-drag !important;
-}
 
 
 /* Window control buttons base */
@@ -596,55 +561,3 @@ body .title-btn {
   border: 0.5px solid #808080 !important;
 }
 
-/* Hover feedback */
-.title-btn:hover {
-  transform: scale(1.15) !important;
-}
-
-/* Close */
-.title-btn.close:hover {
-  background-color: #ff5f57 !important;
-}
-
-/* Minimize */
-.title-btn.minimize:hover {
-  background-color: #ffbd2e !important;
-}
-
-/* Maximize */
-.title-btn.maximize:hover {
-  background-color: #28c840 !important;
-}
-
-#headerTitle {
-  position: absolute !important;
-  left: 50% !important;
-  transform: translateX(-50%) !important;
-  font-family: 'Press Start 2P', sans-serif !important;
-  font-size: 0.7rem !important;
-  color: white !important;
-  pointer-events: none !important;
-  white-space: nowrap !important;
-  z-index: 1001 !important;
-}
-
-#titleBar.update-available {
-  background-color: #28c840;
-}
-
-#updateTitleBtn {
-  margin-left: auto;
-  padding: 2px 8px;
-  font-size: 12px;
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: #fff;
-  border-radius: 3px;
-  cursor: pointer;
-  display: none;
-  -webkit-app-region: no-drag;
-}
-
-#titleBar.update-available #updateTitleBtn {
-  display: block;
-}

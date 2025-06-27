@@ -101,37 +101,54 @@
   width: 1.4em;
   height: 1.4em;
 }
-
-body.dark .sidebar-btn img:first-child {
+.sidebar-btn.active img:first-child {
   filter: invert(1);
 }
 
-.sidebar-btn span:last-child {
-  font-size: 10px;
+.sidebar-btn:hover img:first-child {
+  filter: invert(0);
 }
+.sidebar-btn.active:hover img:first-child {
+  filter: invert(1);
+}
+
 .sidebar-btn:hover {
-  background-color: rgba(100, 100, 100, 0.1);
+  background-color: rgb(0, 0, 0);
 }
+
 /* Active state for sidebar buttons */
 .sidebar-btn:active,
 .sidebar-btn.active {
   background-color: var(--highlight);
   color: #fff;
 }
-.sidebar-btn:hover {
-  background-color: #8b8b8b63 !important;
+.sidebar-btn:hover,
+.sidebar-btn.active:hover {
+  background-color: var(--highlight-hover) !important;
+  color: #fff;
 }
-.sidebar-btn:hover {
-  background-color: #6d6d6d82 !important;
-}
-body.dark .sidebar-btn:hover {
-  background-color: #7a7a7a82 !important;
-}
-
-/* ensure icons are visible when a sidebar button is active */
-.sidebar-btn.active img:first-child {
+.sidebar-btn:hover img:first-child,
+.sidebar-btn.active:hover img:first-child {
   filter: invert(1);
 }
-body.dark .sidebar-btn.active img:first-child {
-  /* filter: invert(0); */
+.sidebar-btn:hover {
+  background-color: #fff;
+  color: #fff;
 }
+/*------------ DARK ------------*/
+body.dark .sidebar-btn.active img:first-child {
+  filter: invert(1);
+}
+body.dark .sidebar-btn img:first-child {
+  filter: invert(1);
+}
+body.dark .sidebar-btn:hover img:first-child {
+  filter: invert(1);
+}
+body.dark .sidebar-btn.active:hover img:first-child {
+  filter: invert(1);
+}
+body.dark .sidebar-btn:hover {
+  background-color: #000;
+}
+/*------------ DARK ------------*/

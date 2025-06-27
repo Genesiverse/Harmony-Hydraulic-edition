@@ -1,39 +1,121 @@
-#topHeader {
-  font-family: "Segoe UI", sans-serif;
-  font-size: 1.4rem;
-  font-weight: 600;
-  color: var(--text-color, #ffffff);
-  background-color: var(--titlebar-bg, #1f1f1f);
-  height: 48px;
+
+/* --- Electron title bar --- */
+
+.title-buttons {
+  display: flex !important;
+  gap: 0rem !important;
+  z-index: 1001 !important;
+  -webkit-app-region: no-drag !important;
+}
+
+#titleBar {
+  -webkit-app-region: drag; /* ONLY this div is draggable */
+  -webkit-app-region: no-drag; /* not draggable by default */
+  width: 100%;
+  -webkit-app-region: drag;
+  display: flex;
+  padding: 0 10px;
+  /* background: #00b50f; */
+}
+
+
+.title-buttons {
+  display: flex !important;
+  gap: 0rem !important;
+  z-index: 1001 !important;
+  -webkit-app-region: no-drag !important;
+}
+
+#titleBar {
+  -webkit-app-region: drag;
+  height: 40px !important;
   display: flex;
   align-items: center;
-  justify-content: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  -webkit-user-select: none;
-  -webkit-app-region: drag;
+  padding-left: 8px;
+  background: var(--panel-bg);
+}
+.title-buttons {
+  display: flex;
+  gap: 8px;
 }
 
-#topActions {
-  position: absolute;
-  right: 12px;
-  top: 8px;
-  display: flex;
-  gap: 10px;
+
+/* Hover feedback */
+.title-btn:hover {
+  transform: scale(1.15) !important;
+}
+
+/* Close */
+.title-btn.close:hover {
+  background-color: #ff5f57 !important;
+}
+
+/* Minimize */
+.title-btn.minimize:hover {
+  background-color: #ffbd2e !important;
+}
+
+/* Maximize */
+.title-btn.maximize:hover {
+  background-color: #28c840 !important;
+}
+
+#headerTitle {
+  position: absolute !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  font-family: 'Press Start 2P', sans-serif !important;
+  font-size: 0.7rem !important;
+  color: white !important;
+  pointer-events: none !important;
+  white-space: nowrap !important;
+  z-index: 1001 !important;
+}
+
+#titleBar.update-available {
+  background-color: #28c840;
+}
+
+
+
+
+#topActions:not(.hide-on-load) #updateTitleBtn {
+  margin-left: 11rem;
+}
+
+
+#titleBar.update-available #updateTitleBtn {
+  display: block;
+}
+#updateTitleBtn {
+  margin-left: auto;
+  padding: 2px 8px;
+  font-size: 12px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 0.4rem;
+  color: #fff;
+  cursor: pointer;
+  display: none;
   -webkit-app-region: no-drag;
 }
-
-.header-btn {
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background-color: #ff5f56;
+#updateTitleBtn {
+  margin-left: auto;
+  padding: 2px 8px;
+  font-size: 12px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 0.4rem;
+  color: #fff;
   cursor: pointer;
+  -webkit-app-region: no-drag;
+  transition: margin-left 1.3s ease;
 }
 
-.header-btn:nth-child(2) {
-  background-color: #ffbd2e;
+/* #titleBar.update-available #updateTitleBtn { */
+  /* display: block; */
+/* } */
+#updateTitleBtn.shifted {
+  margin-left: 49rem;
 }
 
-.header-btn:nth-child(3) {
-  background-color: #27c93f;
-}

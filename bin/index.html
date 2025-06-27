@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="bin/css/web-editor.css">
   <link rel="stylesheet" href="bin/css/sidebar.css">
   <link rel="stylesheet" href="bin/css/settings.css">
-  <!-- <link rel="stylesheet" href="bin/css/titleBar.css"> -->
+  <link rel="stylesheet" href="bin/css/titleBar.css">
   <link rel="stylesheet" href="bin/css/themes/brrutalist.css">
   <link rel="stylesheet" href="bin/css/themes/r63.css">
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
@@ -17,7 +17,8 @@
 <body>
 
   <!-- Title Bar -->
-  <div id="titleBar">
+  <div id="titleBar" class="update-available">
+  <!-- <div id="titleBar"> -->
     <div class="title-buttons">
       <button class="title-btn close" id="windowClose"></button>
       <button class="title-btn maximize" id="windowMax"></button>
@@ -66,7 +67,13 @@
           </label>
         </div>
         <div class="setting-item">
-          <label for="brutalistToggle">Brutalist Mode</label>
+          <label for="brutalistToggle">Brutalist</label>
+          <label class="toggle-switch">
+            <input type="checkbox" id="brutalistToggle" onchange="toggleBrutalist()" />
+            <span class="slider"></span>
+        </div>
+        <div class="setting-item">
+          <label for="brutalistToggle">Brutalist Dark</label>
           <label class="toggle-switch">
             <input type="checkbox" id="brutalistToggle" onchange="toggleBrutalist()" />
             <span class="slider"></span>
@@ -78,9 +85,11 @@
       </div>
 
       <header id="topHeader"><span id="headerTitle">Harmony ʏᴍʟ</span>
+        <div class="update-available">
         <div id="topActions" class="hide-on-load">
           <button class="header-btn" id="downloadBtn"><img src="bin/images/anvil.png" alt="Editor" class="settings-icons" /><span>ғᴜʟʟ</span></button>
           <button class="header-btn" id="downloadCompactBtn"><img src="bin/images/feather.png" alt="Feather" class="settings-icons" /><span>ғᴇᴀᴛʜᴇʀ</span></button>
+        </div>
         </div>
       </header>
 

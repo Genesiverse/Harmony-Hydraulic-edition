@@ -9,6 +9,10 @@ const savedBrutal = localStorage.getItem('brutalist');
 if (savedBrutal === 'true') {
   document.body.classList.add('brutalist');
 }
+const savedBrutald = localStorage.getItem('brutalist-d');
+if (savedBrutald === 'true') {
+  document.body.classList.add('brutalist-d');
+}
 window.addEventListener('DOMContentLoaded', () => {
   const isDark = document.body.classList.contains('dark');
   document.getElementById('themeToggle').checked = isDark;

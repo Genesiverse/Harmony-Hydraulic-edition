@@ -33,6 +33,13 @@ window.addEventListener('DOMContentLoaded', () => {
       settingsBtn.classList.toggle('active', settingsPanel.classList.contains('visible'));
     });
   }
+  const homeBtn = document.getElementById('resetBtn');
+  const actionGroup = document.getElementById('actionGroup');
+  
+  if (homeBtn && actionGroup && actionGroup.classList.contains('hide-on-load')) {
+    homeBtn.classList.add('active');
+  }
+
   if (highlightPicker) {
     const storedColor = localStorage.getItem('highlightColor');
     if (storedColor) {
@@ -77,6 +84,7 @@ window.addEventListener('DOMContentLoaded', () => {
           userRequested = false;
         }
       });
+	
     }
   }
 });
