@@ -17,41 +17,4 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Retro64 toggle
-  const retroToggle = document.getElementById('retro64Toggle');
-  if (retroToggle) {
-    const enabled = localStorage.getItem('retro64') === 'true';
-    document.body.classList.toggle('retro64', enabled);
-    retroToggle.checked = enabled;
-    retroToggle.addEventListener('change', () => {
-      const active = retroToggle.checked;
-      document.body.classList.toggle('retro64', active);
-      localStorage.setItem('retro64', active);
-    });
-  }
-
-  // Brutalist toggle
-  const brutalistToggle = document.getElementById('brutalistToggle');
-  if (brutalistToggle) {
-    const enabled = localStorage.getItem('brutalist') === 'true';
-    document.body.classList.toggle('brutalist', enabled);
-    brutalistToggle.checked = enabled;
-    brutalistToggle.addEventListener('change', () => {
-      const active = brutalistToggle.checked;
-      document.body.classList.toggle('brutalist', active);
-      localStorage.setItem('brutalist', active);
-    });
-  }
 });
-const brutalistToggle = document.getElementById('brutalistToggle');
-if (brutalistToggle) {
-  const enabled = localStorage.getItem('brutalist') === 'true';
-  document.body.classList.toggle('brutalist', enabled);
-  brutalistToggle.checked = enabled;
-
-  brutalistToggle.addEventListener('change', () => {
-    const active = brutalistToggle.checked;
-    document.body.classList.toggle('brutalist', active);
-    localStorage.setItem('brutalist', active);
-  });
-}
