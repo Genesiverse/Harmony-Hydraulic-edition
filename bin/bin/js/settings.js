@@ -68,13 +68,15 @@ window.addEventListener('DOMContentLoaded', () => {
     if (window.electronAPI) {
       window.electronAPI.onUpdateAvailable(() => {
         if (userRequested) {
-          alert('Update available!');
+          if (confirm('Update available!\nUpdate Now or Do It Later?')) {
+            window.electronAPI.startUpdate();
+          }
           userRequested = false;
         }
       });
       window.electronAPI.onUpdateNotAvailable(() => {
         if (userRequested) {
-          alert('No updates found. You\'re up to date.');
+          alert("No updates found. You're up to date.");
           userRequested = false;
         }
       });
