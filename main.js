@@ -86,6 +86,7 @@ ipcMain.on('window-maximize', (e) => {
 });
 
 ipcMain.on('check-for-updates', () => {
+    console.log('[update] checking for updates');
     autoUpdater.checkForUpdatesAndNotify();
 });
 
@@ -99,18 +100,22 @@ function initAutoUpdater() {
     });
 
     autoUpdater.on('update-available', () => {
+        console.log('[update] update available (main)');
         win?.webContents.send('update-available');
     });
 
     autoUpdater.on('update-not-available', () => {
+        console.log('[update] update not available (main)');
         win?.webContents.send('update-not-available');
     });
 
     autoUpdater.on('download-progress', (progress) => {
+        console.log(`[update] download progress (main) ${progress.percent}`);
         win?.webContents.send('download-progress', progress.percent);
     });
 
     autoUpdater.on('update-downloaded', () => {
+        console.log('[update] update downloaded (main)');
         win?.webContents.send('update-downloaded');
         autoUpdater.quitAndInstall();
     });

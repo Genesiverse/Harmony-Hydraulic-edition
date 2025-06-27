@@ -5,9 +5,13 @@ window.addEventListener('DOMContentLoaded', () => {
   const updateBtn = document.createElement('button');
   updateBtn.id = 'updateTitleBtn';
   updateBtn.textContent = 'Update';
+
+  let userRequested = false;
+
   updateBtn.addEventListener('click', () => {
-    window.electronAPI.startUpdate();
+    userRequested = true;
     updateBtn.disabled = true;
+    window.electronAPI.checkForUpdates();
   });
   titleBar.appendChild(updateBtn);
 
@@ -33,13 +37,40 @@ window.addEventListener('DOMContentLoaded', () => {
   // Electron update events
   window.electronAPI.onUpdateAvailable(() => {
     titleBar.classList.add('update-available');
+    if (userRequested) {
+      window.electronAPI.startUpdate();
+    }
+  });
+
+  window.electronAPI.onUpdateNotAvailable(() => {
+    if (userRequested) {
+      updateBtn.disabled = false;
+      updateBtn.textContent = 'No Update';
+      setTimeout(() => {
+        updateBtn.textContent = 'Update';
+      }, 3000);
+      userRequested = false;
+    }
+  });
+
+  window.electronAPI.onUpdateError(() => {
+    if (userRequested) {
+      updateBtn.disabled = false;
+      updateBtn.textContent = 'Error';
+      setTimeout(() => {
+        updateBtn.textContent = 'Update';
+      }, 3000);
+      userRequested = false;
+    }
   });
 
   window.electronAPI.onDownloadProgress((percent) => {
+    console.log('[update] download progress', percent);
     updateBtn.textContent = `${Math.floor(percent)}%`;
   });
 
   window.electronAPI.onUpdateDownloaded(() => {
+    console.log('[update] update downloaded');
     updateBtn.textContent = 'Restarting';
   });
 });
