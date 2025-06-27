@@ -15,6 +15,20 @@ window.addEventListener('DOMContentLoaded', () => {
   });
   titleBar.appendChild(updateBtn);
 
+  const checkUpdateBtn = document.getElementById('updateButton');
+  if (checkUpdateBtn) {
+    const consoleBtn = document.createElement('button');
+    consoleBtn.id = 'updateButton';
+    consoleBtn.textContent = 'Console';
+    consoleBtn.className = checkUpdateBtn.className;
+    consoleBtn.addEventListener('click', () => {
+      window.electronAPI.openDevTools();
+    });
+    checkUpdateBtn.insertAdjacentElement('afterend', consoleBtn);
+  }
+
+
+
   const topActions = document.getElementById('topActions');
 
   function updateButtonMargin() {
@@ -72,5 +86,10 @@ window.addEventListener('DOMContentLoaded', () => {
   window.electronAPI.onUpdateDownloaded(() => {
     console.log('[update] update downloaded');
     updateBtn.textContent = 'Restarting';
+  });
+  const el = document.getElementById('app-version');
+  if (!el || !window.electronAPI?.getAppVersion) return;
+  window.electronAPI.getAppVersion().then(v => {
+    el.textContent = v;
   });
 });

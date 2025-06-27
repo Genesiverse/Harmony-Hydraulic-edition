@@ -1,6 +1,7 @@
 ﻿const { app, BrowserWindow, ipcMain, screen } = require('electron');
 const { autoUpdater } = require('electron-updater');
 const path = require('path');
+const { version } = require('./package.json');
 
 let win;
 let previousBounds;
@@ -16,8 +17,8 @@ function createWindow() {
         skipTaskbar: false,
         fullscreenable: false,
         resizable: true,
-        frame: false, // Use custom frame
-        transparent: false, // ✅ KEEP FALSE for resizable to work
+        frame: false,
+        transparent: false,
         vibrancy: 'acrylic',
         backgroundMaterial: 'acrylic',
         backgroundColor: '#00000000',
@@ -25,28 +26,28 @@ function createWindow() {
         hasShadow: true,
         icon: path.join(binDir, 'images', 'logo.png'),
         visualEffectState: 'active',
-        thickFrame: true, // ✅ Required for resizing
+        thickFrame: true,
         autoHideMenuBar: true,
         menuBarVisible: false,
         webPreferences: {
             preload: path.join(__dirname, 'preload.js'),
             contextIsolation: true,
             nodeIntegration: false,
-            enableCornerSmoothingCSS: true
+            enableCornerSmoothingCSS: true,
+            additionalArguments: [`--app-version=${version}`]
         },
-        show: false // Best practice
+        show: false
     });
 
     win.loadFile(path.join(binDir, 'index.html'));
 
     win.once('ready-to-show', () => {
         win.show();
-        // Optional: re-apply rounding hint manually here if needed
-        // if (process.platform === 'win32') require('./rounding-null');
+        // win.webContents.openDevTools(); // ✅ opens DevTools automatically
     });
 }
 
-// Handle custom window controls from renderer
+// Custom window controls
 ipcMain.on('window-close', (e) => {
     e.sender.getOwnerBrowserWindow().close();
 });
@@ -59,20 +60,17 @@ ipcMain.on('window-maximize', (e) => {
     const window = e.sender.getOwnerBrowserWindow();
 
     if (window._isFakeMaximized) {
-        // Restore previous size
         if (window._previousBounds) {
             window.setBounds(window._previousBounds);
         }
         window._isFakeMaximized = false;
         e.sender.send('window-is-restored');
     } else {
-        // Save current size
         window._previousBounds = window.getBounds();
 
         const primaryDisplay = screen.getPrimaryDisplay();
         const { x, y, width, height } = primaryDisplay.workArea;
 
-        // Apply fake maximize with 10px padding
         window.setBounds({
             x: x + 10,
             y: y + 10,
@@ -85,6 +83,7 @@ ipcMain.on('window-maximize', (e) => {
     }
 });
 
+// Auto update IPC
 ipcMain.on('check-for-updates', () => {
     console.log('[update] checking for updates');
     autoUpdater.checkForUpdatesAndNotify();
@@ -93,10 +92,17 @@ ipcMain.on('check-for-updates', () => {
 ipcMain.on('start-update', () => {
     autoUpdater.downloadUpdate();
 });
+
+
+ipcMain.on('open-devtools', (e) => {
+    const window = e.sender.getOwnerBrowserWindow();
+    window.webContents.openDevTools();
+});
+ipcMain.handle('get-app-version', () => app.getVersion());
 function initAutoUpdater() {
     autoUpdater.on('error', (err) => {
         console.error('Auto updater error:', err);
-        win?.webContents.send('update-error', err.message);
+        win?.webContents.send('update-error', err?.message || String(err));
     });
 
     autoUpdater.on('update-available', () => {

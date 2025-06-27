@@ -135,6 +135,8 @@
   background-color: #fff;
   color: #fff;
 }
+
+
 /*------------ DARK ------------*/
 body.dark .sidebar-btn.active img:first-child {
   filter: invert(1);

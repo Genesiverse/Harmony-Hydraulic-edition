@@ -1,10 +1,12 @@
 const { contextBridge, ipcRenderer } = require('electron');
 
+// Parse version from process.argv
+const versionArg = process.argv.find(arg => arg.startsWith('--app-version='));
+const version = versionArg ? versionArg.split('=')[1] : 'unknown';
+
 contextBridge.exposeInMainWorld('electronAPI', {
   minimize: () => ipcRenderer.send('window-minimize'),
   toggleMaximize: () => ipcRenderer.send('window-maximize'),
-  /** alias for toggleMaximize for backwards compatibility */
-  // maximize: () => ipcRenderer.send('window-toggle-maximize'), 
   maximize: () => ipcRenderer.send('window-maximize'),
   close: () => ipcRenderer.send('window-close'),
   onMaximize: (cb) => ipcRenderer.on('window-is-maximized', cb),
@@ -15,5 +17,12 @@ contextBridge.exposeInMainWorld('electronAPI', {
   startUpdate: () => ipcRenderer.send('start-update'),
   onUpdateAvailable: (cb) => ipcRenderer.on('update-available', cb),
   onDownloadProgress: (cb) => ipcRenderer.on('download-progress', (_, p) => cb(p)),
-  onUpdateDownloaded: (cb) => ipcRenderer.on('update-downloaded', cb)
+  onUpdateDownloaded: (cb) => ipcRenderer.on('update-downloaded', cb),
+  getAppVersion: () => ipcRenderer.invoke('get-app-version'),
+  openDevTools: () => ipcRenderer.send('open-devtools')
+  
+});
+
+contextBridge.exposeInMainWorld("appInfo", {
+  version: version
 });
