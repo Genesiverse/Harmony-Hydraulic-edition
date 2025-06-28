@@ -5,6 +5,13 @@ const { version } = require('./package.json');
 
 let win;
 let previousBounds;
+let debugEnabled = false;
+
+function debugLog(...args) {
+    if (debugEnabled) {
+        console.log(...args);
+    }
+}
 
 function createWindow() {
     const binDir = app.isPackaged
@@ -86,14 +93,18 @@ ipcMain.on('window-maximize', (e) => {
 // Auto update IPC
 ipcMain.on('check-for-updates', () => {
     // console.log('[update] checking for updates');
-    console.log('[debug] received check-for-updates');
+    debugLog('[debug] received check-for-updates');
     // autoUpdater.checkForUpdatesAndNotify();
     autoUpdater.checkForUpdates();
 });
 
 ipcMain.on('start-update', () => {
-    console.log('[debug] received start-update');
+    debugLog('[debug] received start-update');
     autoUpdater.downloadUpdate();
+});
+
+ipcMain.on('toggle-debug', (_e, enabled) => {
+    debugEnabled = Boolean(enabled);
 });
 
 
@@ -110,22 +121,22 @@ function initAutoUpdater() {
     });
 
     autoUpdater.on('update-available', () => {
-        console.log('[update] update available (main)');
+        debugLog('[update] update available (main)');
         win?.webContents.send('update-available');
     });
 
     autoUpdater.on('update-not-available', () => {
-        console.log('[update] update not available (main)');
+        debugLog('[update] update not available (main)');
         win?.webContents.send('update-not-available');
     });
 
     autoUpdater.on('download-progress', (progress) => {
-        console.log(`[update] download progress (main) ${progress.percent}`);
+        debugLog(`[update] download progress (main) ${progress.percent}`);
         win?.webContents.send('download-progress', progress.percent);
     });
 
     autoUpdater.on('update-downloaded', () => {
-        console.log('[update] update downloaded (main)');
+        debugLog('[update] update downloaded (main)');
         win?.webContents.send('update-downloaded');
         autoUpdater.quitAndInstall();
     });

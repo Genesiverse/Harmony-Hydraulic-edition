@@ -83,6 +83,7 @@
     "artifactName": "Harmony.Setup.${version}.${ext}",
     "win": {
       "publisherName": "Jan Gigantino"
+    },
     "extraResources": [
       {
         "from": "bin",
