@@ -112,6 +112,10 @@ ipcMain.on('open-devtools', (e) => {
     const window = e.sender.getOwnerBrowserWindow();
     window.webContents.openDevTools();
 });
+ipcMain.on('close-devtools', (e) => {
+    const window = e.sender.getOwnerBrowserWindow();
+    window.webContents.closeDevTools();
+});
 ipcMain.handle('get-app-version', () => app.getVersion());
 function initAutoUpdater() {
     autoUpdater.on('error', (err) => {
