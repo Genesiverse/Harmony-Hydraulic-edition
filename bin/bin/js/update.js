@@ -18,15 +18,27 @@ window.addEventListener('DOMContentLoaded', () => {
   const checkUpdateBtn = document.getElementById('updateButton');
   if (checkUpdateBtn) {
     const consoleBtn = document.createElement('button');
-    // consoleBtn.id = 'updateButton';
     consoleBtn.id = 'consoleButton';
     consoleBtn.textContent = 'Console';
     consoleBtn.className = checkUpdateBtn.className;
     consoleBtn.addEventListener('click', () => {
-      console.log('[debug] devtools button clicked');
+      debugLog('[debug] devtools button clicked');
       window.electronAPI.openDevTools();
     });
     checkUpdateBtn.insertAdjacentElement('afterend', consoleBtn);
+
+    const debugBtn = document.createElement('button');
+    debugBtn.id = 'debugButton';
+    debugBtn.className = checkUpdateBtn.className;
+    const updateText = () => {
+      debugBtn.textContent = isDebugEnabled() ? 'Debug On' : 'Debug Off';
+    };
+    updateText();
+    debugBtn.addEventListener('click', () => {
+      setDebugEnabled(!isDebugEnabled());
+      updateText();
+    });
+    consoleBtn.insertAdjacentElement('afterend', debugBtn);
   }
 
 
@@ -82,12 +94,12 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 
   window.electronAPI.onDownloadProgress((percent) => {
-    console.log('[update] download progress', percent);
+    debugLog('[update] download progress', percent);
     updateBtn.textContent = `${Math.floor(percent)}%`;
   });
 
   window.electronAPI.onUpdateDownloaded(() => {
-    console.log('[update] update downloaded');
+    debugLog('[update] update downloaded');
     updateBtn.textContent = 'Restarting';
   });
   const el = document.getElementById('app-version');

@@ -62,7 +62,7 @@ window.addEventListener('DOMContentLoaded', () => {
   if (updateBtn) {
     let userRequested = false;
     updateBtn.addEventListener('click', () => {
-      console.log('[debug] update button clicked');
+      debugLog('[debug] update button clicked');
       userRequested = true;
       window.electronAPI?.checkForUpdates();
     });
