@@ -18,10 +18,12 @@ window.addEventListener('DOMContentLoaded', () => {
   const checkUpdateBtn = document.getElementById('updateButton');
   if (checkUpdateBtn) {
     const consoleBtn = document.createElement('button');
-    consoleBtn.id = 'updateButton';
+    // consoleBtn.id = 'updateButton';
+    consoleBtn.id = 'consoleButton';
     consoleBtn.textContent = 'Console';
     consoleBtn.className = checkUpdateBtn.className;
     consoleBtn.addEventListener('click', () => {
+      console.log('[debug] devtools button clicked');
       window.electronAPI.openDevTools();
     });
     checkUpdateBtn.insertAdjacentElement('afterend', consoleBtn);
@@ -67,7 +69,8 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  window.electronAPI.onUpdateError(() => {
+  window.electronAPI.onUpdateError((msg) => {
+    console.error('[update] error', msg);
     if (userRequested) {
       updateBtn.disabled = false;
       updateBtn.textContent = 'Error';

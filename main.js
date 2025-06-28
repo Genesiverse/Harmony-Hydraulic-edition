@@ -85,11 +85,14 @@ ipcMain.on('window-maximize', (e) => {
 
 // Auto update IPC
 ipcMain.on('check-for-updates', () => {
-    console.log('[update] checking for updates');
-    autoUpdater.checkForUpdatesAndNotify();
+    // console.log('[update] checking for updates');
+    console.log('[debug] received check-for-updates');
+    // autoUpdater.checkForUpdatesAndNotify();
+    autoUpdater.checkForUpdates();
 });
 
 ipcMain.on('start-update', () => {
+    console.log('[debug] received start-update');
     autoUpdater.downloadUpdate();
 });
 
@@ -101,6 +104,7 @@ ipcMain.on('open-devtools', (e) => {
 ipcMain.handle('get-app-version', () => app.getVersion());
 function initAutoUpdater() {
     autoUpdater.on('error', (err) => {
+    autoUpdater.autoDownload = false;
         console.error('Auto updater error:', err);
         win?.webContents.send('update-error', err?.message || String(err));
     });
@@ -126,7 +130,8 @@ function initAutoUpdater() {
         autoUpdater.quitAndInstall();
     });
 
-    autoUpdater.checkForUpdatesAndNotify();
+    // autoUpdater.checkForUpdatesAndNotify();
+    autoUpdater.checkForUpdates();
 }
 
 app.whenReady().then(() => {
