@@ -5,6 +5,8 @@ window.addEventListener('DOMContentLoaded', () => {
   // const editor = document.querySelector('.editor-container');
   const settingsPanel = document.getElementById('settingsPanel');
   const highlightPicker = document.getElementById('highlightPicker');
+  const debugToggle = document.getElementById('debugToggle');
+  const consoleToggle = document.getElementById('consoleToggle');
 
   // Settings panel is now always visible, so disable toggle buttons
 
@@ -55,6 +57,25 @@ window.addEventListener('DOMContentLoaded', () => {
       const color = highlightPicker.value;
       document.documentElement.style.setProperty('--highlight', color);
       localStorage.setItem('highlightColor', color);
+    });
+  }
+
+  if (debugToggle) {
+    debugToggle.checked = window.isDebugEnabled ? window.isDebugEnabled() : false;
+    debugToggle.addEventListener('change', () => {
+      if (window.setDebugEnabled) {
+        window.setDebugEnabled(debugToggle.checked);
+      }
+    });
+  }
+
+  if (consoleToggle) {
+    consoleToggle.addEventListener('change', () => {
+      if (consoleToggle.checked) {
+        window.electronAPI?.openDevTools();
+      } else {
+        window.electronAPI?.closeDevTools?.();
+      }
     });
   }
 

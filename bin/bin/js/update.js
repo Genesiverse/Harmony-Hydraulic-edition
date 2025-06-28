@@ -15,31 +15,7 @@ window.addEventListener('DOMContentLoaded', () => {
   });
   titleBar.appendChild(updateBtn);
 
-  const checkUpdateBtn = document.getElementById('updateButton');
-  if (checkUpdateBtn) {
-    const consoleBtn = document.createElement('button');
-    consoleBtn.id = 'consoleButton';
-    consoleBtn.textContent = 'Console';
-    consoleBtn.className = checkUpdateBtn.className;
-    consoleBtn.addEventListener('click', () => {
-      debugLog('[debug] devtools button clicked');
-      window.electronAPI.openDevTools();
-    });
-    checkUpdateBtn.insertAdjacentElement('afterend', consoleBtn);
 
-    const debugBtn = document.createElement('button');
-    debugBtn.id = 'debugButton';
-    debugBtn.className = checkUpdateBtn.className;
-    const updateText = () => {
-      debugBtn.textContent = isDebugEnabled() ? 'Debug On' : 'Debug Off';
-    };
-    updateText();
-    debugBtn.addEventListener('click', () => {
-      setDebugEnabled(!isDebugEnabled());
-      updateText();
-    });
-    consoleBtn.insertAdjacentElement('afterend', debugBtn);
-  }
 
 
 

@@ -20,6 +20,7 @@ contextBridge.exposeInMainWorld('electronAPI', {
   onUpdateDownloaded: (cb) => ipcRenderer.on('update-downloaded', cb),
   getAppVersion: () => ipcRenderer.invoke('get-app-version'),
   openDevTools: () => ipcRenderer.send('open-devtools'),
+  closeDevTools: () => ipcRenderer.send('close-devtools'),
   toggleDebug: (enabled) => ipcRenderer.send('toggle-debug', enabled)
   
 });
