@@ -8,6 +8,7 @@ contextBridge.exposeInMainWorld('electronAPI', {
   minimize: () => ipcRenderer.send('window-minimize'),
   toggleMaximize: () => ipcRenderer.send('window-maximize'),
   maximize: () => ipcRenderer.send('window-maximize'),
+  doubleClickTitlebar: () => ipcRenderer.send('titlebar-dblclick'),
   close: () => ipcRenderer.send('window-close'),
   onMaximize: (cb) => ipcRenderer.on('window-is-maximized', cb),
   onRestore: (cb) => ipcRenderer.on('window-is-restored', cb),
