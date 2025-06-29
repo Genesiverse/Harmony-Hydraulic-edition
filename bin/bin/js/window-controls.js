@@ -13,7 +13,11 @@ window.addEventListener('DOMContentLoaded', () => {
     dragZone.addEventListener('dblclick', (e) => {
       e.preventDefault();
       e.stopPropagation();
+
+      // Temporarily disable drag region to prevent native maximize
+      dragZone.classList.add('disable-drag');
       window.electronAPI?.doubleClickTitlebar();
+      setTimeout(() => dragZone.classList.remove('disable-drag'), 0);
     });
   }
 

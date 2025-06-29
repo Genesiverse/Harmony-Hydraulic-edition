@@ -19,7 +19,7 @@
 
 #titleBar {
   -webkit-app-region: drag; /* ONLY this div is draggable */
-  /* -webkit-app-region: no-drag; /* not draggable by default */ 
+  /* -webkit-app-region: no-drag; /* not draggable by default */
   width: 100%;
   height: 40px !important;
   display: flex;
@@ -27,6 +27,10 @@
   padding-left: 8px;
   /* background: var(--panel-bg); */
   background: none;
+}
+
+#titleBar.disable-drag {
+  -webkit-app-region: no-drag;
 }
 .title-buttons {
   display: flex;
