@@ -229,24 +229,37 @@ document.addEventListener('keydown', e => {
 });
 
 
-  document.addEventListener('DOMContentLoaded', () => {
-    const welcomeCard = document.getElementById('welcomeCard');
-    const closeBtn = document.getElementById('closeWelcomeBtn');
-    const dropZone = document.getElementById('dropZone');
-    const preloadContainer = document.getElementById('preloadContainer');
+document.addEventListener('DOMContentLoaded', () => {
+  const welcomeCard = document.getElementById('welcomeCard');
+  const closeBtn = document.getElementById('closeWelcomeBtn');
+  const dropZone = document.getElementById('dropZone');
+  const preloadContainer = document.getElementById('preloadContainer');
 
-    // Hide dropZone and preloadContainer initially
-    dropZone.style.display = 'none';
-    preloadContainer.style.display = 'none';
+  const showCard = localStorage.getItem('showWelcomeAfterUpdate') === 'true';
 
-    // Show them after the welcome card is dismissed
-    closeBtn.addEventListener('click', () => {
-      welcomeCard.style.opacity = '0';
-      welcomeCard.style.pointerEvents = 'none';
-      setTimeout(() => {
-        welcomeCard.remove();
-        dropZone.style.display = '';
-        preloadContainer.style.display = '';
-      }, 300);
-    });
+  if (!showCard) {
+    // User has already seen the welcome card - remove it immediately
+    welcomeCard.remove();
+    dropZone.style.display = '';
+    preloadContainer.style.display = '';
+    return;
+  }
+
+  // Hide dropZone and preloadContainer while the card is visible
+  dropZone.style.display = 'none';
+  preloadContainer.style.display = 'none';
+
+  // Show them after the welcome card is dismissed
+  closeBtn.addEventListener('click', () => {
+    welcomeCard.style.opacity = '0';
+    welcomeCard.style.pointerEvents = 'none';
+    setTimeout(() => {
+      welcomeCard.remove();
+      dropZone.style.display = '';
+      preloadContainer.style.display = '';
+      try {
+        localStorage.removeItem('showWelcomeAfterUpdate');
+      } catch {}
+    }, 300);
   });
+});
