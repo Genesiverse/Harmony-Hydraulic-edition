@@ -79,13 +79,8 @@
   },
   "build": {
     "appId": "com.harmony.app",
-    "productName": "Harmony",
-    "icon": "bin/bin/images/logo.ico",
+    "icon": "bin/bin/images/logo",
     "artifactName": "Harmony.Setup.${version}.${ext}",
-    "win": {
-      "sign": false,
-      "publisherName": "Jan Gigantino"
-    },
     "extraResources": [
       {
         "from": "bin",
@@ -96,9 +91,7 @@
       {
         "provider": "github",
         "owner": "Genesiverse",
-        "repo": "Harmony-Hydraulic-edition",
-        "publishAutoUpdate": true,
-        "private": false
+        "repo": "Harmony-Hydraulic-edition"
       }
     ]
   }
