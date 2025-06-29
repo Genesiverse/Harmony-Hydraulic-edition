@@ -5,7 +5,7 @@ body.brutalist-d {
   --panel-bg: #1e1f22;
   --border-color: #ffffff;
   --text-color: #ffffff;
-  --highlight: #fff;
+  --highlight: #151834;
   --blue: #2b2b2b;
   --accent-green: #ffffff;
   --accent-red: #ffffff;
@@ -32,16 +32,63 @@ body.brutalist-d .section,
 body.brutalist-d #dropZone {
   box-shadow: none !important;
   border-width: 2px !important;
+  background-color: var(--highlight);
 }
 
+body.brutalist-d .toggle-switch input:checked + .slider {
+  border: 0.5px solid var(--border-color) !important;
+  background-color: var(--panel-bg);
+}
+
+
+body.brutalist-d .toggle-switch .slider::before{
+  content: "";
+  position: absolute;
+  height: 16px;
+  width: 16px;
+  left: 2px;
+  top: 0.1rem;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.3s;
+}
 body.brutalist-d .section {
   border-color: var(--border-color) !important;
+}
+body.brutalist-d .settings-icons {
+  filter: invert(1);
 }
 body.brutalist-d #updateButton {
   background: var(--bg-color-1) !important;
 }
-body.brutalist-d .sidebar-btn,
+body.brutalist-d .sidebar-btn ,
 body.brutalist-d #settingsPanel {
   background: var(--bg-color) !important;
 
 }
+
+
+
+body.brutalist-d .sidebar-btn.active,
+body.brutalist-d .sidebar-btn.active,
+body.brutalist-d .sidebar-btn.active  {
+  color: var(--shadow) !important;
+  background: var(--border-color) !important;
+}
+body.brutalist-d .sidebar-btn.active img:first-child,
+body.brutalist-d .sidebar-btn.active {
+  filter: invert(0);
+}
+body.brutalist-d .sidebar-btn img:first-child {
+  filter: invert(1);
+}
+body.brutalist-d .sidebar-btn:hover img:first-child {
+  filter: invert(1);
+}
+body.brutalist-d .sidebar-btn.active:hover img:first-child {
+  filter: invert(0);
+}
+body.brutalist-d .sidebar-btn:hover {
+  background-color: #000;
+}
+

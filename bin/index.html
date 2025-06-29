@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="bin/css/themes/brrutalist-dark.css">
   <link rel="stylesheet" href="bin/css/themes/d97.css">
   <link rel="stylesheet" href="bin/css/themes/r63.css">
+  <link rel="stylesheet" href="bin/css/welcome.css">
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
@@ -106,6 +107,13 @@
           </label>
         </div>
         <div class="setting-item">
+          <label for="autoUpdateToggle">Auto Update on Launch</label>
+          <label class="toggle-switch">
+            <input type="checkbox" id="autoUpdateToggle" checked />
+            <span class="slider"></span>
+          </label>
+        </div>
+        <div class="setting-item">
           <button id="updateButton" class="header-btn">Check Update</button>
         </div>
       </div>
@@ -122,6 +130,16 @@
         ʜʏᴅʀᴀᴜʟɪᴄ ᴠᴇʀꜱɪᴏɴ <span id="app-version"></span>
       </div>
 
+       <!-- <div class="d97-background"></div> -->
+
+      <div class="welcome-card" id="welcomeCard">
+        <div class="welcome-icon">👋</div>
+        <h1>Welcome to Harmony</h1>
+        <p>Hang out, build configs, or just explore. Tap below to get started!</p>
+        <div class="btn-group">
+          <button class="d97-btn primary" id="closeWelcomeBtn">Let’s Go</button>
+        </div>
+      </div>
       <div id="dropZone">drag & drop here</div>
 
       <div id="preloadContainer">

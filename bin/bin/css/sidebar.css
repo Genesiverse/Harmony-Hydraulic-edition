@@ -99,7 +99,6 @@
 /* icons are now images so size them relatively */
 .sidebar-btn img:first-child {
   width: 1.4em;
-  height: 1.4em;
 }
 .sidebar-btn.active img:first-child {
   filter: invert(1);

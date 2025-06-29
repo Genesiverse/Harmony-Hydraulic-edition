@@ -7,6 +7,7 @@ window.addEventListener('DOMContentLoaded', () => {
   const highlightPicker = document.getElementById('highlightPicker');
   const debugToggle = document.getElementById('debugToggle');
   const consoleToggle = document.getElementById('consoleToggle');
+  const autoUpdateToggle = document.getElementById('autoUpdateToggle');
 
   // Settings panel is now always visible, so disable toggle buttons
 
@@ -79,6 +80,17 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+
+  if (autoUpdateToggle) {
+    const stored = localStorage.getItem('autoUpdateEnabled');
+    const enabled = stored === null ? true : stored === 'true';
+    autoUpdateToggle.checked = enabled;
+    autoUpdateToggle.addEventListener('change', () => {
+      localStorage.setItem('autoUpdateEnabled', String(autoUpdateToggle.checked));
+    });
+  }
+  
+  
   const updateBtn = document.getElementById('updateButton');
   if (updateBtn) {
     let userRequested = false;

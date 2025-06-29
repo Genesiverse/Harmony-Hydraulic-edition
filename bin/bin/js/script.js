@@ -228,3 +228,25 @@ document.addEventListener('keydown', e => {
   }
 });
 
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const welcomeCard = document.getElementById('welcomeCard');
+    const closeBtn = document.getElementById('closeWelcomeBtn');
+    const dropZone = document.getElementById('dropZone');
+    const preloadContainer = document.getElementById('preloadContainer');
+
+    // Hide dropZone and preloadContainer initially
+    dropZone.style.display = 'none';
+    preloadContainer.style.display = 'none';
+
+    // Show them after the welcome card is dismissed
+    closeBtn.addEventListener('click', () => {
+      welcomeCard.style.opacity = '0';
+      welcomeCard.style.pointerEvents = 'none';
+      setTimeout(() => {
+        welcomeCard.remove();
+        dropZone.style.display = '';
+        preloadContainer.style.display = '';
+      }, 300);
+    });
+  });

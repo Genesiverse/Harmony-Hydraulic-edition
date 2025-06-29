@@ -8,12 +8,21 @@ window.addEventListener('DOMContentLoaded', () => {
 
   let userRequested = false;
 
+  const storedAutoUpdate = localStorage.getItem('autoUpdateEnabled');
+  const autoUpdateEnabled = storedAutoUpdate === null ? true : storedAutoUpdate === 'true';
+
+
   updateBtn.addEventListener('click', () => {
     userRequested = true;
     updateBtn.disabled = true;
     window.electronAPI.checkForUpdates();
   });
   titleBar.appendChild(updateBtn);
+
+  if (autoUpdateEnabled) {
+    window.electronAPI.checkForUpdates();
+  }
+
 
 
 

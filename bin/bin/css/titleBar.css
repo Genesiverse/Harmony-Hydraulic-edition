@@ -8,15 +8,6 @@
   -webkit-app-region: no-drag !important;
 }
 
-#titleBar {
-  -webkit-app-region: drag; /* ONLY this div is draggable */
-  -webkit-app-region: no-drag; /* not draggable by default */
-  width: 100%;
-  -webkit-app-region: drag;
-  display: flex;
-  padding: 0 10px;
-  /* background: #00b50f; */
-}
 
 
 .title-buttons {
@@ -27,12 +18,15 @@
 }
 
 #titleBar {
-  -webkit-app-region: drag;
+  -webkit-app-region: drag; /* ONLY this div is draggable */
+  /* -webkit-app-region: no-drag; /* not draggable by default */ 
+  width: 100%;
   height: 40px !important;
   display: flex;
   align-items: center;
   padding-left: 8px;
-  background: var(--panel-bg);
+  /* background: var(--panel-bg); */
+  background: none;
 }
 .title-buttons {
   display: flex;

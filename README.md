@@ -22,5 +22,4 @@ The application icon is loaded from `bin/images/logo.png` and `bin/images/logo.i
 
 ## Auto Updates
 
-The app uses `electron-updater` configured with GitHub releases. After pushing the project to a GitHub repository, publish new versions as releases containing the generated installer files. The `autoUpdater` will check the repository listed in `package.json` and apply updates automatically.
-
+The app uses `electron-updater` configured with GitHub releases. After pushing the project to a GitHub repository, publish new versions as releases containing the generated installer files. Automatic update checks occur on launch when enabled in **Settings > Advance** under *Auto Update on Launch*.

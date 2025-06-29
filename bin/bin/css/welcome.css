@@ -1,0 +1,84 @@
+.welcome-card {
+  background: linear-gradient(145deg, var(--bg-color-1), var(--panel-bg));
+  border: 2px solid var(--border-color);
+  box-shadow: 0 0 20px #000000aa;
+  color: var(--text-color);
+  padding: 2rem;
+  border-radius: 16px;
+  max-width: 400px;
+  text-align: center;
+  margin: 4rem auto;
+  position: relative;
+  z-index: 10;
+}
+
+.welcome-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.welcome-card h1 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 0.8rem;
+}
+
+.welcome-card p {
+  font-size: 1rem;
+  color: var(--accent-muted);
+  margin-bottom: 1.8rem;
+}
+
+.btn-group {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.d97-btn {
+  font-family: inherit;
+  padding: 0.7rem 1.5rem;
+  border-radius: var(--d97-radius, 12px);
+  font-weight: bold;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.d97-btn.primary {
+  background: var(--highlight);
+  color: white;
+}
+
+.d97-btn.primary:hover {
+  background: var(--accent-pink);
+}
+
+.d97-btn.secondary {
+  background: white;
+  color: var(--highlight);
+}
+
+.d97-btn.secondary:hover {
+  background: #e5e5e5;
+}
+.d97-background {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 20% 30%, #ffffff05 2%, transparent 60%),
+              radial-gradient(circle at 80% 70%, #ff73fa08 2%, transparent 60%),
+              repeating-linear-gradient(45deg, #ffffff05 0px, #ffffff05 1px, transparent 2px, transparent 5px);
+  animation: floatBG 20s ease-in-out infinite;
+  z-index: 0;
+  pointer-events: none;
+}
+
+@keyframes floatBG {
+  0%   { background-position: 0% 0%; }
+  50%  { background-position: 10% 5%; }
+  100% { background-position: 0% 0%; }
+}
+.welcome-card {
+  transition: opacity 0.3s ease;
+}
