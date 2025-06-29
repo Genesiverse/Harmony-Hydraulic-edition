@@ -13,7 +13,7 @@ window.addEventListener('DOMContentLoaded', () => {
     dragZone.addEventListener('dblclick', (e) => {
       e.preventDefault();
       e.stopPropagation();
-      window.electronAPI?.doubleClickTitlebar();
+      window.electronAPI?.maximize();
     });
   }
 

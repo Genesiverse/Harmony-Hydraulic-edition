@@ -13,31 +13,6 @@ function debugLog(...args) {
     }
 }
 
-function toggleMaximize(window, sender) {
-    if (window._isFakeMaximized) {
-        if (window._previousBounds) {
-            window.setBounds(window._previousBounds);
-        }
-        window._isFakeMaximized = false;
-        sender.send('window-is-restored');
-    } else {
-        window._previousBounds = window.getBounds();
-
-        const primaryDisplay = screen.getPrimaryDisplay();
-        const { x, y, width, height } = primaryDisplay.workArea;
-
-        window.setBounds({
-            x: x + 10,
-            y: y + 10,
-            width: width - 20,
-            height: height - 20
-        });
-
-        window._isFakeMaximized = true;
-        sender.send('window-is-maximized');
-    }
-}
-
 function createWindow() {
     const binDir = app.isPackaged
         ? path.join(process.resourcesPath, 'bin')
@@ -90,12 +65,29 @@ ipcMain.on('window-minimize', (e) => {
 
 ipcMain.on('window-maximize', (e) => {
     const window = e.sender.getOwnerBrowserWindow();
-    toggleMaximize(window, e.sender);
-});
 
-ipcMain.on('titlebar-dblclick', (e) => {
-    const window = e.sender.getOwnerBrowserWindow();
-    toggleMaximize(window, e.sender);
+    if (window._isFakeMaximized) {
+        if (window._previousBounds) {
+            window.setBounds(window._previousBounds);
+        }
+        window._isFakeMaximized = false;
+        e.sender.send('window-is-restored');
+    } else {
+        window._previousBounds = window.getBounds();
+
+        const primaryDisplay = screen.getPrimaryDisplay();
+        const { x, y, width, height } = primaryDisplay.workArea;
+
+        window.setBounds({
+            x: x + 10,
+            y: y + 10,
+            width: width - 20,
+            height: height - 20
+        });
+
+        window._isFakeMaximized = true;
+        e.sender.send('window-is-maximized');
+    }
 });
 
 // Auto update IPC
