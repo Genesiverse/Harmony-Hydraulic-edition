@@ -85,6 +85,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
   window.electronAPI.onUpdateDownloaded(() => {
     debugLog('[update] update downloaded');
+    // Show the welcome card on next launch after a successful update
+    try {
+      localStorage.setItem('showWelcomeAfterUpdate', 'true');
+    } catch {}
     updateBtn.textContent = 'Restarting';
   });
   const el = document.getElementById('app-version');
