@@ -97,9 +97,9 @@
         "provider": "github",
         "owner": "Genesiverse",
         "repo": "Harmony-Hydraulic-edition",
-        "verifyUpdateCodeSignature": false
+        "publishAutoUpdate": true,
+        "private": false
       }
     ]
   }
-
 }
