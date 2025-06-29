@@ -1,6 +1,6 @@
 {
   "name": "Harmony",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "main.js",
   "description": "",
   "scripts": {
@@ -79,9 +79,11 @@
   },
   "build": {
     "appId": "com.harmony.app",
-    "icon": "bin/bin/images/logo",
+    "productName": "Harmony",
+    "icon": "bin/bin/images/logo.ico",
     "artifactName": "Harmony.Setup.${version}.${ext}",
     "win": {
+      "sign": false,
       "publisherName": "Jan Gigantino"
     },
     "extraResources": [
@@ -94,8 +96,10 @@
       {
         "provider": "github",
         "owner": "Genesiverse",
-        "repo": "Harmony-Hydraulic-edition"
+        "repo": "Harmony-Hydraulic-edition",
+        "verifyUpdateCodeSignature": false
       }
     ]
   }
+
 }
