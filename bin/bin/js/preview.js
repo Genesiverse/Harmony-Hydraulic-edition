@@ -2,6 +2,12 @@ function createPreviewToggle() {
   const container = document.querySelector('#outputContainer');
   if (!container) return;
 
+
+  // Remove any existing preview header to avoid duplicates when
+  // loading multiple files in the same session
+  const existing = container.querySelector('.preview-header-inline');
+  if (existing) existing.remove();
+  
   const header = document.createElement('div');
   header.className = 'preview-header-inline';
 

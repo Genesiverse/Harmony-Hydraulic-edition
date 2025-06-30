@@ -87,7 +87,7 @@ body.hide-mario #marioContainer {
   position: sticky !important;
   align-self: flex-start !important;
   transition: all 0.3s ease !important;
-  font-family: monospace !important;
+  /* font-family: monospace !important; */
   min-height: 300px !important;
   height: calc(102.7vh - 100px) !important; /* match form container logic */
   max-height: calc(102.7vh - 100px) !important; /* match form container logic */
@@ -185,7 +185,10 @@ body.hide-mario #marioContainer {
   background: var(--bg-color);
   padding: 0 0.5rem;
   font-weight: bold;
-  font-family: inherit;
+  /* font-family: inherit; */
+  font-family: 'Segoe UI', sans-serif;
+  font-weight: bold;
+  font-style: bold;
   font-size: 1rem;
   border: 1px solid var(--border-color);
   border-radius: 6px;
@@ -412,12 +415,13 @@ body.file-loaded #fileInfoContainer {
 }
 
 .preview-title {
+  font-weight: bold;
+  font-style: regular;
   top: -1.5rem;
   left: 1rem;
   background: var(--bg-color);
   padding: 0 0.5rem;
-  font-weight: bold;
-  font-family: inherit;
+  /* font-family: inherit; */
   font-size: 1rem;
   border: 1px solid var(--border-color);
   border-radius: 6px;

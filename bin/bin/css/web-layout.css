@@ -5,6 +5,28 @@
   font-weight: normal;
   font-style: normal;
 }
+
+@font-face {
+  font-family: 'Segoe UI';
+  src: url('../font/segoeuithbd.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Segoe UI';
+  src: url('../font/segoeuithisI.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Segoe UI';
+  src: url('../font/segoeuithsZ.ttf') format('truetype');
+  font-weight: bold;
+  font-style: italic;
+}
+
 :root {
   --bg-color: #ffffff;                 /* light background */
   --shadow: #00000047;                 /* dark background */
@@ -84,7 +106,13 @@ body.dark {
   --section-border-focus: #72767d;
 }
 
+body {
+  user-select: none;
+}
 
+.editor-container, .preview-container {
+  user-select: text;
+}
 
 body {
   background-color: var(--bg-color);
@@ -359,12 +387,15 @@ body.dark #dropOverlay img {
 #layoutContainer.drag-active #dropOverlay {
   display: flex;
   padding: 16px;
-  margin: 40px auto;
+  /* margin: 40px auto; */
+  /* margin: auto; */
+  margin: 0.1rem;
+  /* padding: 1rem; */
   color: var(--text-color);
-  backdrop-filter: blur(10px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  /* backdrop-filter: blur(10px) saturate(180%); */
+  /* -webkit-backdrop-filter: blur(20px) saturate(180%); */
   border: 2px dashed var(--border-color);
-  border-radius: 12px;
+  border-radius: 0.5rem;
   box-shadow: 0 0 16px rgba(0, 0, 0, 0.4);
   transition: all 0.2s ease;
   background-color: rgba(120, 120, 255, 0.2);
@@ -460,6 +491,7 @@ header#topHeader {
   gap: 4px;
   padding: 4px 8px;
   font-size: 12px;
+  display: none;
 }
 
 .header-btn img {

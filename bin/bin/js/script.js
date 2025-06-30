@@ -1,5 +1,16 @@
 let previewMode = 'feather'; // 'full' or 'feather'
 
+
+function deriveFilenameFromConfig(config) {
+  if (!config || typeof config !== 'object') return '';
+  return (
+    config.file_name ||
+    config.name ||
+    config.id ||
+    (config.asset && config.asset.id) ||
+    ''
+  );
+}
 // === File load/render ===
 function loadYAML(content) {
   try {
@@ -11,7 +22,8 @@ function loadYAML(content) {
   }
 
   const input = document.getElementById('filenameInputName');
-  const guess = originalConfig?.file_name || originalConfig?.name;
+  // const guess = originalConfig?.file_name || originalConfig?.name;
+  const guess = deriveFilenameFromConfig(originalConfig);
   if (guess && input) input.value = guess;
 
   const container = document.getElementById('formContainer');
@@ -193,8 +205,13 @@ function buildDiff(inputs, skipEmpty = false) {
 }
 
 function getFilenameFromInput() {
-  const raw = document.getElementById('filenameInputName')?.value.trim();
-  return raw ? (raw.endsWith('.yml') ? raw : `${raw}.yml`) : 'unnamed.yml';
+  // const raw = document.getElementById('filenameInputName')?.value.trim();
+  // return raw ? (raw.endsWith('.yml') ? raw : `${raw}.yml`) : 'unnamed.yml';
+  const inputEl = document.getElementById('filenameInputName');
+  const raw = inputEl?.value.trim();
+  if (raw) return raw.endsWith('.yml') ? raw : `${raw}.yml`;
+  const guess = deriveFilenameFromConfig(originalConfig);
+  return guess ? (guess.endsWith('.yml') ? guess : `${guess}.yml`) : 'unnamed.yml';
 }
 
 
