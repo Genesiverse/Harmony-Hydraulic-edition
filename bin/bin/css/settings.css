@@ -4,6 +4,8 @@
 
 .settings-panel,
 #settingsPanel {
+  font-family: 'Segoe UI';
+  src: url('../font/segoeuithis.ttf') format('truetype');
   background: var(--panel-stng) !important;
   /* backdrop-filter: blur(10px) !important; */
   /* -webkit-backdrop-filter: blur(10px) !important; */

@@ -1,4 +1,10 @@
 /* === Custom Dark Glassy Theme for YAML Editor === */
+@font-face {
+  font-family: 'Segoe UI';
+  src: url('../font/segoeuithis.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 :root {
   --bg-color: #ffffff;                 /* light background */
   --shadow: #00000047;                 /* dark background */
