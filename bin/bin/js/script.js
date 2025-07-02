@@ -56,9 +56,20 @@ let originalConfig = {};
 
 function getValue(input) {
   if (input.type === 'checkbox') return input.checked;
-  if (input.tagName === 'TEXTAREA') return input.value.split('\n');
+  if (input.tagName === 'TEXTAREA') {
+    if (input.dataset.objectArray === 'true') {
+      try {
+        return JSON.parse(input.value);
+      } catch {
+        return [];
+      }
+    }
+    const lines = input.value.split('\n');
+    return lines.length === 1 && lines[0] === '' ? [] : lines;
+  }
   if (input.type === 'number') return parseFloat(input.value);
-  try { return JSON.parse(input.value); } catch { return input.value; }
+  // try { return JSON.parse(input.value); } catch { return input.value; }
+  return input.value;
 }
 
 function isEmpty(val) {
@@ -123,7 +134,12 @@ function renderForm(obj, parentKey = '', parentContainer = null) {
         input.value = value;
       } else if (Array.isArray(value)) {
         input = document.createElement('textarea');
-        input.value = value.join('\n');
+        if (value.some(v => typeof v === 'object')) {
+          input.value = JSON.stringify(value, null, 2);
+          input.dataset.objectArray = 'true';
+        } else {
+          input.value = value.join('\n');
+        }
       } else {
         input = document.createElement('input');
         input.type = 'text';
@@ -227,7 +243,11 @@ function resetInputToDefault(input) {
   if (input.type === 'checkbox') {
     input.checked = !!val;
   } else if (input.tagName === 'TEXTAREA') {
-    input.value = Array.isArray(val) ? val.join('\n') : (val ?? '');
+    if (input.dataset.objectArray === 'true') {
+      input.value = JSON.stringify(val ?? [], null, 2);
+    } else {
+      input.value = Array.isArray(val) ? val.join('\n') : (val ?? '');
+    }
   } else {
     input.value = val ?? '';
   }

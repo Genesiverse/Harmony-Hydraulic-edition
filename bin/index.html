@@ -19,163 +19,164 @@
 </head>
 <body>
 
-  <!-- Title Bar -->
-  <!-- <div id="titleBar" class="update-available"> -->
-  <div id="titleBar">
-      <div class="title-buttons">
-          <button class="title-btn close" id="windowClose"></button>
-          <button class="title-btn minimize" id="windowMin"></button>
-          <button class="title-btn maximize" id="windowMax"></button>
-      </div>
-  </div>
+    <!-- Title Bar -->
+    <!-- <div id="titleBar" class="update-available"> -->
+    <div id="titleBar">
+        <div class="title-buttons">
+            <button class="title-btn close" id="windowClose"></button>
+            <button class="title-btn minimize" id="windowMin"></button>
+            <button class="title-btn maximize" id="windowMax"></button>
+        </div>
+    </div>
 
-  <div id="marioContainer" aria-hidden="true"></div>
-  <div id="layoutContainer" class="layout">
-    <aside class="sidebar">
-      <div class="sidebar-buttons">
-        <button class="sidebar-btn" id="resetBtn"><img src="bin/images/home.png" alt="Home" class="settings-icons" /><span>ʜᴏᴍᴇ</span></button>
-        <input type="file" id="configLoader" accept=".yml,.yaml" hidden />
-        <button class="sidebar-btn" id="openFileBtn"><img src="bin/images/cloud-computing.png" alt="Open" class="settings-icons" /><span>ᴏᴘᴇɴ</span></button>
-        <div id="actionGroup" class="hide-on-load">
-          <button class="sidebar-btn" id="saveBtn"><img src="bin/images/copy-writing.png" alt="Pipe" class="settings-icons" /><span>ᴘɪᴘᴇ</span><span>ᴇᴅɪᴛᴏʀ</span></button>
-        </div>
-      </div>
-      <button class="sidebar-btn settings-btn" id="settingsBtn"><img src="bin/images/setting.png" alt="Settings" class="settings-icons" /><span>ꜱᴇᴛᴛɪɴɢ</span></button>
-    </aside>
+    <div id="marioContainer" aria-hidden="true"></div>
+    <div id="layoutContainer" class="layout">
+        <aside class="sidebar">
+            <div class="sidebar-buttons">
+                <button class="sidebar-btn" id="resetBtn"><img src="bin/images/home.png" alt="Home" class="settings-icons" /><span>ʜᴏᴍᴇ</span></button>
+                <input type="file" id="configLoader" accept=".yml,.yaml" hidden />
+                <button class="sidebar-btn" id="openFileBtn"><img src="bin/images/cloud-computing.png" alt="Open" class="settings-icons" /><span>ᴏᴘᴇɴ</span></button>
+                <div id="actionGroup" class="hide-on-load">
+                    <button class="sidebar-btn" id="saveBtn"><img src="bin/images/copy-writing.png" alt="Pipe" class="settings-icons" /><span>ᴘɪᴘᴇ</span><span>ᴇᴅɪᴛᴏʀ</span></button>
+                </div>
+            </div>
+            <button class="sidebar-btn settings-btn" id="settingsBtn"><img src="bin/images/setting.png" alt="Settings" class="settings-icons" /><span>ꜱᴇᴛᴛɪɴɢ</span></button>
+        </aside>
 
-    <div id="dropOverlay"><img src="bin/images/cloud-computing.png" alt="File"/>  Drop your YAML file to load</div>
+        <div id="dropOverlay"><img src="bin/images/cloud-computing.png" alt="File" />  Drop your YAML file to load</div>
 
-    <main id="mainDropArea">
-      <div id="settingsPanel" class="settings-panel">
-        <h3>Settings</h3>
-        <h4>Themes</h4>
-        <div class="setting-item">
-          <label for="themeToggle">Dark Mode</label>
-          <label class="toggle-switch">
-            <input type="checkbox" id="themeToggle" onchange="toggleTheme()" />
-            <span class="slider"></span>
-          </label>
-        </div>
-        <div class="setting-item">
-          <label for="marioBackgroundToggle">Mario Background</label>
-          <label class="toggle-switch">
-            <input type="checkbox" id="marioBackgroundToggle" checked />
-            <span class="slider"></span>
-          </label>
-        </div>
-        <div class="setting-item">
-          <label for="retro64Toggle">Retro64</label>
-          <label class="toggle-switch">
-            <input type="checkbox" id="retro64Toggle" checked />
-            <span class="slider"></span>
-          </label>
-        </div>
-        <div class="setting-item">
-          <label for="brutalistToggle">Brutalist</label>
-          <label class="toggle-switch">
-            <input type="checkbox" id="brutalistToggle" />
-            <span class="slider"></span>
-          </label>
-        </div>
-        <div class="setting-item">
-          <label for="brutalistDarkToggle">Darktalist</label>
-          <label class="toggle-switch">
-            <input type="checkbox" id="brutalistDarkToggle" />
-            <span class="slider"></span>
-          </label>
-        </div>
-        <div class="setting-item">
-          <label for="D97Toggle">D97</label>
-          <label class="toggle-switch">
-            <input type="checkbox" id="D97Toggle" />
-            <span class="slider"></span>
-          </label>
-        </div>
-        <h4>Advance</h4>
-        <div class="setting-item">
-          <label for="debugToggle">Debug</label>
-          <label class="toggle-switch">
-            <input type="checkbox" id="debugToggle" />
-            <span class="slider"></span>
-          </label>
-        </div>
-        <div class="setting-item">
-          <label for="consoleToggle">Open Console</label>
-          <label class="toggle-switch">
-            <input type="checkbox" id="consoleToggle" />
-            <span class="slider"></span>
-          </label>
-        </div>
-        <div class="setting-item">
-          <label for="autoUpdateToggle">Auto Update on Launch</label>
-          <label class="toggle-switch">
-            <input type="checkbox" id="autoUpdateToggle" checked />
-            <span class="slider"></span>
-          </label>
-        </div>
-        <div class="setting-item">
-          <button id="updateButton" class="header-btn">check update </button><label class="header-btn">version <span id="app-version"></span>
-        </div>
-      </div>
+        <main id="mainDropArea">
+            <div id="settingsPanel" class="settings-panel">
+                <h3>Settings</h3>
+                <h4>Themes</h4>
+                <div class="setting-item">
+                    <label for="themeToggle">Dark Mode</label>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="themeToggle" onchange="toggleTheme()" />
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <label for="marioBackgroundToggle">Mario Background</label>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="marioBackgroundToggle" checked />
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <label for="retro64Toggle">Retro64</label>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="retro64Toggle" checked />
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <label for="brutalistToggle">Brutalist</label>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="brutalistToggle" />
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <label for="brutalistDarkToggle">Darktalist</label>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="brutalistDarkToggle" />
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <label for="D97Toggle">D97</label>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="D97Toggle" />
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <h4>Advance</h4>
+                <div class="setting-item">
+                    <label for="debugToggle">Debug</label>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="debugToggle" />
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <label for="consoleToggle">Open Console</label>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="consoleToggle" />
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <label for="autoUpdateToggle">Auto Update on Launch</label>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="autoUpdateToggle" checked />
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <button id="updateButton" class="header-btn">check update </button><label class="header-btn">version <span id="app-version"></span>
+                </div>
+            </div>
 
-      <header id="topHeader"><span id="headerTitle">Harmony ʏᴍʟ</span>
-        <div class="update-available">
-        <div id="topActions" class="hide-on-load">
-          <button class="header-btn" id="downloadBtn"><img src="bin/images/anvil.png" alt="Editor" class="settings-icons" /><span>ғᴜʟʟ</span></button>
-          <button class="header-btn" id="downloadCompactBtn"><img src="bin/images/feather.png" alt="Feather" class="settings-icons" /><span>ғᴇᴀᴛʜᴇʀ</span></button>
-        </div>
-        </div>
-      </header>
-      <div class="footer-credit">
-        ʜʏᴅʀᴀᴜʟɪᴄ ᴠᴇʀꜱɪᴏɴ <span id="app-version"></span>
-      </div>
+            <header id="topHeader">
+                <span id="headerTitle">Harmony ʏᴍʟ</span>
+                <div class="update-available">
+                    <div id="topActions" class="hide-on-load">
+                        <button class="header-btn" id="downloadBtn"><img src="bin/images/anvil.png" alt="Editor" class="settings-icons" /><span>ғᴜʟʟ</span></button>
+                        <button class="header-btn" id="downloadCompactBtn"><img src="bin/images/feather.png" alt="Feather" class="settings-icons" /><span>ғᴇᴀᴛʜᴇʀ</span></button>
+                    </div>
+                </div>
+            </header>
+            <div class="footer-credit">
+                ʜʏᴅʀᴀᴜʟɪᴄ ᴠᴇʀꜱɪᴏɴ <span id="app-version"></span>
+            </div>
 
-       <!-- <div class="d97-background"></div> -->
+            <!-- <div class="d97-background"></div> -->
 
-      <div class="welcome-card" id="welcomeCard">
-        <div class="welcome-icon">👋</div>
-        <h1>Welcome to Harmony</h1>
-        <p>Hang out, build configs, or just explore. Tap below to get started!</p>
-        <div class="btn-group">
-          <button class="d97-btn primary" id="closeWelcomeBtn">Let’s Go</button>
-        </div>
-      </div>
-      <div id="dropZone">drag & drop here</div>
+            <div class="welcome-card" id="welcomeCard">
+                <div class="welcome-icon">👋</div>
+                <h1>Welcome to Harmony</h1>
+                <p>Hang out, build configs, or just explore. Tap below to get started!</p>
+                <div class="btn-group">
+                    <button class="d97-btn primary" id="closeWelcomeBtn">Let’s Go</button>
+                </div>
+            </div>
+            <div id="dropZone">drag & drop here</div>
 
-      <div id="preloadContainer">
-        <span>Preload YAML:</span>
-        <button class="preload-btn" data-file="bin/preloads/imarket.yml">imarket</button>
-        <button class="preload-btn" data-file="bin/preloads/sem.yml">sem</button>
-      </div>
+            <div id="preloadContainer">
+                <span>Preload YAML:</span>
+                <button class="preload-btn" data-file="bin/preloads/imarket.yml">imarket</button>
+                <button class="preload-btn" data-file="bin/preloads/sem.yml">sem</button>
+            </div>
 
-      <div class="footer-credit">
-        ᴍᴀᴅᴇ ᴡɪᴛʜ ❤️ ʙʏ ᴊᴀɴ • ɢᴇɴᴇsɪᴠᴇʀsᴇ • ʏᴍʟ ʜᴀʀᴍᴏɴʏ © 2025
-      </div>
+            <div class="footer-credit">
+                ᴍᴀᴅᴇ ᴡɪᴛʜ ❤️ ʙʏ ᴊᴀɴ • ɢᴇɴᴇsɪᴠᴇʀsᴇ • ʏᴍʟ ʜᴀʀᴍᴏɴʏ © 2025
+            </div>
 
-      <div class="editor-container hide-on-load">
-        <div id="formContainer"></div>
-        <div id="outputContainer">
-          <textarea id="output" spellcheck="false"></textarea>
-          <div class="filename-input-row">
-            <label id="filenameInputTitle" for="filenameInputName">📄 File Name:</label>
-            <input type="text" id="filenameInputName" placeholder="Enter file name (without .yml)">
-          </div>
-        </div>
-      </div>
-    </main>
-  </div>
+            <div class="editor-container hide-on-load">
+                <div id="formContainer"></div>
+                <div id="outputContainer">
+                    <textarea id="output" spellcheck="false"></textarea>
+                    <div class="filename-input-row">
+                        <label id="filenameInputTitle" for="filenameInputName">📄 File Name:</label>
+                        <input type="text" id="filenameInputName" placeholder="Enter file name (without .yml)">
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
 
-  <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4"></script>
-  <script src="bin/js/debug.js"></script>
-  <script src="bin/js/theme.js"></script>
-  <script src="bin/js/preload-data.js"></script>
-  <script src="bin/js/preview.js"></script>
-  <script src="bin/js/script.js"></script>
-  <script src="bin/js/pro.js"></script>
-  <script src="bin/js/settings.js"></script>
-  <script src="bin/js/draganddrop.js"></script>
-  <script src="bin/js/window-controls.js"></script>
-  <script src="bin/js/update.js"></script>
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/js-yaml@4"></script>
+    <script src="bin/js/debug.js"></script>
+    <script src="bin/js/theme.js"></script>
+    <!--<script src="bin/js/preload-data.js"></script>  -->
+    <script src="bin/js/preview.js"></script>
+    <script src="bin/js/script.js"></script>
+    <script src="bin/js/pro.js"></script>
+    <script src="bin/js/settings.js"></script>
+    <script src="bin/js/draganddrop.js"></script>
+    <script src="bin/js/window-controls.js"></script>
+    <script src="bin/js/update.js"></script>
 </body>
-</html>
+    </html>

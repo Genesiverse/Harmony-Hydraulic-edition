@@ -98,7 +98,12 @@ renderForm = function (obj, parentKey = '', depth = 0, parentContainer = null) {
         input.value = value;
       } else if (Array.isArray(value)) {
         input = document.createElement('textarea');
-        input.value = value.join('\n');
+        if (value.some(v => typeof v === 'object')) {
+          input.value = JSON.stringify(value, null, 2);
+          input.dataset.objectArray = 'true';
+        } else {
+          input.value = value.join('\n');
+        }
       } else {
         input = document.createElement('input');
         input.type = 'text';
